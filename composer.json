@@ -1,0 +1,11 @@
+{
+  "name": "kevin/api",
+  "description": "Rap project API",
+  "type": "project",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "RAP\\": "api/"
+    }
+  }
+}
