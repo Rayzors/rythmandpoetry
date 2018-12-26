@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use dbConnexion\Database;
+use Helpers\Database;
 
 class Artists
 {
@@ -25,6 +25,9 @@ class Artists
     artistes;";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute();
+    if ($stmt->errorCode() !== '00000') {
+      throw new Exception("Error Processing Request", 1);
+    }
     $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     return $rows;
@@ -42,12 +45,15 @@ class Artists
     WHERE
     id = :id;";
     $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParams(':id', $id, \PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
     $stmt->execute();
+    if ($stmt->errorCode() !== '00000') {
+      throw new Exception("Error Processing Request", 1);
+    }
     $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
     if ($row === false) {
-      return [];
+      return null;
     }
 
     return $row;

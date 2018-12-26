@@ -2,10 +2,15 @@
   "name": "kevin/api",
   "description": "Rap project API",
   "type": "project",
-  "require": {},
+  "require": {
+    "klein/klein": "^2.1"
+  },
   "autoload": {
     "psr-4": {
-      "RAP\\": "api/"
+      "": "api/",
+      "Controllers\\": "api/Controllers/",
+      "Helpers\\": "api/Helpers/",
+      "Models\\": "api/Models/"
     }
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace dbConnexion;
+namespace Helpers;
 
 class Database
 {
