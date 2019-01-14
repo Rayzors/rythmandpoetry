@@ -1,0 +1,133 @@
+<?php
+
+namespace Models;
+
+use Helpers\Database;
+
+class Sections
+{
+
+  private $pdo;
+
+  public function __construct()
+  {
+    $this->pdo = Database::get();
+  }
+
+  private function executeSqlById(string $sql, int $id) 
+  {
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+    $stmt->execute();
+    if ($stmt->errorCode() !== '00000') {
+      throw new Exception("Error Processing Request", 1);
+    }
+    $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+      return null;
+    }
+
+    return $row;
+  }
+
+  private function executeSql(string $sql) 
+  {
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    if ($stmt->errorCode() !== '00000') {
+      throw new Exception("Error Processing Request", 1);
+    }
+    $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    return $rows;
+  }
+
+  public function getAll() : array
+  {
+    $sql = "SELECT
+    section_id,
+    section_title,
+    section_subtitle
+    FROM
+    sections;";
+    return $this->executeSql($sql);
+  }
+
+  public function getById(int $id) : ? array
+  {
+    $sql = "SELECT
+    section_id,
+    section_title,
+    section_subtitle,
+    FROM
+    sections
+    WHERE
+    section_id = :id;";
+    return $this->executeSqlById($sql, $id);
+  }
+
+  public function getArtists() : ? array
+  {
+    $sql = "SELECT
+    artist_id,
+    artist_name,
+    artist_content,
+    artist_cover,
+    fk_section_id
+    FROM
+    artists;
+    ";
+    return $this->executeSql($sql);
+  }
+
+  public function getContentBySection(int $id) : ? array
+  {
+    $sql = "SELECT
+    content_id,
+    content_type,
+    content_text,
+    fk_section_id
+    FROM
+    content
+    WHERE
+    fk_section_id = :id
+    ";
+    return $this->executeSqlById($sql, $id);
+  }
+
+  public function getArtistBySection(int $id) : ? array
+  {
+    $sql = "SELECT
+    artist_id,
+    artist_name,
+    artist_content,
+    artist_cover,
+    fk_section_id
+    FROM
+    artists
+    WHERE
+    fk_section_id = :id
+    ";
+    return $this->executeSqlById($sql, $id);
+  }
+
+  public function getMusicBySection(int $id) : ? array
+  {
+    $sql = "SELECT
+    music_id,
+    music_title,
+    music_cover,
+    music_src,
+    music_artist_id,
+    fk_section_id
+    FROM
+    musics
+    WHERE
+    fk_section_id = :id
+    ";
+    return $this->executeSqlById($sql, $id);
+  }
+
+
+}
