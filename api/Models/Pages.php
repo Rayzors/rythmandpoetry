@@ -4,7 +4,7 @@ namespace Models;
 
 use Helpers\Database;
 
-class Artists
+class Pages
 {
 
   private $pdo;
@@ -17,13 +17,13 @@ class Artists
   public function getAll() : array
   {
     $sql = "SELECT
-    artist_id,
-    artist_name,
-    artist_content,
-    artist_cover,
-    artist_page_id
+    page_id,
+    page_section_id,
+    page_content_ids,
+    page_musics,
+    page_artists
     FROM
-    artists;";
+    pages;";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute();
     if ($stmt->errorCode() !== '00000') {
@@ -37,15 +37,15 @@ class Artists
   public function getById(int $id) : ? array
   {
     $sql = "SELECT
-    artist_id,
-    artist_name,
-    artist_content,
-    artist_cover,
-    artist_page_id
+    page_id,
+    page_section_id,
+    page_content_ids,
+    page_musics,
+    page_artists
     FROM
-    artists
+    pages
     WHERE
-    id = :id;";
+    page_id = :id;";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
     $stmt->execute();
