@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 15, 2019 at 09:31 AM
+-- Generation Time: Jan 15, 2019 at 12:30 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -87,16 +87,18 @@ INSERT INTO `musics` (`music_id`, `music_title`, `music_cover`, `music_src`, `mu
 CREATE TABLE `sections` (
   `section_id` int(11) NOT NULL,
   `section_title` varchar(128) NOT NULL,
-  `section_subtitle` varchar(128) NOT NULL
+  `section_subtitle` varchar(128) NOT NULL,
+  `section_bgcolor` varchar(32) NOT NULL,
+  `section_color` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sections`
 --
 
-INSERT INTO `sections` (`section_id`, `section_title`, `section_subtitle`) VALUES
-(1, 'The begenning of a new era', 'The begenning of rap and hip-hop. (70s)'),
-(2, 'The golden Era', 'Je sais pas frère');
+INSERT INTO `sections` (`section_id`, `section_title`, `section_subtitle`, `section_bgcolor`, `section_color`) VALUES
+(1, 'The begenning of a new era', 'The begenning of rap and hip-hop. (70s)', '', ''),
+(2, 'The golden Era', 'Je sais pas frère', '', '');
 
 --
 -- Indexes for dumped tables
