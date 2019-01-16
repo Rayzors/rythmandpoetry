@@ -25,8 +25,8 @@ class Api {
     return this.callApi( '/era' )
   }
 
-  async getEraById( id ) {
-    return this.callApi( `/era/${ id }` )
+  async getEraById( eraId ) {
+    return this.callApi( `/era/${ eraId }` )
   }
 
   async getArtists() {
