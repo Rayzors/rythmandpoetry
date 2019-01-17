@@ -1,6 +1,6 @@
 import LoadingScreen from '../Views/LoadingScreen/LoadingScreen';
 import HomeScreen from '../Views/HomeScreen/HomeScreen';
-import EraSelect from '../Views/EraSelect/EraSelect';
+import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
 
 const routes = [
   {
@@ -12,7 +12,7 @@ const routes = [
   {
     name: "eraSelect",
     path: "/select",
-    component: EraSelect
+    component: EraSelectContainer
   },
   {
     name: "homeScreen",
@@ -21,7 +21,7 @@ const routes = [
   },
   {
     redirect: true,
-    to: '/'
+    to: '/select'
   }
 ]
 

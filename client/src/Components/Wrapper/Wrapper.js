@@ -1,3 +1,5 @@
 import React from 'react';
 
-export default Wrapper = (props) => <section>{props.children}</section>
+const Wrapper = (props) => <section>{props.children}</section>
+
+export default Wrapper;
