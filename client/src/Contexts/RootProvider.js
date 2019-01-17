@@ -9,6 +9,7 @@ class RootProvider extends Component {
     super()
     this.state = {
       lol: 0,
+      selectedEra: null,
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }
 

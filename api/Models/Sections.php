@@ -31,6 +31,24 @@ class Sections
     return $row;
   }
 
+  private function executeSqlByIdAndAction(string $sql, int $id, string $action) 
+  {
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+    $stmt->bindValue(':act', $action, \PDO::PARAM_STR);
+    $stmt->execute();
+    if ($stmt->errorCode() !== '00000') {
+      throw new Exception("Error Processing Request", 1);
+    }
+    $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+      return null;
+    }
+
+    return $row;
+  }
+
   private function executeSql(string $sql) 
   {
     $stmt = $this->pdo->prepare($sql);
@@ -50,7 +68,8 @@ class Sections
     section_title,
     section_subtitle,
     section_bgcolor,
-    section_color
+    section_color,
+    section_bgimage
     FROM
     sections;";
     return $this->executeSql($sql);
@@ -63,7 +82,8 @@ class Sections
     section_title,
     section_subtitle,
     section_bgcolor,
-    section_color
+    section_color,
+    section_bgimage
     FROM
     sections
     WHERE
@@ -116,6 +136,23 @@ class Sections
     fk_section_id = :id
     ";
     return $this->executeSqlById($sql, $id);
+  }
+
+  public function getContentByType(int $id, string $act) : ? array
+  {
+    $sql = "SELECT
+    content_id,
+    content_type,
+    content_text,
+    fk_section_id
+    FROM
+    content
+    WHERE
+    fk_section_id = :id
+    AND
+    content_type = :act
+    ";
+    return $this->executeSqlByIdAndAction($sql, $id, $act);
   }
 
   public function getArtistBySection(int $id) : ? array
