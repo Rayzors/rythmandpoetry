@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 15, 2019 at 12:30 PM
+-- Generation Time: Jan 16, 2019 at 10:25 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -23,8 +23,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `artists` (
   `artist_id` int(11) UNSIGNED NOT NULL,
   `artist_name` varchar(50) DEFAULT NULL,
-  `artist_content` text,
   `artist_cover` varchar(50) DEFAULT NULL,
+  `artist_content` text,
+  `artist_content_color` varchar(32) NOT NULL,
+  `artist_bgcolor` varchar(32) NOT NULL,
   `fk_section_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32,9 +34,9 @@ CREATE TABLE `artists` (
 -- Dumping data for table `artists`
 --
 
-INSERT INTO `artists` (`artist_id`, `artist_name`, `artist_content`, `artist_cover`, `fk_section_id`) VALUES
-(3, 'Maxime OGER', 'Un grand rappeur francais', 'https://picsum.photos/200/200', 1),
-(4, 'Yash PATEL', 'Sûrement le meilleur rappeur indien', 'https://picsum.photos/200/200', 2);
+INSERT INTO `artists` (`artist_id`, `artist_name`, `artist_cover`, `artist_content`, `artist_content_color`, `artist_bgcolor`, `fk_section_id`) VALUES
+(3, 'Maxime OGER', 'https://picsum.photos/200/200', 'Un grand rappeur francais', '', '', 1),
+(4, 'Yash PATEL', 'https://picsum.photos/200/200', 'Sûrement le meilleur rappeur indien', '', '', 2);
 
 -- --------------------------------------------------------
 
@@ -68,6 +70,9 @@ CREATE TABLE `musics` (
   `music_cover` varchar(512) NOT NULL,
   `music_src` varchar(512) NOT NULL,
   `music_artist_id` int(11) NOT NULL,
+  `music_content` text NOT NULL,
+  `music_content_color` varchar(32) NOT NULL,
+  `music_bgcolor` varchar(32) NOT NULL,
   `fk_section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,8 +80,8 @@ CREATE TABLE `musics` (
 -- Dumping data for table `musics`
 --
 
-INSERT INTO `musics` (`music_id`, `music_title`, `music_cover`, `music_src`, `music_artist_id`, `fk_section_id`) VALUES
-(1, 'Okocha', 'lol.jpg', 'lol.mp3', 0, 1);
+INSERT INTO `musics` (`music_id`, `music_title`, `music_cover`, `music_src`, `music_artist_id`, `music_content`, `music_content_color`, `music_bgcolor`, `fk_section_id`) VALUES
+(1, 'Okocha', 'lol.jpg', 'lol.mp3', 0, '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +102,7 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`section_id`, `section_title`, `section_subtitle`, `section_bgcolor`, `section_color`) VALUES
-(1, 'The begenning of a new era', 'The begenning of rap and hip-hop. (70s)', '', ''),
+(1, 'The beginning of a new era', 'The begenning of rap and hip-hop. (70s)', '', ''),
 (2, 'The golden Era', 'Je sais pas frère', '', '');
 
 --

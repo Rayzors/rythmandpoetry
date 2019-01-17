@@ -1,13 +1,13 @@
-// import apiHostName from '../env/jenesaispas'
-const apiHostName = 'http://localhost:3001'
+// import baseURL from '../env/jenesaispas'
+const baseURL = 'http://localhost:3001'
 
 class Api {
   /**
    * Api helper to get data from API
-   * @param {String} apiHostName 
+   * @param {String} baseURL 
    */
-  constructor( apiHostName ) {
-    this.hostname = apiHostName
+  constructor( baseURL ) {
+    this.hostname = baseURL
   }
 
   /**
@@ -16,7 +16,11 @@ class Api {
    */
   async callApi( endpoint ) {
     const request = this.hostname + endpoint
-    const response = await fetch( request )
+    const options = {
+      method: 'GET',
+      mode: 'no-cors'
+    }
+    const response = await fetch( request , options )
     const json = await response.json()
     return json
   }
@@ -51,5 +55,5 @@ class Api {
 
 }
 
-const rapApi = new Api(  apiHostName  )
+const rapApi = new Api( baseURL )
 export default rapApi
