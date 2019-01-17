@@ -1,51 +1,54 @@
 import React, { Component } from 'react'
-import rapStorage from '../helpers/storage'
+import rapStorage from '../helpers/storage' // by default the localstorage is initialized
 
 const RootContext = React.createContext()
-const { Provider, Consumer } = RootContext
+const { Provider,  Consumer } = RootContext
 
 class RootProvider extends Component {
-    constructor() {
-        super()
-        this.state = {
-            lol: 0
-        }
-        rapStorage.init()
-        console.log(rapStorage)
-
-        this.providerValue = {
-            state: this.state,
-            customLog: this.customLog,
-            addArtists: this.addArtists.bind(this),
-            setState: this.setState.bind(this)
-        }
+  constructor() {
+    super()
+    this.state = {
+      lol: 0,
+      ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }
 
-    customLog = value => console.log(value)
-
-    addArtists = ( artistId ) => {
-        console.log('triggered with ' + artistId)
-        const prevStorage = rapStorage.getItem( 'unlockedArtist' )
-        if( prevStorage && !prevStorage.includes( artistId ) ) {
-            console.log(prevStorage)
-            const newArray = [
-                ...prevStorage,
-                artistId
-            ]
-            console.log(newArray)
-            rapStorage.setItem( 'unlockedArtist', newArray )
-        }
+    // Props passed as value to the <Provider />
+    this.providerValue = {
+      state: this.state,
+      addArtist: this.addArtist,
+      setState: this.setState.bind( this )
     }
+  }
 
-    render() {
-        return (
-            <Provider value={ this.providerValue } >
-                { this.props.children }
-            </Provider>
-        )
-    }
+  componentDidUpdate() {
+    this.providerValue.state = this.state // updating the state passed to the <Provider />
+  }
+
+  /**
+   * Add an artist in the state of the RootProvider and setting the localstorage
+   */
+  addArtist = ( artistId ) => {
+    const stateUnlockedArtist = this.state.unlockedArtist
+    if( !stateUnlockedArtist.includes(artistId) ) {
+      // update state
+      this.setState( prevState => ({ unlockedArtist: [ ...prevState.unlockedArtist, artistId ] }) )
+      // update localStorage
+      rapStorage.setItem( 'unlockedArtist', this.state.unlockedArtist )
+      console.log('you just unlocked an artist ' + artistId )
+    } else { console.log('already unlocked ' + artistId ) }
+  }
+
+  render() {
+    return ( 
+      <Provider value = { this.providerValue }> 
+        { this.props.children } 
+      </Provider>
+    )
+  }
 }
 
-export { Consumer }
+export {
+  Consumer
+}
 
 export default RootProvider

@@ -12,9 +12,12 @@ class HomeScreen extends Component {
         <Consumer>
           {
             context => {
-              console.log(context.state.lol)
               return(
-                <button onClick={() => context.setState( prevState => ({ lol: prevState.lol + 1 }), () => context.addArtists(context.state.lol) )}>log</button>
+                // Test of addArtist & setState 
+                <button onClick={
+                  () => context.setState( prevState => ({ lol: prevState.lol + 1 }), 
+                  () => context.addArtist(context.state.lol) )
+                }>log</button>
               )
             }
           }
