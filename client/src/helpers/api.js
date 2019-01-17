@@ -25,34 +25,76 @@ class Api {
     return json
   }
 
+  /**
+   * Return all eras 
+   * Use await to call this function
+   */
   async getEras() {
     return this.callApi( '/era' )
   }
 
+  /**
+   * Returns one Era 
+   * Use await to call this function
+   * @param {Number} eraId the era ID
+   */
   async getEraById( eraId ) {
     return this.callApi( `/era/${ eraId }` )
   }
 
+  /**
+   * Returns every artists 
+   * Use await to call this function
+   */
   async getArtists() {
     return this.callApi( '/era/artists' )
   }
 
+  /**
+   * Returns every musics 
+   * Use await to call this function
+   */
   async getMusics() {
     return this.callApi( '/era/musics' )
   }
 
+  /**
+   * Returns every content of an era
+   * @param {Number} eraId the era ID
+   */
   async getContentByEra( eraId ) {
     return this.callApi( `/era/${ eraId }/content` )
   }
 
+  /**
+   * Returns the content of an era by type 
+   * @param {Number} eraId the era ID
+   * @param {String} type the type of the content
+   */
+  async getContentByType( eraId, type ) {
+    return this.callApi( `/era/${ eraId }/content` )
+  }
+
+  /**
+   * Returns every artist of an era
+   * @param {Number} eraId the era ID
+   */
   async getArtistByEra( eraId ) {
     return this.callApi( `/era/${ eraId }/artists` )
   }
 
-  async getMusicByEra( eraId ) {
+  /**
+   * Returns every musics of an era
+   * @param {Number} eraId the era ID
+   */
+  async getMusicsByEra( eraId ) {
     return this.callApi( `/era/${ eraId }/musics` )
   }
 
+  /**
+   * Returns every playlist of an era
+   * @param {Number} eraId the era ID
+   */
   async getPlaylistByEra( eraId ) {
     return this.callApi( `/era/${ eraId }/playlist` )
   }

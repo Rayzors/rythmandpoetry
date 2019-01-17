@@ -27,7 +27,7 @@ class LoadingScreen extends Component {
 
   load = async () => {
 
-    const loader = window.setTimeout(this.redirect, 5000);
+    const loader = window.setTimeout(this.redirect, 5);
 
   }
 

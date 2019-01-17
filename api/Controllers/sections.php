@@ -42,6 +42,13 @@ class Sections
     $Contents = $Sections->getContentBySection($request->id);
     return $this->setHeadersAndReturnJson($Contents);
   }
+  
+  public function getContentByType($request)
+  {
+    $Sections = new modelSections();
+    $Contents = $Sections->getContentByType($request->id, $request->action);
+    return $this->setHeadersAndReturnJson($Contents);
+  }
 
   public function getArtistBySection($request)
   {
