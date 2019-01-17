@@ -153,6 +153,19 @@ class Sections
     ";
     return $this->executeSqlById($sql, $id);
   }
+  public function getPlaylistBySection(int $id) : ? array
+  {
+    $sql = "SELECT
+    playlist_id,
+    playlist_spotify_id,
+    fk_section_id
+    FROM
+    playlists
+    WHERE
+    fk_section_id = :id
+    ";
+    return $this->executeSqlById($sql, $id);
+  }
 
 
 }

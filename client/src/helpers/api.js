@@ -53,6 +53,10 @@ class Api {
     return this.callApi( `/era/${ eraId }/musics` )
   }
 
+  async getPlaylistByEra( eraId ) {
+    return this.callApi( `/era/${ eraId }/playlist` )
+  }
+
 }
 
 const rapApi = new Api( baseURL )

@@ -10,6 +10,7 @@ $klein->respond('GET', '/era/musics', [new Controllers\Sections(), getMusics]);
 $klein->respond('GET', '/era/[i:id]/artists', [new Controllers\Sections(), getArtistBySection]);
 $klein->respond('GET', '/era/[i:id]/content', [new Controllers\Sections(), getContentBySection]);
 $klein->respond('GET', '/era/[i:id]/musics', [new Controllers\Sections(), getMusicBySection]);
+$klein->respond('GET', '/era/[i:id]/playlist', [new Controllers\Sections(), getPlaylistBySection]);
 
 
 $klein->dispatch();

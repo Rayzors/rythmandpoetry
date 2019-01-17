@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 16, 2019 at 10:25 AM
+-- Generation Time: Jan 17, 2019 at 09:08 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -86,6 +86,25 @@ INSERT INTO `musics` (`music_id`, `music_title`, `music_cover`, `music_src`, `mu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `playlists`
+--
+
+CREATE TABLE `playlists` (
+  `playlist_id` int(11) NOT NULL,
+  `playlist_spotify_id` varchar(32) NOT NULL,
+  `fk_section_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `playlists`
+--
+
+INSERT INTO `playlists` (`playlist_id`, `playlist_spotify_id`, `fk_section_id`) VALUES
+(1, '4NF9VUiwO6P1eZHcvh6vYg', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sections`
 --
 
@@ -131,6 +150,13 @@ ALTER TABLE `musics`
   ADD KEY `fk_section_id` (`fk_section_id`);
 
 --
+-- Indexes for table `playlists`
+--
+ALTER TABLE `playlists`
+  ADD PRIMARY KEY (`playlist_id`),
+  ADD KEY `fk_section_id` (`fk_section_id`);
+
+--
 -- Indexes for table `sections`
 --
 ALTER TABLE `sections`
@@ -159,6 +185,12 @@ ALTER TABLE `musics`
   MODIFY `music_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `playlists`
+--
+ALTER TABLE `playlists`
+  MODIFY `playlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
@@ -185,3 +217,9 @@ ALTER TABLE `content`
 --
 ALTER TABLE `musics`
   ADD CONSTRAINT `musics_ibfk_1` FOREIGN KEY (`fk_section_id`) REFERENCES `sections` (`section_id`);
+
+--
+-- Constraints for table `playlists`
+--
+ALTER TABLE `playlists`
+  ADD CONSTRAINT `playlists_ibfk_1` FOREIGN KEY (`fk_section_id`) REFERENCES `sections` (`section_id`);

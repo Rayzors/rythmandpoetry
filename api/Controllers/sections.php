@@ -63,5 +63,11 @@ class Sections
     $Musics = $Sections->getMusicBySection($request->id);
     return $this->setHeadersAndReturnJson($Musics);
   }
+  public function getPlaylistBySection($request)
+  {
+    $Sections = new modelSections();
+    $Playlist = $Sections->getPlaylistBySection($request->id);
+    return $this->setHeadersAndReturnJson($Playlist);
+  }
   
 }
