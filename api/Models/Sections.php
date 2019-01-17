@@ -48,7 +48,9 @@ class Sections
     $sql = "SELECT
     section_id,
     section_title,
-    section_subtitle
+    section_subtitle,
+    section_bgcolor,
+    section_color
     FROM
     sections;";
     return $this->executeSql($sql);
@@ -60,6 +62,8 @@ class Sections
     section_id,
     section_title,
     section_subtitle,
+    section_bgcolor,
+    section_color
     FROM
     sections
     WHERE
@@ -77,6 +81,24 @@ class Sections
     fk_section_id
     FROM
     artists;
+    ";
+    return $this->executeSql($sql);
+  }
+
+  public function getMusics() : ? array
+  {
+    $sql = "SELECT
+    music_id,
+    music_title,
+    music_cover,
+    music_src,
+    music_artist_id,
+    music_content,
+    music_content_color,
+    music_bgcolor,
+    fk_section_id
+    FROM
+    musics
     ";
     return $this->executeSql($sql);
   }
@@ -120,9 +142,25 @@ class Sections
     music_cover,
     music_src,
     music_artist_id,
+    music_content,
+    music_content_color,
+    music_bgcolor,
     fk_section_id
     FROM
     musics
+    WHERE
+    fk_section_id = :id
+    ";
+    return $this->executeSqlById($sql, $id);
+  }
+  public function getPlaylistBySection(int $id) : ? array
+  {
+    $sql = "SELECT
+    playlist_id,
+    playlist_spotify_id,
+    fk_section_id
+    FROM
+    playlists
     WHERE
     fk_section_id = :id
     ";
