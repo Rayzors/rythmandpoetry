@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import EraView from '../../Components/EraView/EraView';
 import './EraSelect.css'
 import { Parallax } from 'react-spring/addons';
+import { throttle } from '../../helpers/utils'
 
 class EraSelectContainer extends Component {
   state = {
@@ -25,14 +26,22 @@ class EraSelectContainer extends Component {
         section_color: ""
       }
     ],
+    current: 0
   }
 
-  scroll = (current) => {
+  scroll = (e, current) => {
+    e.preventDefault()
     console.log(current)
-    if(current === this.state.eras.length - 1) {
-      this.parallax.scrollTo(0)
-    } else {
-      this.parallax.scrollTo(current+1)
+    // this.setState({ current: (current + 1 <= this.state.eras.length ? current : 0) })
+    if((e.deltaY >= 20) || (e.deltaY <= -20) ) {
+      if(e.deltaY > 0) {
+        console.log('scroll up')
+        throttle(this.parallax.scrollTo(current-1), 400)
+      } else {
+        console.log('scroll down')
+        if(current === this.state.eras.length) return
+        throttle(this.parallax.scrollTo(current+1), 400)
+      }
     }
   }
 
@@ -44,7 +53,7 @@ class EraSelectContainer extends Component {
           <EraView 
             {...era}
             key={i} 
-            onClick={() => this.scroll(i)}
+            swipe={this.scroll}
             length={eras.length} 
             current={i+1}
           />
