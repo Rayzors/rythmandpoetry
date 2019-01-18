@@ -10,7 +10,7 @@ const EraView = (props) => {
   return (
     <Fragment>
 
-      <ParallaxLayer offset={props.current - 1} speed={0} style={{cursor: 'pointer'}} onWheel={e => props.swipe(e, props.current)} style={{zIndex: '1', backgroundColor: props.section_bgcolor}}>
+      <ParallaxLayer offset={props.current - 1} speed={0} style={{cursor: 'pointer'}} onWheel={e => props.swipe(e, props.current)} style={{zIndex: '1', /*backgroundColor: props.section_bgcolor*/}}>
         <EraViewInfo className="EraView__info" style={{zIndex: '3'}}>
           <div className="EraView__current" >{props.current} / {props.length}</div>
           <EraViewCurrent className="EraView"/>
@@ -20,17 +20,15 @@ const EraView = (props) => {
         </EraViewInfo>
       </ParallaxLayer>
 
-      <ParallaxLayer offset={props.current - 1} speed={0.4} onWheel={e => props.swipe(e, props.current)} style={{zIndex: '2', 
-          right: '33%',}}>
+      <ParallaxLayer offset={props.current - 1} speed={0.4} onWheel={e => props.swipe(e, props.current)} style={{/*zIndex: '2'*/}}>
         <div
         style={{
-          backgroundImage: `url(https://via.placeholder.com/500)`,
+          backgroundImage: `url(https://via.placeholder.com/${props.current*100})`,
           backgroundSize: 'cover',
           width: '600px',
           height: '600px',
           position: 'relative',
           transform: 'rotate(-5deg)',
-          left: '-50%'
         }}
         >
 
