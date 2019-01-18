@@ -1,6 +1,5 @@
 .EraView__info{
   color: #ffffff;
-  /* temporaire 'à refaire' */
   position: absolute;
   z-index: 2;
   left: 5%;
@@ -25,4 +24,18 @@
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+}
+
+.App .EraView__bgImageContainer {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.App .EraView__bgImage {
+  position: relative;
+  background-size: cover;
+  transform: rotate(-3deg);
+  left: 2%;
+  width: 50vw;
+  height: 50vh;
 }

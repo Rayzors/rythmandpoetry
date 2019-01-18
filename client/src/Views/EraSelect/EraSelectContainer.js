@@ -9,22 +9,25 @@ class EraSelectContainer extends Component {
   state = {
     eras: [
       {
-       name: "At the dawn <br/>of a new <br/>culture", 
+       name: "At the dawn <br/>of a new culture", 
        section_subtitle: "The begenning of rap and hip-hop. (70s)",
        section_bgcolor: "#F8C918",
-       section_color: ""
+       section_color: "",
+       section_bgimage: "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2690&q=80"
       },
       {
         name: "The rise of <br/>golden Era",
         section_subtitle: "The birth of Gangsta rap",
         section_bgcolor: "#B21131",
-        section_color: ""
+        section_color: "",
+        section_bgimage: "https://images.unsplash.com/photo-1529666759085-741eefcd3371?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2125&q=80"
       },
       {
         name: "The Mumble <br/>Rap",
         section_subtitle: "",
         section_bgcolor: "#561222",
-        section_color: ""
+        section_color: "",
+        section_bgimage: "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2552&q=80"
       }
     ],
     current: 0,
@@ -36,39 +39,35 @@ class EraSelectContainer extends Component {
     this.isScrolling = false
   }
 
-  scroll = (e, current) => {
+  handleWheel = (e, current) => {
     e.preventDefault()
     e.persist()
     const scrollDirection = e.deltaY > 0 ? -1 : 1
-    if(scrollDirection === -1 && current === 1) return
+    if((scrollDirection === -1 && current === 1) || (current === this.state.eras.length && scrollDirection === 1) ) {
+      // scrolling to the previous in the first page or scrolling to the next in the last page
+      return false
+    }
     if( ((e.deltaY >= 20) || (e.deltaY <= -20)) && !this.isScrolling ) {
       this.isScrolling = !this.isScrolling
       const from = current - 1
       const to =  (current + scrollDirection) - 1 
-      if(to < 0) return
       console.log({from, to})
       this.setState(() => ({
         from, 
         to
       }), () => {
-        console.log('callback')
+        // callback
         if(e.deltaY > 0) {
           // scroll up
-          this.setBgColorByAniamtion(current, -1)
-          throttle(this.parallax.scrollTo(current - 2), 400)
+          this.parallax.scrollTo(current - 2)
           setTimeout(() => this.isScrolling = !this.isScrolling, 1000)
         } else if(e.deltaY < 0){
-          this.setBgColorByAniamtion(current, 1)
           // scroll down
-          throttle(this.parallax.scrollTo(current), 400)
+          this.parallax.scrollTo(current)
           setTimeout(() => this.isScrolling = !this.isScrolling, 1000)
         }
       })
     }
-  }
-
-  setBgColorByAniamtion(currentItem, scrollDirection) {
-    // console.log(currentItem, scrollDirection)
   }
 
   render() {
@@ -85,7 +84,7 @@ class EraSelectContainer extends Component {
               <EraView 
               {...era}
               key={i} 
-              swipe={this.scroll}
+              handleWheel={this.handleWheel}
               length={eras.length} 
               current={i+1}
               />
