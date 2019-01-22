@@ -1,0 +1,41 @@
+.EraView__info{
+  color: #ffffff;
+  position: absolute;
+  z-index: 2;
+  left: 5%;
+  top: 28%;
+}
+
+.EraView__title{
+  font-size: 100px;
+  line-height: 99px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  /* line-height: 1.5; */
+} 
+
+.EraView__subTitle{
+  font-size: 14px;
+  font-family: 'Playfair Display';
+}
+
+.EraView__current{
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.App .EraView__bgImageContainer {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.App .EraView__bgImage {
+  position: relative;
+  background-size: cover;
+  transform: rotate(-3deg);
+  left: 2%;
+  width: 50vw;
+  height: 70vh;
+}

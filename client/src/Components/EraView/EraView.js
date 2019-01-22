@@ -13,7 +13,7 @@ const EraView = (props) => {
         <EraViewInfo className="EraView__info" style={{zIndex: '3'}}>
           <div className="EraView__current" >{props.current} / {props.length}</div>
           <EraViewCurrent className="EraView"/>
-          <h1 className="EraView__title" dangerouslySetInnerHTML={{ __html: props.name }}></h1>
+          <h1 className="EraView__title" dangerouslySetInnerHTML={{ __html: props.section_title }}></h1>
           <DashLine />
           <p className="EraView__subTitle">{props.section_subtitle}</p>
         </EraViewInfo>

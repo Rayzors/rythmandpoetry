@@ -1,5 +1,5 @@
 // import baseURL from '../env/jenesaispas'
-const baseURL = 'http://localhost:3001'
+const baseURL = 'http://54.190.49.146/api'
 
 class Api {
   /**
@@ -18,7 +18,7 @@ class Api {
     const request = this.hostname + endpoint
     const options = {
       method: 'GET',
-      mode: 'no-cors'
+      mode: 'cors'
     }
     const response = await fetch( request , options )
     const json = await response.json()
@@ -60,6 +60,7 @@ class Api {
 
   /**
    * Returns every content of an era
+   * Use await to call this function
    * @param {Number} eraId the era ID
    */
   async getContentByEra( eraId ) {
@@ -68,6 +69,7 @@ class Api {
 
   /**
    * Returns the content of an era by type 
+   * Use await to call this function
    * @param {Number} eraId the era ID
    * @param {String} type the type of the content
    */
@@ -77,6 +79,7 @@ class Api {
 
   /**
    * Returns every artist of an era
+   * Use await to call this function
    * @param {Number} eraId the era ID
    */
   async getArtistByEra( eraId ) {
@@ -85,6 +88,7 @@ class Api {
 
   /**
    * Returns every musics of an era
+   * Use await to call this function
    * @param {Number} eraId the era ID
    */
   async getMusicsByEra( eraId ) {
@@ -93,6 +97,7 @@ class Api {
 
   /**
    * Returns every playlist of an era
+   * Use await to call this function
    * @param {Number} eraId the era ID
    */
   async getPlaylistByEra( eraId ) {
