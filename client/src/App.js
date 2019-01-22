@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import routes from './helpers/routes';
 import 'typeface-montserrat';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import './App.css';
-import './scss/styles.scss'
+import "./App.css";
+
 class App extends Component {
   render() {
     return (

@@ -4,7 +4,6 @@ import EraViewInfo from '../EraView/EraViewInfo'
 import EraViewCurrent from '../EraView/EraViewCurrent'
 import DashLine from '../DashLine/DashLine';
 import { ParallaxLayer } from 'react-spring/addons';
-import './EraView.css'
 
 const EraView = (props) => {
   return (

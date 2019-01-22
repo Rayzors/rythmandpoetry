@@ -1,11 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import EraView from '../../Components/EraView/EraView';
-import './EraSelect.css'
 import { Parallax } from 'react-spring/addons';
-import { Spring } from 'react-spring'
-import { throttle } from '../../helpers/utils'
+import { Spring } from 'react-spring';
+import { throttle } from '../../helpers/utils';
+import "./EraSelect.css";
 
 class EraSelectContainer extends Component {
+
+  constructor() {
+    super()
+    this.isScrolling = false
+  }
+
   state = {
     eras: [
       {
@@ -34,10 +40,6 @@ class EraSelectContainer extends Component {
     from: 0, 
     to: 0
   }
-  constructor() {
-    super()
-    this.isScrolling = false
-  }
 
   handleWheel = (e, current) => {
     e.preventDefault()
@@ -50,8 +52,8 @@ class EraSelectContainer extends Component {
     if( ((e.deltaY >= 20) || (e.deltaY <= -20)) && !this.isScrolling ) {
       this.isScrolling = !this.isScrolling
       const from = current - 1
-      const to =  (current + scrollDirection) - 1 
-      console.log({from, to})
+      const to = (current + scrollDirection) - 1 
+
       this.setState(() => ({
         from, 
         to
@@ -67,6 +69,7 @@ class EraSelectContainer extends Component {
           setTimeout(() => this.isScrolling = !this.isScrolling, 1000)
         }
       })
+
     }
   }
 
