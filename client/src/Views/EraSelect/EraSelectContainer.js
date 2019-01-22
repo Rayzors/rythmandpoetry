@@ -5,22 +5,18 @@ import { Spring } from 'react-spring'
 import rapApi from '../../helpers/api'
 
 class EraSelectContainer extends Component {
-
   constructor() {
     super()
     this.isScrolling = false
-  }
 
-  state = {
-    eras: [],
-    current: 0,
-    from: 0, 
-    to: 0
+    this.state = {
+      eras: [],
+      current: 0,
+      from: 0, 
+      to: 0
+    }
   }
-  constructor() {
-    super()
-    this.isScrolling = false
-  }
+ 
   async componentDidMount() {
     const apiEras = await rapApi.getEras()
     this.setState({
