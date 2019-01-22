@@ -31,7 +31,7 @@ class EraSelectContainer extends Component {
       // scrolling to the previous in the first page or scrolling to the next in the last page
       return false
     }
-    if( ( (e.deltaY >= 20) || (e.deltaY <= -20) || (e.deltaX >= 20) || (e.deltaX <= -20) ) && !this.isScrolling ) {
+    if( ( (e.deltaY >= 40) || (e.deltaY <= -20) || (e.deltaX >= 20) || (e.deltaX <= -20) ) && !this.isScrolling ) {
       this.isScrolling = !this.isScrolling
       const from = current - 1
       const to =  (current + scrollDirection) - 1 
