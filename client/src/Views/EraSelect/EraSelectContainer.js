@@ -60,6 +60,7 @@ class EraSelectContainer extends Component {
   render() {
     const {eras, from, to} = this.state;
     if(eras.length === 0) { return  <div>Loading</div> }
+    console.log('wesh')
     return eras.length > 0 && (
       <Fragment>
         <Spring

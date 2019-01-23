@@ -8,7 +8,7 @@ class HomeScreen extends Component {
       <div>
         <h1>Home</h1>
         <p>Hey bro, Welcome to <strong>rythm and poetry</strong>. <br/> We will introduce you to different kind of rap.</p>
-        <Link to="/select">Start</Link>
+        <Link to="/g">Start</Link>
         <Consumer>
           {
             context => {
