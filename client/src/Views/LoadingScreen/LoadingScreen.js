@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.section`
-  background: #062444;
-  height: 100vh;
-  width: 100vw;
-`;
-
 
 class LoadingScreen extends Component {
   state = {
@@ -27,7 +21,7 @@ class LoadingScreen extends Component {
 
   load = async () => {
 
-    const loader = window.setTimeout(this.redirect, 5);
+    const loader = window.setTimeout(this.redirect, 1);
 
   }
 
@@ -39,11 +33,12 @@ class LoadingScreen extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <div className="LoadingScreen">
+      
         mets ton casque frère
 
         <p>Loading ...</p>
-      </Wrapper>
+      </div>
     )
   }
 

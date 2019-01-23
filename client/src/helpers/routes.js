@@ -21,7 +21,7 @@ const routes = [
   },
   {
     redirect: true,
-    to: '/select'
+    to: '/'
   }
 ]
 
