@@ -1,6 +1,7 @@
 import LoadingScreen from '../Views/LoadingScreen/LoadingScreen';
 import HomeScreen from '../Views/HomeScreen/HomeScreen';
 import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
+import AudioPlayerContainer from '../Views/Player/AudiPlayerContainer';
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     name: "homeScreen",
     path: "/home",
     component: HomeScreen
+  },
+  {
+    name: "player",
+    path: "/player",
+    component: AudioPlayerContainer
   },
   {
     redirect: true,

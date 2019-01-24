@@ -10,15 +10,21 @@ class RootProvider extends Component {
     this.state = {
       lol: 0,
       selectedEra: null,
-      ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
+      ...rapStorage.getStorage(), // Getting the localStorage template and setting it as state
+      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3'
     }
 
     // Props passed as value to the <Provider />
     this.providerValue = {
       state: this.state,
       addArtist: this.addArtist,
-      setState: this.setState.bind( this )
+      setState: this.setState.bind( this ),
+      isProviderValue: true
     }
+  }
+
+  componentDidMount() {
+    // get ambient music
   }
 
   componentDidUpdate() {
@@ -49,7 +55,8 @@ class RootProvider extends Component {
 }
 
 export {
-  Consumer
+  Consumer,
+  RootContext
 }
 
 export default RootProvider
