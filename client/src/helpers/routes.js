@@ -22,7 +22,7 @@ const routes = [
     routes: [
       {
         name: "eraSelect",
-        path: "/select",
+        path: "/select-your-era",
         component: EraSelectContainer
       },
       {

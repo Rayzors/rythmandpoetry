@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import  routes from '../../helpers/routes';
-
+import { Consumer } from '../../Contexts/RootProvider';
 class Global extends Component {
   render() {
     const { match } = this.props;
@@ -10,8 +10,20 @@ class Global extends Component {
 
     return (
       <Fragment>
-        <button style={{position :"absolute"}}>Menu</button>
-
+        <Consumer>
+          {
+            context => {
+              console.log(context)
+              return(
+                <button 
+                  onClick={
+                    () => context.toggleMenu()
+                  }
+                  style={{position :"absolute"}}>Menu</button>
+              )
+            }
+          }
+        </Consumer>
         <Switch>
           {
             global.routes.map( (sub, i) => (
