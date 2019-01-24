@@ -10,6 +10,7 @@ class RootProvider extends Component {
     this.state = {
       lol: 0,
       selectedEra: null,
+      menuIsActive: false,
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }
 
@@ -17,6 +18,7 @@ class RootProvider extends Component {
     this.providerValue = {
       state: this.state,
       addArtist: this.addArtist,
+      toggleMenu: this.toggleMenu,
       setState: this.setState.bind( this )
     }
   }
@@ -37,6 +39,16 @@ class RootProvider extends Component {
       rapStorage.setItem( 'unlockedArtist', this.state.unlockedArtist )
       console.log('you just unlocked an artist ' + artistId )
     } else { console.log('already unlocked ' + artistId ) }
+  }
+
+  /**
+   * open/close the menu to select Eras and access to hallOfFame
+   */
+  toggleMenu = () => {
+    this.setState(prevState => ({
+      menuIsActive: !prevState.menuIsActive
+    }))
+    alert('toggle Menu')
   }
 
   render() {
