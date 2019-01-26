@@ -15,7 +15,7 @@ class AudioPlayerContainer extends Component {
       currentTime: 0, 
       duration: 0, 
       percentage: 0,
-      volume: 1,
+      volume: 0,
       currentItem: 0
     }
   }
@@ -28,6 +28,7 @@ class AudioPlayerContainer extends Component {
     this.$audio.addEventListener('canplay', () => {
       window.audio = this.$audio
       this.play() // autoplay
+      this.fadeInAudio()
       console.log("autoplay")
       this.updateDuration()
     })
@@ -46,8 +47,7 @@ class AudioPlayerContainer extends Component {
         setTimeout(() => {
           this.pause()
           this.$audio.load()
-          this.fadeInAudio()
-        }, 2000)
+        }, 2500)
       })
     }
   }
@@ -55,14 +55,18 @@ class AudioPlayerContainer extends Component {
   fadeOutAudio = () => {
     let fadePoint = this.$audio.currentTime 
     let fadeAudio = setInterval(() => {
-      if ((this.$audio.currentTime >= fadePoint) && (this.$audio.volume >= 0.0)) {
-        if((this.$audio.volume - 0.1 > 0) && this.$audio.volume - 0.1 <= 1) {
+      let volume = Math.round(this.$audio.volume * 100)
+      if ((this.$audio.currentTime >= fadePoint) && (volume >= 0.0)) {
+        if((this.$audio.volume - 0.1 >= 0) && (this.$audio.volume - 0.1 <= 1)) {
           this.$audio.volume -= 0.1
+          this.$audio.volume = this.$audio.volume.toFixed(1)
         }
       }
+      console.log('working' + this.$audio.volume)
       // When volume at zero stop all the intervalling
-      if (this.$audio.volume === 0.0) {
+      if (volume === 0.0) {
           clearInterval(fadeAudio)
+          this.fadeInAudio()
       }
     }, 200)
   }
@@ -70,12 +74,14 @@ class AudioPlayerContainer extends Component {
   fadeInAudio = () => {
     let fadePoint = this.$audio.currentTime + 2
     let fadeAudio = setInterval(() => {
-      if ((this.$audio.currentTime <= fadePoint) && (this.$audio.volume <= 1)) {
-        if((this.$audio.volume + 0.1 > 0) && this.$audio.volume + 0.1 >= 1) {
+      if ((this.$audio.currentTime <= fadePoint) && (this.$audio.volume <= 1.0)) {
+        if( (this.$audio.volume + 0.1 <= 1.0) ) {
           this.$audio.volume += 0.1
+          this.$audio.volume = this.$audio.volume.toFixed(1)
         }
       }
-      // When volume at zero stop all the intervalling
+      console.log('working fadeIn ' + this.$audio.volume)
+      // When volume at 1 stop all the intervalling
       if (this.$audio.volume === 1) {
           clearInterval(fadeAudio)
       }
@@ -90,6 +96,7 @@ class AudioPlayerContainer extends Component {
       playPromise
         .then( () => {
           // this.$audio.play()
+          this.fadeInAudio()
           this.setState({ played: true }, () => {
             this.timer = setInterval( () => {
               let currentTime = this.$audio.currentTime
