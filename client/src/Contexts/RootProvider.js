@@ -17,6 +17,7 @@ class RootProvider extends Component {
     // Props passed as value to the <Provider />
     this.providerValue = {
       state: this.state,
+      menuIsActive: this.state.menuIsActive,
       addArtist: this.addArtist,
       toggleMenu: this.toggleMenu,
       setState: this.setState.bind( this )
@@ -24,6 +25,7 @@ class RootProvider extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.state.menuIsActive , this.providerValue.menuIsActive)
     this.providerValue.state = this.state // updating the state passed to the <Provider />
   }
 
@@ -48,7 +50,6 @@ class RootProvider extends Component {
     this.setState(prevState => ({
       menuIsActive: !prevState.menuIsActive
     }))
-    alert('toggle Menu')
   }
 
   render() {
