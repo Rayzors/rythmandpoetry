@@ -12,21 +12,7 @@ class RootProvider extends Component {
       selectedEra: null,
       menuIsActive: false,
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
-    }
-
-    // Props passed as value to the <Provider />
-    this.providerValue = {
-      state: this.state,
-      menuIsActive: this.state.menuIsActive,
-      addArtist: this.addArtist,
-      toggleMenu: this.toggleMenu,
-      setState: this.setState.bind( this )
-    }
-  }
-
-  componentDidUpdate() {
-    console.log(this.state.menuIsActive , this.providerValue.menuIsActive)
-    this.providerValue.state = this.state // updating the state passed to the <Provider />
+    }    
   }
 
   /**
@@ -53,8 +39,17 @@ class RootProvider extends Component {
   }
 
   render() {
+
+    let providerValue = {
+      state: this.state,
+      menuIsActive: this.state.menuIsActive,
+      addArtist: this.addArtist,
+      toggleMenu: this.toggleMenu,
+      setState: this.setState.bind( this )
+    }
+
     return ( 
-      <Provider value = { this.providerValue }> 
+      <Provider value = { providerValue }> 
         { this.props.children } 
       </Provider>
     )
