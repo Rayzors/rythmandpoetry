@@ -29,5 +29,11 @@ class Global extends Component {
     )
   }
 }
-//
+
+/*
+ cette fonction retourne le composant "Global" 
+ dans le Consumer du rootProvider, on peut l'utiliser
+ pour exporter n'importe quel composant que l'on souhaite utiliser
+ avec le context
+*/
 export default withConsumer(Global);
