@@ -1,7 +1,7 @@
 import React from 'react';
 import SoundIcon from '../SoundIcon/SoundIcon';
 
-export default (Wrapper = (props) => (
+let Wrapper = (props) => (
   <section>
     {props.children}
     <svg
@@ -16,4 +16,6 @@ export default (Wrapper = (props) => (
       <rect x="12" y="4" width="5" height="18" fill="white" />
     </svg>
   </section>
-));
+);
+
+export default Wrapper;
