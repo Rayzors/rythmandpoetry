@@ -1,13 +1,19 @@
-import styled from 'styled-components';
-import React, { Component, Fragment } from 'react';
+import React from 'react';
+import SoundIcon from '../SoundIcon/SoundIcon';
 
-const Wrapper = styled.section`
-  padding: 20px;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-
-export default Wrapper;
+export default (Wrapper = (props) => (
+  <section>
+    {props.children}
+    <svg
+      width="17"
+      height="22"
+      viewBox="0 0 17 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect y="7" width="5" height="15" fill="white" />
+      <rect x="6" width="5" height="22" fill="white" />
+      <rect x="12" y="4" width="5" height="18" fill="white" />
+    </svg>
+  </section>
+));
