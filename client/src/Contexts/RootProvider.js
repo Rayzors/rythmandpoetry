@@ -11,15 +11,16 @@ class RootProvider extends Component {
       lol: 0,
       selectedEra: null,
       ...rapStorage.getStorage(), // Getting the localStorage template and setting it as state
-      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3'
+      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3',
+      menuIsActive: false
     }
 
     // Props passed as value to the <Provider />
     this.providerValue = {
       state: this.state,
       addArtist: this.addArtist,
-      setState: this.setState.bind( this ),
-      isProviderValue: true
+      toggleMenu: this.toggleMenu,
+      setState: this.setState.bind( this )
     }
   }
 
@@ -43,6 +44,16 @@ class RootProvider extends Component {
       rapStorage.setItem( 'unlockedArtist', this.state.unlockedArtist )
       console.log('you just unlocked an artist ' + artistId )
     } else { console.log('already unlocked ' + artistId ) }
+  }
+
+  /**
+   * open/close the menu to select Eras and access to hallOfFame
+   */
+  toggleMenu = () => {
+    this.setState(prevState => ({
+      menuIsActive: !prevState.menuIsActive
+    }))
+    alert('toggle Menu')
   }
 
   render() {

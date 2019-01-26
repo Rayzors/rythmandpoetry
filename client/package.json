@@ -5,6 +5,7 @@
   "dependencies": {
     "gsap": "^2.0.2",
     "install": "^0.12.2",
+    "node-sass": "^4.11.0",
     "npm": "^6.5.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -28,5 +29,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }

@@ -1,21 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import EraView from '../../Components/EraView/EraView';
-import './EraSelect.css'
 import { Parallax } from 'react-spring/addons';
 import { Spring } from 'react-spring'
 import rapApi from '../../helpers/api'
 
 class EraSelectContainer extends Component {
-  state = {
-    eras: [],
-    current: 0,
-    from: 0, 
-    to: 0
-  }
   constructor() {
     super()
     this.isScrolling = false
+
+    this.state = {
+      eras: [],
+      current: 0,
+      from: 0, 
+      to: 0
+    }
   }
+ 
   async componentDidMount() {
     const apiEras = await rapApi.getEras()
     this.setState({
@@ -34,8 +35,8 @@ class EraSelectContainer extends Component {
     if( ( (e.deltaY >= 40) || (e.deltaY <= -40) || (e.deltaX >= 20) || (e.deltaX <= -20) ) && !this.isScrolling ) {
       this.isScrolling = !this.isScrolling
       const from = current - 1
-      const to =  (current + scrollDirection) - 1 
-      console.log({from, to})
+      const to = (current + scrollDirection) - 1 
+
       this.setState(() => ({
         from, 
         to, 
@@ -52,12 +53,14 @@ class EraSelectContainer extends Component {
           setTimeout(() => this.isScrolling = !this.isScrolling, 1000)
         }
       })
+
     }
   }
 
   render() {
     const {eras, from, to} = this.state;
     if(eras.length === 0) { return  <div>Loading</div> }
+    console.log('wesh')
     return eras.length > 0 && (
       <Fragment>
         <Spring

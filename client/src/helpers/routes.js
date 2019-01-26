@@ -1,19 +1,16 @@
 import LoadingScreen from '../Views/LoadingScreen/LoadingScreen';
 import HomeScreen from '../Views/HomeScreen/HomeScreen';
 import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
-import AudioPlayerContainer from '../Views/Player/AudiPlayerContainer';
+import AudioPlayerContainer from '../Views/Player/AudioPlayerContainer';
 
+import Global from '../Views/Global/Global';
+import HallOfFame from '../Views/HallOfFame/HallOfFame';
 const routes = [
   {
     name: "loadingScreen",
     exact: true,
     path: "/",
     component: LoadingScreen
-  },
-  {
-    name: "eraSelect",
-    path: "/select",
-    component: EraSelectContainer
   },
   {
     name: "homeScreen",
@@ -26,8 +23,29 @@ const routes = [
     component: AudioPlayerContainer
   },
   {
+    name: "global",
+    component: Global,
+    path: "/g",
+    routes: [
+      {
+        name: "eraSelect",
+        path: "/select-your-era",
+        component: EraSelectContainer
+      },
+      {
+        name: "hallOfFame",
+        path: "/hall-of-fame",
+        component: HallOfFame
+      },
+      {
+        redirect: true,
+        to: '/select'
+      }
+    ]
+  },
+  {
     redirect: true,
-    to: '/select'
+    to: '/'
   }
 ]
 
