@@ -5,6 +5,8 @@ import AudioPlayerContainer from '../Views/Player/AudioPlayerContainer';
 
 import Global from '../Views/Global/Global';
 import HallOfFame from '../Views/HallOfFame/HallOfFame';
+import EraView from '../Views/EraView/EraView';
+
 const routes = [
   {
     name: "loadingScreen",
@@ -28,6 +30,11 @@ const routes = [
     path: "/g",
     routes: [
       {
+        name: "VisitEra",
+        path: "/:eraName",
+        component: EraView,
+      },
+      {
         name: "eraSelect",
         path: "/select-your-era",
         component: EraSelectContainer
@@ -39,7 +46,7 @@ const routes = [
       },
       {
         redirect: true,
-        to: '/select'
+        to: '/select-your-era'
       }
     ]
   },

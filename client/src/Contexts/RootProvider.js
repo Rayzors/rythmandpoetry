@@ -10,26 +10,10 @@ class RootProvider extends Component {
     this.state = {
       lol: 0,
       selectedEra: null,
-      ...rapStorage.getStorage(), // Getting the localStorage template and setting it as state
+      menuIsActive: false,
       currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3',
-      menuIsActive: false
-    }
-
-    // Props passed as value to the <Provider />
-    this.providerValue = {
-      state: this.state,
-      addArtist: this.addArtist,
-      toggleMenu: this.toggleMenu,
-      setState: this.setState.bind( this )
-    }
-  }
-
-  componentDidMount() {
-    // get ambient music
-  }
-
-  componentDidUpdate() {
-    this.providerValue.state = this.state // updating the state passed to the <Provider />
+      ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
+    }    
   }
 
   /**
@@ -53,12 +37,20 @@ class RootProvider extends Component {
     this.setState(prevState => ({
       menuIsActive: !prevState.menuIsActive
     }))
-    alert('toggle Menu')
   }
 
   render() {
+
+    let providerValue = {
+      state: this.state,
+      menuIsActive: this.state.menuIsActive,
+      addArtist: this.addArtist,
+      toggleMenu: this.toggleMenu,
+      setState: this.setState.bind( this )
+    }
+
     return ( 
-      <Provider value = { this.providerValue }> 
+      <Provider value = { providerValue }> 
         { this.props.children } 
       </Provider>
     )
