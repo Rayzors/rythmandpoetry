@@ -56,13 +56,12 @@ class LoadingScreen extends Component {
     this.setState({
       loader: window.setInterval(() => {
         this.setState((prevState) => ({ progress: prevState.progress + 3 }));
-        console.log('interval');
       }, 200)
     });
   };
   redirect = () => {
     const { history } = this.props;
-    history.push('/home');
+    history.push('/g/select-your-era');
   };
   render() {
     return (
