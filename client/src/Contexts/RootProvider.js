@@ -11,7 +11,9 @@ class RootProvider extends Component {
       lol: 0,
       selectedEra: null,
       menuIsActive: false,
-      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3',
+      mute: false,
+      currentPlaylist: [],
+      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3', // By default it's the ambient music
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
   }
@@ -38,6 +40,12 @@ class RootProvider extends Component {
       menuIsActive: !prevState.menuIsActive
     }))
   }
+
+  toggleSound = () => {
+    this.setState( prevState => ({ mute: !prevState.mute }) )
+  }
+
+  setTrackList = array => this.setState({ currentPlaylist: [...array] })
 
   render() {
 

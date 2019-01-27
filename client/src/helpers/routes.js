@@ -1,8 +1,6 @@
 import LoadingScreen from '../Views/LoadingScreen/LoadingScreen';
 import HomeScreen from '../Views/HomeScreen/HomeScreen';
 import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
-import AudioPlayerContainer from '../Views/Player/AudioPlayerContainer';
-
 import Global from '../Views/Global/Global';
 import HallOfFame from '../Views/HallOfFame/HallOfFame';
 import EraView from '../Views/EraView/EraView';
@@ -18,11 +16,6 @@ const routes = [
     name: "homeScreen",
     path: "/home",
     component: HomeScreen
-  },
-  {
-    name: "player",
-    path: "/player",
-    component: AudioPlayerContainer
   },
   {
     name: "global",

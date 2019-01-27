@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AudioPlayer from './AudioPlayer'
-import { Consumer, RootContext } from '../../Contexts/RootProvider';
+import { RootContext } from '../../Contexts/RootProvider'
 
 class AudioPlayerContainer extends Component {
 
@@ -11,6 +11,7 @@ class AudioPlayerContainer extends Component {
     this.hasChanged = false
     this.state = {
       music_src: null,
+      mute: false,
       played: false,
       currentTime: 0, 
       duration: 0, 
@@ -28,9 +29,8 @@ class AudioPlayerContainer extends Component {
     this.$audio.addEventListener('canplay', () => {
       window.audio = this.$audio
       this.play() // autoplay
-      this.fadeInAudio()
-      console.log("autoplay")
       this.updateDuration()
+      this.fadeInAudio()
     })
     this.$audio.addEventListener('ended', () => {
       console.log( 'ended' )
@@ -39,11 +39,22 @@ class AudioPlayerContainer extends Component {
   }
 
   componentDidUpdate() {
-    if( (this.context.state.currentMusic !== this.state.music_src) ) {
+    // looking if context state has changed to mute the sound
+    if( this.context.state.mute !== this.state.mute ) {
+      this.setState(() => ({ mute: this.context.state.mute }) , () => {
+        if(this.state.mute) {
+          this.fadeOutAudio()
+        } else {
+          this.fadeInAudio()
+          if(!this.state.played) this.play()
+        }
+      })
+    }
+    // looking if the context state has changed to change the current music
+    if( this.context.state.currentMusic !== this.state.music_src ) {
       this.fadeOutAudio()
       clearInterval( this.timer )
       this.setState({ music_src: this.context.state.currentMusic }, () => {
-        console.log(' played in cpdu')
         setTimeout(() => {
           this.pause()
           this.$audio.load()
@@ -60,28 +71,30 @@ class AudioPlayerContainer extends Component {
         if((this.$audio.volume - 0.1 >= 0) && (this.$audio.volume - 0.1 <= 1)) {
           this.$audio.volume -= 0.1
           this.$audio.volume = this.$audio.volume.toFixed(1)
+          this.setVolume(this.$audio.volume)     
         }
       }
-      console.log('working' + this.$audio.volume)
-      // When volume at zero stop all the intervalling
+      console.log('fadeOut ' + this.$audio.volume)
+      // When volume at 0 stop interval
       if (volume === 0.0) {
           clearInterval(fadeAudio)
-          this.fadeInAudio()
       }
     }, 200)
   }
 
   fadeInAudio = () => {
-    let fadePoint = this.$audio.currentTime + 2
+    let fadePoint = this.$audio.currentTime + 2.5
     let fadeAudio = setInterval(() => {
+      if( !this.$audio ) return
       if ((this.$audio.currentTime <= fadePoint) && (this.$audio.volume <= 1.0)) {
         if( (this.$audio.volume + 0.1 <= 1.0) ) {
           this.$audio.volume += 0.1
           this.$audio.volume = this.$audio.volume.toFixed(1)
+          this.setVolume(this.$audio.volume)
         }
       }
-      console.log('working fadeIn ' + this.$audio.volume)
-      // When volume at 1 stop all the intervalling
+      console.log('fadeIn ' + this.$audio.volume)
+      // When volume at 1 stop interval
       if (this.$audio.volume === 1) {
           clearInterval(fadeAudio)
       }
@@ -90,15 +103,14 @@ class AudioPlayerContainer extends Component {
 
   
   play = () => {
-    const playPromise = this.$audio.play() 
-    console.log('played in play method 1')
+    if(this.state.mute || !this.$audio ) return
+    const playPromise = this.$audio.play()
     if( playPromise !== null && !this.state.played) {
       playPromise
         .then( () => {
-          // this.$audio.play()
-          this.fadeInAudio()
           this.setState({ played: true }, () => {
             this.timer = setInterval( () => {
+              if(!this.$audio) return
               let currentTime = this.$audio.currentTime
               let duration = this.$audio.duration
               let percentage = (currentTime / duration) * 100
@@ -114,7 +126,6 @@ class AudioPlayerContainer extends Component {
   }
 
   pause = () => {
-    console.log('pause')
     this.setState({ played: false }, () => {
       this.$audio.pause()
       if( this.timer != null ) {
@@ -137,11 +148,16 @@ class AudioPlayerContainer extends Component {
     })
   }
 
+  setVolume = v => {
+    this.$audio.volume = v
+    this.setState({ volume: v })
+  }
+
   convertTime = time => {
     let minutes = Math.floor( time / 60 )
     let seconds = Math.floor( time - (minutes * 60) )
     if ( seconds <= 9 ) seconds = '0' + seconds
-    time = minutes + ':' + seconds;
+    time = minutes + ':' + seconds
     return time
   }
 
@@ -151,7 +167,6 @@ class AudioPlayerContainer extends Component {
   }
 
   updateDuration = () => {
-    console.log(this.convertTime( this.$audio.duration ))
     this.setState({ duration: this.convertTime( this.$audio.duration ) })
   }
 
