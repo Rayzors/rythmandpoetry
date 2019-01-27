@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import routes from './helpers/routes';
 import 'typeface-montserrat';
 import {

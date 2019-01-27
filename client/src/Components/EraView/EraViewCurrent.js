@@ -1,12 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const EraViewCurrent = (props) => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div />;
+};
 
 export default EraViewCurrent;

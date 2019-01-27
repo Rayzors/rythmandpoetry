@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Spring } from 'react-spring';
 import styled from 'styled-components';
+import HeadphoneSVG from '../../Components/HeadphoneSVG/HeadphoneSVG';
 
 const Wrapper = styled.section`
   background: #062444 url(/images/loading_bg.png) center center no-repeat;
@@ -19,30 +21,44 @@ const Container = styled.div`
 `;
 const Headphone = styled.div`
   text-align: center;
-  margin-bottom: 60px;
 `;
 const Text = styled.p`
   text-align: center;
-`;
-const Introduce = styled.p`
-  text-align: center;
   margin-top: 60px;
+`;
+const Progressbar = styled.div`
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+`;
+const ProgressbarInner = styled.div`
+  width: 0%;
+  height: 2px;
+  margin-top: 60px;
+  background: rgba(255, 255, 255, 0.5);
 `;
 
 class LoadingScreen extends Component {
   state = {
-    progress: 0
+    progress: 0,
+    loader: null
   };
   componentDidMount() {
     this.load();
   }
   componentDidUpdate() {
-    if (this.state.progress === 100) {
+    if (this.state.progress > 100) {
+      clearInterval(this.state.loader);
       this.redirect();
     }
   }
-  load = async () => {
-    // const loader = window.setTimeout(this.redirect, 5000);
+  load = () => {
+    this.setState({
+      loader: window.setInterval(() => {
+        this.setState((prevState) => ({ progress: prevState.progress + 3 }));
+        console.log('interval');
+      }, 200)
+    });
   };
   redirect = () => {
     const { history } = this.props;
@@ -53,16 +69,26 @@ class LoadingScreen extends Component {
       <Wrapper>
         <Container>
           <Headphone>
-            <img src="/svg/headphones.svg" alt="" />
+            <HeadphoneSVG />
           </Headphone>
           <Text>
             Take a headphone or at least turn the sound on, <br />
-            for have the best experience !
+            to have the best experience !
           </Text>
-          <Introduce>
+          <Text>
             Hey bro, Welcome to <b>Rythm & Poetry</b> <br />
             We will introduce you to differents era of RAP
-          </Introduce>
+          </Text>
+          <Spring
+            from={{ width: `0%` }}
+            to={{ width: `${this.state.progress}%` }}
+          >
+            {(props) => (
+              <Progressbar>
+                <ProgressbarInner style={props} />
+              </Progressbar>
+            )}
+          </Spring>
         </Container>
       </Wrapper>
     );
