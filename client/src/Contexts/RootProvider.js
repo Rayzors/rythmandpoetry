@@ -13,7 +13,7 @@ class RootProvider extends Component {
       menuIsActive: false,
       mute: false,
       currentPlaylist: [],
-      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/16338_Belonging_-_Master_(16-44.1).mp3', // By default it's the ambient music
+      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/72045_04_-_Runaway_(16-44.1).mp3', // By default it's the ambient music
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
   }

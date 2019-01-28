@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-
+/**
+ * A refaire
+ */
 export const Player = styled.div`
     display: flex;
     flex-wrap: wrap;

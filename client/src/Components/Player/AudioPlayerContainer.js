@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AudioPlayer from './AudioPlayer'
 import { RootContext } from '../../Contexts/RootProvider'
-
+import withConsumer from '../../Higher-Order-Components/withConsumer'
 class AudioPlayerContainer extends Component {
 
   constructor() {
@@ -24,7 +24,7 @@ class AudioPlayerContainer extends Component {
   componentDidMount() {
     // getting context state
     this.setState({
-      music_src: this.context.state.currentMusic
+      music_src: this.props.context.state.currentMusic
     })
     this.$audio.addEventListener('canplay', () => {
       window.audio = this.$audio
@@ -40,8 +40,8 @@ class AudioPlayerContainer extends Component {
 
   componentDidUpdate() {
     // looking if context state has changed to mute the sound
-    if( this.context.state.mute !== this.state.mute ) {
-      this.setState(() => ({ mute: this.context.state.mute }) , () => {
+    if( this.props.context.state.mute !== this.state.mute ) {
+      this.setState(() => ({ mute: this.props.context.state.mute }) , () => {
         if(this.state.mute) {
           this.fadeOutAudio()
         } else {
@@ -51,10 +51,10 @@ class AudioPlayerContainer extends Component {
       })
     }
     // looking if the context state has changed to change the current music
-    if( this.context.state.currentMusic !== this.state.music_src ) {
+    if( this.props.context.state.currentMusic !== this.state.music_src ) {
       this.fadeOutAudio()
       clearInterval( this.timer )
-      this.setState({ music_src: this.context.state.currentMusic }, () => {
+      this.setState({ music_src: this.props.context.state.currentMusic }, () => {
         setTimeout(() => {
           this.pause()
           this.$audio.load()
@@ -192,5 +192,5 @@ class AudioPlayerContainer extends Component {
   )
   }
 }
-AudioPlayerContainer.contextType = RootContext // To access the context in Lifecycle methods
-export default AudioPlayerContainer
+// AudioPlayerContainer.contextType = RootContext // To access the context in Lifecycle methods
+export default withConsumer(AudioPlayerContainer)

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import  routes from '../../helpers/routes';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
 import Menu from '../../Components/Menu/Menu';
+import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
 
 class Global extends Component {
   render() {
@@ -25,6 +26,7 @@ class Global extends Component {
           ))
         }
         </Switch>
+        <AudioPlayerContainer />
       </Fragment>
     )
   }
