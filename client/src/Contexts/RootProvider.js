@@ -43,7 +43,7 @@ class RootProvider extends Component {
 
   setAmbientMusic = musicSrc => {
     //Ambiant music
-    if(this.state !== musicSrc) {
+    if(this.state.currentMusic !== musicSrc) {
       this.setState({ currentMusic: musicSrc })
     }
   }
