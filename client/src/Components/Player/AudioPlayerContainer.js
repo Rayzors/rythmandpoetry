@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AudioPlayer from './AudioPlayer'
-import { RootContext } from '../../Contexts/RootProvider'
 import withConsumer from '../../Higher-Order-Components/withConsumer'
 class AudioPlayerContainer extends Component {
 
@@ -115,7 +114,7 @@ class AudioPlayerContainer extends Component {
               let duration = this.$audio.duration
               let percentage = (currentTime / duration) * 100
               this.updateTime( currentTime )
-              this.setState({ percentage })
+              // this.setState({ percentage })
             }, 100)
           })
         })
@@ -163,7 +162,7 @@ class AudioPlayerContainer extends Component {
 
   updateTime = time => {
     time = Math.floor( time )
-    this.setState({ currentTime: this.convertTime(time) })
+    // this.setState({ currentTime: this.convertTime(time) })
   }
 
   updateDuration = () => {

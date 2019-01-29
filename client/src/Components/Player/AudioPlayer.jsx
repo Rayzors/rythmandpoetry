@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-import { Player, PlayerButton, TimerContainer, ProgressBarContainer, ProgressBar, Controls } from './styled'
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons'
-
-// library.add( faPlay, faPause,faForward, faBackward )
+import { Player, PlayerButton, Controls } from './styled'
 
 class AudioPlayer extends Component {
   constructor( props ) {
@@ -37,6 +32,7 @@ class AudioPlayer extends Component {
           <Controls>
             <PlayerButton onClick={ togglePlay } />
           </Controls>
+          {/* LES CONTROLES SONT À ENLEVER PAR LA SUITE */}
           {/* <TimerContainer>
             <ProgressBarContainer onClick={ onProgressBarClick }>
                 <ProgressBar style={{ width: percentage + '%'}} />

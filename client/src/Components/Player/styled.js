@@ -4,10 +4,6 @@ import styled from 'styled-components'
  */
 export const Player = styled.div`
     display: flex;
-    flex-wrap: wrap;
-
-    padding: 25px;
-    background-color: rgba(0, 0, 0, .3);
 `
 
 export const PlayerButton = styled.div`
@@ -25,11 +21,6 @@ export const PlayerButton = styled.div`
 
 export const Controls = styled.div`
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    width: 110px;
-
     & span {
         cursor: pointer;
     }
