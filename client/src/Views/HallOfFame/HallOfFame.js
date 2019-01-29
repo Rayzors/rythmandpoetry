@@ -4,7 +4,7 @@ class HallOfFame extends React.Component {
   render(){
     return (
       <div>
-        Hall Of Fame
+        <h1>Welcome to the hall of Fame</h1>
       </div>
     )
   }
