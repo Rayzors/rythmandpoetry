@@ -62,6 +62,7 @@ class EraSelectContainer extends Component {
   }
 
   render() {
+
     const {eras, from, to} = this.state;
     if(eras.length === 0) { return  <div>Loading</div> }
     return eras.length > 0 && (

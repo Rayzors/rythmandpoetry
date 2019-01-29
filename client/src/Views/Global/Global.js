@@ -8,21 +8,29 @@ class Global extends Component {
   render() {
     const { match, context } = this.props;
 
+     /**
+     * après avoir récupéré la route courante ( props.match.path ) dans /helpers/routes.js, 
+     * on récupère les sous-routes correspondantes et on les affiche
+     */
     const global = routes.find(({ path }) => path === match.path);
 
     return (
       <Fragment>
-        <button onClick={() => context.toggleMenu()}>Menu</button>
+        <button style={{position: "fixed", zIndex: "999"}} onClick={() => context.toggleMenu()}>Menu</button>
         {
           context.menuIsActive ?
-          <Menu />
+          <Menu {...match}/>
           : null
         }
         <Switch>
         {
           global.routes.map( (sub, i) => (
-            sub.redirect ? <Redirect to={ match.path + sub.to} key={i}/> : <Route exact key={i} path={match.path + sub.path} {...sub} />
-          ))
+              sub.redirect ? 
+                <Redirect to={ match.path + sub.to} key={i}/> 
+                : 
+                <Route key={i} path={match.path + sub.path} component={sub.component} />
+            )
+          )
         }
         </Switch>
       </Fragment>
