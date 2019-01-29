@@ -3,6 +3,8 @@ import HomeScreen from '../Views/HomeScreen/HomeScreen';
 import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
 import Global from '../Views/Global/Global';
 import HallOfFame from '../Views/HallOfFame/HallOfFame';
+import EraContent from '../Views/EraContent/EraContent';
+
 const routes = [
   {
     name: "loadingScreen",
@@ -24,6 +26,11 @@ const routes = [
         name: "eraSelect",
         path: "/select-your-era",
         component: EraSelectContainer
+      },
+      {
+        name: "VisitEra",
+        path: "/episodes/:eraName",
+        component: EraContent,
       },
       {
         name: "hallOfFame",

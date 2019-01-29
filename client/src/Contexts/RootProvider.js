@@ -41,6 +41,13 @@ class RootProvider extends Component {
     }))
   }
 
+  setAmbientMusic = musicSrc => {
+    //Ambiant music
+    if(this.state !== musicSrc) {
+      this.setState({ currentMusic: musicSrc })
+    }
+  }
+
   toggleSound = () => {
     this.setState( prevState => ({ mute: !prevState.mute }) )
   }
@@ -54,7 +61,8 @@ class RootProvider extends Component {
       menuIsActive: this.state.menuIsActive,
       addArtist: this.addArtist,
       toggleMenu: this.toggleMenu,
-      setState: this.setState.bind( this )
+      setState: this.setState.bind( this ),
+      setAmbientMusic: this.setAmbientMusic.bind(this)
     }
 
     return ( 

@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import RootProvider from './Contexts/RootProvider' // importing the RootProvider
+import RootProvider from './Contexts/RootProvider'; // importing the RootProvider
+import './css/reset.css';
 
-ReactDOM.render((
-    <RootProvider>
-        <App />
-    </RootProvider>
-    ), 
-    document.getElementById('root')
+ReactDOM.render(
+  <RootProvider>
+    <App />
+  </RootProvider>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
