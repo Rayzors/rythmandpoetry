@@ -11,6 +11,9 @@ class RootProvider extends Component {
       lol: 0,
       selectedEra: null,
       menuIsActive: false,
+      mute: false,
+      currentPlaylist: [],
+      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/72045_04_-_Runaway_(16-44.1).mp3', // By default it's the ambient music
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
   }
@@ -38,6 +41,19 @@ class RootProvider extends Component {
     }))
   }
 
+  setAmbientMusic = musicSrc => {
+    //Ambiant music
+    if(this.state.currentMusic !== musicSrc) {
+      this.setState({ currentMusic: musicSrc })
+    }
+  }
+
+  toggleSound = () => {
+    this.setState( prevState => ({ mute: !prevState.mute }) )
+  }
+
+  setTrackList = array => this.setState({ currentPlaylist: [...array] })
+
   render() {
 
     let providerValue = {
@@ -45,7 +61,8 @@ class RootProvider extends Component {
       menuIsActive: this.state.menuIsActive,
       addArtist: this.addArtist,
       toggleMenu: this.toggleMenu,
-      setState: this.setState.bind( this )
+      setState: this.setState.bind( this ),
+      setAmbientMusic: this.setAmbientMusic.bind(this)
     }
 
     return ( 
@@ -57,7 +74,8 @@ class RootProvider extends Component {
 }
 
 export {
-  Consumer
+  Consumer,
+  RootContext
 }
 
 export default RootProvider
