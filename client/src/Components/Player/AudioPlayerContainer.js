@@ -57,7 +57,7 @@ class AudioPlayerContainer extends Component {
         setTimeout(() => {
           this.pause()
           this.$audio.load()
-        }, 2500)
+        }, 1200)
       })
     }
   }
@@ -72,7 +72,7 @@ class AudioPlayerContainer extends Component {
           this.setVolume(volume)     
         }
       }
-      console.log('fadeOut ' + this.$audio.volume)
+      // console.log('fadeOut ' + this.$audio.volume)
       // When volume at 0 stop interval
       if (volume === 0.0) {
           clearInterval(fadeAudio)
@@ -90,7 +90,7 @@ class AudioPlayerContainer extends Component {
           this.setVolume(volume)
         }
       }
-      console.log('fadeIn ' + this.$audio.volume)
+      // console.log('fadeIn ' + this.$audio.volume)
       // When volume at 1 stop interval
       if (this.$audio.volume === 1) {
           clearInterval(fadeAudio)
