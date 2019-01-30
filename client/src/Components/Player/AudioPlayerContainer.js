@@ -68,9 +68,8 @@ class AudioPlayerContainer extends Component {
       let volume = Math.round(this.$audio.volume * 100)
       if ((this.$audio.currentTime >= fadePoint) && (volume >= 0.0)) {
         if((this.$audio.volume - 0.1 >= 0) && (this.$audio.volume - 0.1 <= 1)) {
-          this.$audio.volume -= 0.1
-          this.$audio.volume = this.$audio.volume.toFixed(1)
-          this.setVolume(this.$audio.volume)     
+          let volume = (this.$audio.volume - 0.1).toFixed(1)
+          this.setVolume(volume)     
         }
       }
       console.log('fadeOut ' + this.$audio.volume)
@@ -78,7 +77,7 @@ class AudioPlayerContainer extends Component {
       if (volume === 0.0) {
           clearInterval(fadeAudio)
       }
-    }, 200)
+    }, 100)
   }
 
   fadeInAudio = () => {
@@ -87,9 +86,8 @@ class AudioPlayerContainer extends Component {
       if( !this.$audio ) return
       if ((this.$audio.currentTime <= fadePoint) && (this.$audio.volume <= 1.0)) {
         if( (this.$audio.volume + 0.1 <= 1.0) ) {
-          this.$audio.volume += 0.1
-          this.$audio.volume = this.$audio.volume.toFixed(1)
-          this.setVolume(this.$audio.volume)
+          let volume = (this.$audio.volume + 0.1).toFixed(1)
+          this.setVolume(volume)
         }
       }
       console.log('fadeIn ' + this.$audio.volume)
@@ -97,7 +95,7 @@ class AudioPlayerContainer extends Component {
       if (this.$audio.volume === 1) {
           clearInterval(fadeAudio)
       }
-    }, 200)
+    }, 100)
   }
 
   
