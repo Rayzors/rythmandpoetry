@@ -8,9 +8,9 @@
   "autoload": {
     "psr-4": {
       "": "api/",
-      "Controllers\\": "api/Controllers/",
-      "Helpers\\": "api/Helpers/",
-      "Models\\": "api/Models/"
+      "Controllers\\": "Controllers/",
+      "Helpers\\": "Helpers/",
+      "Models\\": "Models/"
     }
   }
 }
