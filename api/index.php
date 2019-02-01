@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once './vendor/autoload.php';
 $klein = new \Klein\Klein();
 
 $klein->respond('GET', '/era', [new Controllers\Sections(), index]);

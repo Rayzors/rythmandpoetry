@@ -7,10 +7,10 @@
   },
   "autoload": {
     "psr-4": {
-      "": "api/",
-      "Controllers\\": "Controllers/",
-      "Helpers\\": "Helpers/",
-      "Models\\": "Models/"
+      "": "./",
+      "Controllers\\": "./Controllers/",
+      "Helpers\\": "./Helpers/",
+      "Models\\": "./Models/"
     }
   }
 }
