@@ -20,7 +20,7 @@ class Sections
     $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
     $stmt->execute();
     if ($stmt->errorCode() !== '00000') {
-      throw new Exception("Error Processing Request", 1);
+      throw new \Exception("Error Processing Request", 1);
     }
     $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
@@ -38,7 +38,7 @@ class Sections
     $stmt->bindValue(':act', $action, \PDO::PARAM_STR);
     $stmt->execute();
     if ($stmt->errorCode() !== '00000') {
-      throw new Exception("Error Processing Request", 1);
+      throw new \Exception("Error Processing Request", 1);
     }
     $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
@@ -54,7 +54,7 @@ class Sections
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute();
     if ($stmt->errorCode() !== '00000') {
-      throw new Exception("Error Processing Request", 1);
+      throw new \Exception("Error Processing Request", 1);
     }
     $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
