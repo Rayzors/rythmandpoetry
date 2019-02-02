@@ -1,8 +1,8 @@
 <?php
-require_once './vendor/autoload.php';
+require_once 'vendor/autoload.php';
 $klein = new \Klein\Klein();
 
-$klein->respond('GET', '/era', [new Controllers\Sections(), index]);
+$klein->respond('GET', '/era', [new \Controllers\Sections(), index]);
 $klein->respond('GET', '/era/[i:id]', [new Controllers\Sections(), getById]);
 
 $klein->respond('GET', '/era/artists', [new Controllers\Sections(), getArtists]);
