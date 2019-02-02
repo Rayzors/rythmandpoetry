@@ -1,5 +1,5 @@
 // import baseURL from '../env/jenesaispas'
-const baseURL = 'http://54.190.49.146/api'
+const baseURL = 'https://rapapi.kevinmanssat.fr'
 
 class Api {
   /**
