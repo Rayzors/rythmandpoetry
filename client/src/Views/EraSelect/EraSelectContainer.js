@@ -27,7 +27,6 @@ class EraSelectContainer extends Component {
     this.setState( { eras: [ ...apiEras ] } )
   }
 
-
   handleWheel = (e, current) => {
     e.preventDefault()
     e.persist()

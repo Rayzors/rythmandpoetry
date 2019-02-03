@@ -6,16 +6,15 @@ export const Player = styled.div`
     display: flex;
 `
 
-export const PlayerButton = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 50px;
-    height: 50px;
-
-    border-radius: 100%;
-    border: solid #000 2px;
+export const PlayerButton = styled.button`
+    position: fixed;
+    bottom: 20px;
+    right: 70px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    outline: none;
     cursor: pointer;
 `
 

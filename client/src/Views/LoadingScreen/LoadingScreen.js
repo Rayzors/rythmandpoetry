@@ -61,7 +61,7 @@ class LoadingScreen extends Component {
   };
   redirect = () => {
     const { history } = this.props;
-    history.push('/g/select-your-era');
+    history.push('/g');
   };
   render() {
     return (

@@ -11,12 +11,23 @@ class RootProvider extends Component {
       lol: 0,
       selectedEra: null,
       menuIsActive: false,
+      fullScreen: false,
       mute: false,
       currentTracklist: [],
       currentTracklistItem: null,
       currentMusic: '',
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
+  }
+
+  componentDidMount(){
+    document.addEventListener("fullscreenchange", () => {
+      if(document.fullscreenElement){
+        this.setState({fullScreen : true})
+      }else{
+        this.setState({fullScreen: false})
+      }
+    })
   }
 
   /**
@@ -33,6 +44,29 @@ class RootProvider extends Component {
     } else { console.log('already unlocked ' + artistId ) }
   }
 
+  /**
+   * enable/disable fullscreen
+   */
+   toggleFullscreen = async () => {
+    
+     try{
+
+      if(this.state.fullScreen === true){
+
+        await document.exitFullscreen()
+
+      }else{
+
+        await document.body.requestFullscreen()
+
+      }
+
+     }catch(fullscreenError){
+
+        alert('il y a eu un problème lors du passage en plein écran.');
+
+     }
+   }
   /**
    * open/close the menu to select Eras and access to hallOfFame
    */
@@ -82,6 +116,7 @@ class RootProvider extends Component {
       menuIsActive: this.state.menuIsActive,
       addArtist: this.addArtist,
       toggleMenu: this.toggleMenu,
+      toggleFullscreen: this.toggleFullscreen,
       setState: this.setState.bind( this ),
       setAmbientMusic: this.setAmbientMusic.bind(this),
       toggleSound: this.toggleSound.bind(this),

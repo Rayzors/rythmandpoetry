@@ -182,7 +182,6 @@ class AudioPlayerContainer extends Component {
       togglePlay = { () => this.togglePlay() }
       getAudioHTMLElement = { el => this.getAudioHTMLElement(el) }
       onVolumeChange = { evt => this.onVolumeChange(evt) }
-
       music_src = { this.state.music_src }
       volume = { this.state.volume }
       played = { this.state.played }
