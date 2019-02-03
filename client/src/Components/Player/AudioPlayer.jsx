@@ -11,6 +11,9 @@ class AudioPlayer extends Component {
       music_src,
       volume,
       getAudioHTMLElement,
+      togglePlay,
+      onProgressBarClick,
+      played
     } = this.props
     return (
       <Fragment>
@@ -23,6 +26,14 @@ class AudioPlayer extends Component {
               type="audio/mpeg"
           />
         </audio>
+        <Player>
+          {/* LES CONTROLES SONT À ENLEVER PAR LA SUITE */}
+          {/* <TimerContainer>
+            <ProgressBarContainer onClick={ onProgressBarClick }>
+                <ProgressBar style={{ width: percentage + '%'}} />
+            </ProgressBarContainer>
+          </TimerContainer> */}
+        </Player>
       </Fragment>
     )
   }
