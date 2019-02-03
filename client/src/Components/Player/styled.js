@@ -13,6 +13,7 @@ export const PlayerButton = styled.button`
     width: 30px;
     height: 30px;
     border: none;
+    background: none;
     outline: none;
     cursor: pointer;
 `
