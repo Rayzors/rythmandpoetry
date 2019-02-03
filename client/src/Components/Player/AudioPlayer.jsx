@@ -15,7 +15,8 @@ class AudioPlayer extends Component {
       percentage,
       getAudioHTMLElement,
       togglePlay,
-      onProgressBarClick
+      onProgressBarClick,
+      played
     } = this.props
     return (
       <Fragment>
@@ -30,7 +31,11 @@ class AudioPlayer extends Component {
         </audio>
         <Player>
           <Controls>
-            <PlayerButton onClick={ togglePlay } />
+            <PlayerButton onClick={ togglePlay }>
+                <div className={played ? 'bar animated_bar' : 'bar'}></div>
+                <div className={played ? 'bar animated_bar' : 'bar'}></div>
+                <div className={played ? 'bar animated_bar' : 'bar'}></div>
+            </PlayerButton>
           </Controls>
           {/* LES CONTROLES SONT À ENLEVER PAR LA SUITE */}
           {/* <TimerContainer>

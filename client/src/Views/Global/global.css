@@ -1,0 +1,38 @@
+.bar {
+  background: #666;
+  bottom: 1px;
+  height: 3px;
+  position: absolute;
+  width: 5px;      
+}
+
+.animated_bar {
+  animation: sound 0ms -800ms linear infinite alternate;
+}
+
+
+.bar:nth-child(1)  { 
+  left: 0px; 
+  animation-duration: 474ms; 
+}
+
+.bar:nth-child(2)  { 
+  left: 6px; 
+  animation-duration: 433ms; 
+}
+
+.bar:nth-child(3)  { 
+  left: 12px; 
+  animation-duration: 407ms; 
+}
+
+@keyframes sound {
+  0% {
+     opacity: .35;
+      height: 3px; 
+  }
+  100% {
+      opacity: 1;       
+      height: 16px;        
+  }
+}
