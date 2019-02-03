@@ -32,7 +32,8 @@ class AudioPlayerContainer extends Component {
       this.fadeInAudio()
     })
     this.$audio.addEventListener('ended', () => {
-      console.log( 'ended' )
+      console.warn('ended')
+      this.props.context.nextSong()
     })
     this.$audio.volume = this.state.volume // force when the volume attribute is not working
   }

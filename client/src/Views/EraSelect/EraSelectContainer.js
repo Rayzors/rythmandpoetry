@@ -4,6 +4,8 @@ import { Parallax } from 'react-spring/addons';
 import { Spring } from 'react-spring'
 import rapApi from '../../helpers/api'
 import withConsumer from '../../Higher-Order-Components/withConsumer'
+import HomePlayer from '../../Components/Player/styled/HomePlayer';
+import './EraSelect.css'
 
 class EraSelectContainer extends Component {
   constructor() {
@@ -19,16 +21,12 @@ class EraSelectContainer extends Component {
   }
  
   async componentDidMount() {
-    this.props.context.setAmbientMusic('https://artlistmusic.azureedge.net/artlist-mp3/72045_04_-_Runaway_(16-44.1).mp3')
     const apiEras = await rapApi.getEras()
-    this.setState({
-      eras: [ ...apiEras ]
-    })
+    const tracklist = await rapApi.getMusicsByEra(0) // 0 is the home id
+    this.props.context.setTrackList( tracklist )
+    this.setState( { eras: [ ...apiEras ] } )
   }
 
-  componentDidUpdate(){
-    console.log(this.state.eras)
-  }
 
   handleWheel = (e, current) => {
     e.preventDefault()
@@ -97,6 +95,7 @@ class EraSelectContainer extends Component {
             </Fragment>
           )}
         </Spring>
+        <HomePlayer />
       </Fragment>
     )
   }

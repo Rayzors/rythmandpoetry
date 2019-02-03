@@ -1,5 +1,6 @@
 // import baseURL from '../env/jenesaispas'
-const baseURL = 'https://rapapi.kevinmanssat.fr'
+// const baseURL = 'https://rapapi.kevinmanssat.fr'
+const baseURL = 'http://54.190.49.146/api'
 
 class Api {
   /**
@@ -30,7 +31,9 @@ class Api {
    * Use await to call this function
    */
   async getEras() {
-    return this.callApi( '/era' )
+    let apiEras = await this.callApi( '/era' )
+    apiEras = apiEras.filter(era => Number(era.section_id) !== 0)
+    return apiEras
   }
 
   /**
