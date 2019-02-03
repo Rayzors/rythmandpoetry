@@ -26,10 +26,6 @@ class EraSelectContainer extends Component {
     })
   }
 
-  componentDidUpdate(){
-    console.log(this.state.eras)
-  }
-
   handleWheel = (e, current) => {
     e.preventDefault()
     e.persist()

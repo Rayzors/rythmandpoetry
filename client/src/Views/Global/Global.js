@@ -4,6 +4,8 @@ import  routes from '../../helpers/routes';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
 import Menu from '../../Components/Menu/Menu';
 import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
+import FullScreenButton from '../../Components/FullScreenButton/FullScreenButton';
+import './global.css';
 
 class Global extends Component {
   render() {
@@ -34,7 +36,14 @@ class Global extends Component {
           )
         }
         </Switch>
-        <AudioPlayerContainer />
+        
+        <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
+           
+
+        <FullScreenButton onClick={() => context.toggleFullscreen()}>
+            FS
+        </FullScreenButton>
+
       </Fragment>
     )
   }
