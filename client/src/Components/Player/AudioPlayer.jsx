@@ -15,7 +15,6 @@ class AudioPlayer extends Component {
       onProgressBarClick,
       played
     } = this.props
-    console.log("AudioPlayer",this.props)
     return (
       <Fragment>
         <audio 

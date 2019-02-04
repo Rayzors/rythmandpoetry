@@ -31,10 +31,6 @@ class RootProvider extends Component {
     })
   }
 
-  componentDidUpdate(){
-    console.log(this.state.currentTracklist)
-  }
-
   /**
    * Add an artist in the state of the RootProvider and setting the localstorage
    */

@@ -11,15 +11,15 @@ class Global extends Component {
   render() {
     const { match, context } = this.props;
 
-     /**
-     * après avoir récupéré la route courante ( props.match.path ) dans /helpers/routes.js, 
-     * on récupère les sous-routes correspondantes et on les affiche
+     /*
+      après avoir récupéré la route courante ( props.match.path ) dans /helpers/routes.js, 
+      on récupère les sous-routes correspondantes et on les affiche
      */
     const global = routes.find(({ path }) => path === match.path);
 
     return (
       <Fragment>
-        <button style={{position: "fixed", zIndex: "999"}} onClick={() => context.toggleMenu()}>Menu</button>
+        <button style={{position: "fixed", zIndex: "999", right: 20 }} onClick={ context.toggleMenu }>Menu</button>
         {
           context.menuIsActive ?
           <Menu {...match}/>
@@ -38,7 +38,6 @@ class Global extends Component {
         </Switch>
         
         <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
-           
 
         <FullScreenButton onClick={() => context.toggleFullscreen()} />
 

@@ -13,7 +13,7 @@ class Api {
 
   /**
    * Private function that call api with an endpoint passed as parameter
-   * @param {String} endpoint 
+   * @param {String} endpoint
    */
   async callApi( endpoint ) {
     const request = this.hostname + endpoint

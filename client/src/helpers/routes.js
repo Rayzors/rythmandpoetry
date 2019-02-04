@@ -29,7 +29,7 @@ const routes = [
       },
       {
         name: "VisitEra",
-        path: "/episodes/:eraName",
+        path: "/episodes/:eraId",
         component: EraContent,
       },
       {
