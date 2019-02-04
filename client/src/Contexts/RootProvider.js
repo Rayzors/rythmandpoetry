@@ -128,9 +128,12 @@ class RootProvider extends Component {
     }
   };
 
+<<<<<<< HEAD
   /**
    * Change the filter value 24kHz <=> 500hz 
    */
+=======
+>>>>>>> feature: add lowpass filter to audioplayer
   toggleReadMode = () => {
     if( this.state.filterValue !== 24000 ) {
       let interval = setInterval( () => {
@@ -141,6 +144,7 @@ class RootProvider extends Component {
             if(newValue >= 24000) clearInterval(interval)
           }
         )
+<<<<<<< HEAD
         if( newValue >= 24000 ) newValue = 24000
       }, 100)
     } else if( this.state.filterValue >= 24000 ){
@@ -153,6 +157,20 @@ class RootProvider extends Component {
           }
         )
         if( newValue <= 500 ) newValue = 500
+=======
+        if(newValue >= 24000) newValue = 24000
+      }, 100)
+    } else if(this.state.filterValue >= 24000){
+      let interval = setInterval( () => {
+        let newValue = this.state.filterValue - 1000
+        if(newValue <= 500) newValue = 500
+        this.setState(({ filterValue: newValue }), 
+          () => {
+            if(newValue <= 500) clearInterval(interval)
+          }
+        )
+        if(newValue <= 500) newValue = 500
+>>>>>>> feature: add lowpass filter to audioplayer
       }, 100)
     }
   }
