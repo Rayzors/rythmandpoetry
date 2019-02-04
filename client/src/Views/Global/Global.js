@@ -40,9 +40,7 @@ class Global extends Component {
         <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
            
 
-        <FullScreenButton onClick={() => context.toggleFullscreen()}>
-            FS
-        </FullScreenButton>
+        <FullScreenButton onClick={() => context.toggleFullscreen()} />
 
       </Fragment>
     )

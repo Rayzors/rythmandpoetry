@@ -1,9 +1,11 @@
 .bar {
   background: #FFFFFF;
-  bottom: 1px;
+  bottom: 7px;
   height: 3px;
   position: absolute;
-  width: 5px;      
+  width: 5px;  
+  border-radius: 1px;    
+  opacity: 0.3;
 }
 
 .animated_bar {
@@ -12,17 +14,17 @@
 
 
 .bar:nth-child(1)  { 
-  left: 0px; 
+  left: 7px; 
   animation-duration: 474ms; 
 }
 
 .bar:nth-child(2)  { 
-  left: 6px; 
+  left: 13px; 
   animation-duration: 433ms; 
 }
 
 .bar:nth-child(3)  { 
-  left: 12px; 
+  left: 19px; 
   animation-duration: 407ms; 
 }
 
