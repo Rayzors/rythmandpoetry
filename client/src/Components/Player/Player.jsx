@@ -1,20 +1,21 @@
 import React, { Fragment } from 'react'
 import withConsumer from '../../Higher-Order-Components/withConsumer';
-import { PlayerButton } from './styled'
+import { PlayerButtonContainer, PlayerButton, MusicTitle } from './styled'
+import { Spring } from 'react-spring'
 
 const Player = props => {
-    const { mute, currentSong } = props.context.state
+    const { mute, currentSong, filterValue } = props.context.state
     const { toggleSound } = props.context
     return (
-        <div>
-            <div>
-                {currentSong.music_title}
-            </div>
+        <PlayerButtonContainer>
+            <MusicTitle>
+                <span>{ currentSong.music_title }</span>
+            </MusicTitle>
             <PlayerButton className={props.className} onClick={ () => toggleSound() }>
                 <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
                 <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
                 <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
             </PlayerButton>
-        </div>
+        </PlayerButtonContainer>
 )}
 export default withConsumer(Player)

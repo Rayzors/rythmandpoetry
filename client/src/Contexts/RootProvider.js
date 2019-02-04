@@ -14,6 +14,7 @@ class RootProvider extends Component {
       menuIsActive: false,
       fullScreen: false,
       mute: false,
+      filterValue: 24000,
       currentTracklist: [],
       currentTracklistItem: null,
       currentMusic: '', // current music_src for <audio/>
@@ -121,6 +122,32 @@ class RootProvider extends Component {
       });
     }
   };
+
+  toggleReadMode = () => {
+    if( this.state.filterValue !== 24000 ) {
+      let interval = setInterval( () => {
+        let newValue = this.state.filterValue + 1000
+        if(newValue >= 24000) newValue = 24000
+        this.setState(({ filterValue: newValue }), 
+          () => {
+            if(newValue >= 24000) clearInterval(interval)
+          }
+        )
+        if(newValue >= 24000) newValue = 24000
+      }, 100)
+    } else if(this.state.filterValue >= 24000){
+      let interval = setInterval( () => {
+        let newValue = this.state.filterValue - 1000
+        if(newValue <= 500) newValue = 500
+        this.setState(({ filterValue: newValue }), 
+          () => {
+            if(newValue <= 500) clearInterval(interval)
+          }
+        )
+        if(newValue <= 500) newValue = 500
+      }, 100)
+    }
+  }
 
   render() {
     let providerValue = {
