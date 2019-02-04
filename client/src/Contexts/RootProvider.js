@@ -92,7 +92,7 @@ class RootProvider extends Component {
   setTrackList = array => {
     this.setState({ currentTracklist: [...array], currentTracklistItem: 0 }, 
       () => {
-        this.setAmbientMusic(this.state.currentTracklist[0].music_src)
+        this.state.currentTracklist[0] && this.setAmbientMusic(this.state.currentTracklist[0].music_src)
       }
     ) 
   }
