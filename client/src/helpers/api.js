@@ -1,64 +1,64 @@
 // import baseURL from '../env/jenesaispas'
-// const baseURL = 'https://rapapi.kevinmanssat.fr'
-const baseURL = 'http://54.190.49.146/api'
+const baseURL = 'https://rapapi.kevinmanssat.fr';
+//const baseURL = 'http://54.190.49.146/api'
 
 class Api {
   /**
    * Api helper to get data from API
-   * @param {String} baseURL 
+   * @param {String} baseURL
    */
-  constructor( baseURL ) {
-    this.hostname = baseURL
+  constructor(baseURL) {
+    this.hostname = baseURL;
   }
 
   /**
    * Private function that call api with an endpoint passed as parameter
-   * @param {String} endpoint 
+   * @param {String} endpoint
    */
-  async callApi( endpoint ) {
-    const request = this.hostname + endpoint
+  async callApi(endpoint) {
+    const request = this.hostname + endpoint;
     const options = {
       method: 'GET',
       mode: 'cors'
-    }
-    const response = await fetch( request , options )
-    const json = await response.json()
-    return json
+    };
+    const response = await fetch(request, options);
+    const json = await response.json();
+    return json;
   }
 
   /**
-   * Return all eras 
+   * Return all eras
    * Use await to call this function
    */
   async getEras() {
-    let apiEras = await this.callApi( '/era' )
-    apiEras = apiEras.filter(era => Number(era.section_id) !== 0)
-    return apiEras
+    let apiEras = await this.callApi('/era');
+    apiEras = apiEras.filter((era) => Number(era.section_id) !== 0);
+    return apiEras;
   }
 
   /**
-   * Returns one Era 
+   * Returns one Era
    * Use await to call this function
    * @param {Number} eraId the era ID
    */
-  async getEraById( eraId ) {
-    return this.callApi( `/era/${ eraId }` )
+  async getEraById(eraId) {
+    return this.callApi(`/era/${eraId}`);
   }
 
   /**
-   * Returns every artists 
+   * Returns every artists
    * Use await to call this function
    */
   async getArtists() {
-    return this.callApi( '/era/artists' )
+    return this.callApi('/era/artists');
   }
 
   /**
-   * Returns every musics 
+   * Returns every musics
    * Use await to call this function
    */
   async getMusics() {
-    return this.callApi( '/era/musics' )
+    return this.callApi('/era/musics');
   }
 
   /**
@@ -66,18 +66,18 @@ class Api {
    * Use await to call this function
    * @param {Number} eraId the era ID
    */
-  async getContentByEra( eraId ) {
-    return this.callApi( `/era/${ eraId }/content` )
+  async getContentByEra(eraId) {
+    return this.callApi(`/era/${eraId}/content`);
   }
 
   /**
-   * Returns the content of an era by type 
+   * Returns the content of an era by type
    * Use await to call this function
    * @param {Number} eraId the era ID
    * @param {String} type the type of the content
    */
-  async getContentByType( eraId, type ) {
-    return this.callApi( `/era/${ eraId }/content` )
+  async getContentByType(eraId, type) {
+    return this.callApi(`/era/${eraId}/content`);
   }
 
   /**
@@ -85,8 +85,8 @@ class Api {
    * Use await to call this function
    * @param {Number} eraId the era ID
    */
-  async getArtistByEra( eraId ) {
-    return this.callApi( `/era/${ eraId }/artists` )
+  async getArtistByEra(eraId) {
+    return this.callApi(`/era/${eraId}/artists`);
   }
 
   /**
@@ -94,8 +94,8 @@ class Api {
    * Use await to call this function
    * @param {Number} eraId the era ID
    */
-  async getMusicsByEra( eraId ) {
-    return this.callApi( `/era/${ eraId }/musics` )
+  async getMusicsByEra(eraId) {
+    return this.callApi(`/era/${eraId}/musics`);
   }
 
   /**
@@ -103,11 +103,10 @@ class Api {
    * Use await to call this function
    * @param {Number} eraId the era ID
    */
-  async getPlaylistByEra( eraId ) {
-    return this.callApi( `/era/${ eraId }/playlist` )
+  async getPlaylistByEra(eraId) {
+    return this.callApi(`/era/${eraId}/playlist`);
   }
-
 }
 
-const rapApi = new Api( baseURL )
-export default rapApi
+const rapApi = new Api(baseURL);
+export default rapApi;
