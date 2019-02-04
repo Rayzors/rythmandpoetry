@@ -16,7 +16,8 @@ class RootProvider extends Component {
       mute: false,
       currentTracklist: [],
       currentTracklistItem: null,
-      currentMusic: '',
+      currentMusic: '', // current music_src for <audio/>
+      currentSong: {}, // Object that contains infos 
       isFading: false,
       eras: [],
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
@@ -79,8 +80,8 @@ class RootProvider extends Component {
 
   setAmbientMusic = (musicSrc) => {
     //Ambiant music
-    if (this.state.currentMusic !== musicSrc) {
-      this.setState({ currentMusic: musicSrc });
+    if(this.state.currentMusic !== musicSrc) {
+      this.setState({ currentMusic: musicSrc }, () => this.setCurrentTitle())
     }
   };
 
@@ -93,11 +94,19 @@ class RootProvider extends Component {
     this.setState(
       { currentTracklist: [...array], currentTracklistItem: 0 },
       () => {
-        this.state.currentTracklist[0] &&
-          this.setAmbientMusic(this.state.currentTracklist[0].music_src);
+        this.state.currentTracklist[0] && this.setAmbientMusic(this.state.currentTracklist[0].music_src) && this.setCurrentTitle()
       }
     );
   };
+
+  setCurrentTitle = () => {
+    const { currentTracklist, currentTracklistItem } = this.state
+    if( currentTracklist.length > 0 ) {
+      this.setState({
+        currentSong: currentTracklist[currentTracklistItem]
+      })
+    }
+  }
 
   nextSong = () => {
     const { currentTracklist, currentTracklistItem } = this.state;
