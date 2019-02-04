@@ -1,12 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
 import {Link} from 'react-router-dom';
-
+import rapApi from '../../helpers/api'
 class EraContent extends Component {
   state = {}
-  componentDidMount() {
+  async componentDidMount() {
     // ca viendra de l'api et ca changera en fonction de l'id de l'aire
-    this.props.context.setAmbientMusic('https://artlistmusic.azureedge.net/artlist-mp3/13285_05_-_They_Are_Comming_-_Master_(16-44.1).mp3')
+    const tracklist = await rapApi.getMusicsByEra(1) // 1 is the era id
+    this.props.context.setTrackList( tracklist )
   }
   render(){
     return(

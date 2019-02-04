@@ -13,8 +13,10 @@ class RootProvider extends Component {
       menuIsActive: false,
       fullScreen: false,
       mute: false,
-      currentPlaylist: [],
-      currentMusic: 'https://artlistmusic.azureedge.net/artlist-mp3/72045_04_-_Runaway_(16-44.1).mp3', // By default it's the ambient music
+      currentTracklist: [],
+      currentTracklistItem: null,
+      currentMusic: '',
+      isFading: false,
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
   }
@@ -83,10 +85,31 @@ class RootProvider extends Component {
   }
 
   toggleSound = () => {
+    if( this.state.isFading ) return
     this.setState( prevState => ({ mute: !prevState.mute }) )
   }
 
-  setTrackList = array => this.setState({ currentPlaylist: [...array] })
+  setTrackList = array => {
+    this.setState({ currentTracklist: [...array], currentTracklistItem: 0 }, 
+      () => {
+        this.setAmbientMusic(this.state.currentTracklist[0].music_src)
+      }
+    ) 
+  }
+
+  nextSong = () => {
+    const { currentTracklist, currentTracklistItem} = this.state
+    if( currentTracklist[currentTracklistItem + 1] ) {
+      this.setState( prevState => ({ 
+        currentMusic: currentTracklist[currentTracklistItem + 1].music_src,
+        currentTracklistItem: prevState.currentTracklistItem + 1
+      }))
+    }else {
+      this.setState({ currentTracklistItem: 0 }, () => { 
+        this.setAmbientMusic( currentTracklist[0].music_src )
+      })
+    }
+  }
 
   render() {
 
@@ -97,7 +120,10 @@ class RootProvider extends Component {
       toggleMenu: this.toggleMenu,
       toggleFullscreen: this.toggleFullscreen,
       setState: this.setState.bind( this ),
-      setAmbientMusic: this.setAmbientMusic.bind(this)
+      setAmbientMusic: this.setAmbientMusic.bind(this),
+      toggleSound: this.toggleSound.bind(this),
+      setTrackList: this.setTrackList.bind(this),
+      nextSong: this.nextSong.bind(this)
     }
 
     return ( 

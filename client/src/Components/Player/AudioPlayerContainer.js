@@ -16,7 +16,8 @@ class AudioPlayerContainer extends Component {
       duration: 0, 
       percentage: 0,
       volume: 0,
-      currentItem: 0
+      currentItem: 0,
+      isFading: false
     }
   }
   
@@ -32,7 +33,8 @@ class AudioPlayerContainer extends Component {
       this.fadeInAudio()
     })
     this.$audio.addEventListener('ended', () => {
-      console.log( 'ended' )
+      console.warn('ended')
+      this.props.context.nextSong()
     })
     this.$audio.volume = this.state.volume // force when the volume attribute is not working
   }
@@ -64,7 +66,9 @@ class AudioPlayerContainer extends Component {
   }
 
   fadeOutAudio = () => {
-    if(!this.$audio) return
+    const { context } = this.props 
+    if( !this.$audio || context.state.isFading ) return
+    context.setState({ isFading: true })
     let fadePoint = this.$audio.currentTime 
     let fadeAudio = setInterval(() => {
       if(!this.$audio) return
@@ -79,12 +83,15 @@ class AudioPlayerContainer extends Component {
       // When volume at 0 stop interval
       if (volume === 0.0) {
           clearInterval(fadeAudio)
+          this.props.context.setState({ isFading: false })
       }
     }, 100)
   }
 
   fadeInAudio = () => {
-    if(!this.$audio) return
+    const { context } = this.props 
+    if( !this.$audio || context.state.isFading ) return
+    this.setState({ isFading: true })
     let fadePoint = this.$audio.currentTime + 2.5
     let fadeAudio = setInterval(() => {
       if( !this.$audio ) return
@@ -98,6 +105,7 @@ class AudioPlayerContainer extends Component {
       // When volume at 1 stop interval
       if (this.$audio.volume === 1) {
           clearInterval(fadeAudio)
+          context.setState({ isFading: false })
       }
     }, 100)
   }
