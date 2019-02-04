@@ -20,7 +20,7 @@ const Menu = ({ path, context }) => {
         <Link
           key={index}
           onClick={context.toggleMenu}
-          to={`${path}/episodes/${era.section_slug}-${era.section_id}`}
+          to={`${path}/episodes/${era.section_slug}/${era.section_id}`}
         >
           {era.section_title}
         </Link>

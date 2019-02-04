@@ -15,13 +15,15 @@ class EraContent extends Component {
     this.setState({ era: eraContent });
   }
   render() {
+    console.log(this.props.match.params.eraName);
+
     return (
       this.state.era && (
         <div>
           <br />
           <Link to={'/g'}>Back</Link>
           <p>
-            {this.props.match.params.eraName}-{this.props.match.params.id}
+            {this.props.match.params.eraName}/{this.props.match.params.id}
           </p>
         </div>
       )
