@@ -21,3 +21,9 @@ export const arrayEquals = ( array1, array2 ) => array1.every( e => array2.inclu
  * @param {Object} obj2 
  */
 export const objectEquals = ( obj1, obj2 ) => JSON.stringify( obj1 ) === JSON.stringify( obj2 )
+
+export const createRouteNameFromString = string => {
+    let routeString = string.toLowerCase()
+    routeString = routeString.split(' ').join('-')
+    return routeString
+}

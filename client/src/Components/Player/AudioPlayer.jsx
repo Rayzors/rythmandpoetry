@@ -10,9 +10,6 @@ class AudioPlayer extends Component {
     const { 
       music_src,
       volume,
-      currentTime,
-      duration,
-      percentage,
       getAudioHTMLElement,
       togglePlay,
       onProgressBarClick,
@@ -30,13 +27,6 @@ class AudioPlayer extends Component {
           />
         </audio>
         <Player>
-          <Controls>
-            <PlayerButton onClick={ togglePlay }>
-                <div className={played ? 'bar animated_bar' : 'bar'}></div>
-                <div className={played ? 'bar animated_bar' : 'bar'}></div>
-                <div className={played ? 'bar animated_bar' : 'bar'}></div>
-            </PlayerButton>
-          </Controls>
           {/* LES CONTROLES SONT À ENLEVER PAR LA SUITE */}
           {/* <TimerContainer>
             <ProgressBarContainer onClick={ onProgressBarClick }>

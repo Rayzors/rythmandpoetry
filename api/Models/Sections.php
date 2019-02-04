@@ -22,7 +22,7 @@ class Sections
     if ($stmt->errorCode() !== '00000') {
       throw new \Exception("Error Processing Request", 1);
     }
-    $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $row = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     if ($row === false) {
       return null;
@@ -40,7 +40,7 @@ class Sections
     if ($stmt->errorCode() !== '00000') {
       throw new \Exception("Error Processing Request", 1);
     }
-    $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $row = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     if ($row === false) {
       return null;
