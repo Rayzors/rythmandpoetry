@@ -16,6 +16,7 @@ class RootProvider extends Component {
       currentTracklist: [],
       currentTracklistItem: null,
       currentMusic: '',
+      isFading: false,
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     }    
   }
@@ -84,6 +85,7 @@ class RootProvider extends Component {
   }
 
   toggleSound = () => {
+    if( this.state.isFading ) return
     this.setState( prevState => ({ mute: !prevState.mute }) )
   }
 
