@@ -6,6 +6,7 @@ import Menu from '../../Components/Menu/Menu';
 import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
 import FullScreenButton from '../../Components/FullScreenButton/FullScreenButton';
 import Burger from '../../Components/StyledComponents /Burger';
+import HomePlayer from '../../Components/Player/Player'
 
 import './global.css';
 import {Link} from 'react-router-dom';
@@ -49,8 +50,11 @@ class Global extends Component {
           )
         }
         </Switch>
-        
+
+        {/* audio logic */}
         <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
+        {/* audio view  */}
+        <HomePlayer /> 
 
         <FullScreenButton onClick={() => context.toggleFullscreen()} />
           

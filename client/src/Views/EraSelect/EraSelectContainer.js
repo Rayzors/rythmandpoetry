@@ -4,7 +4,6 @@ import { Parallax } from 'react-spring/addons';
 import { Spring } from 'react-spring'
 import rapApi from '../../helpers/api'
 import withConsumer from '../../Higher-Order-Components/withConsumer'
-import HomePlayer from '../../Components/Player/styled/HomePlayer';
 import './EraSelect.css'
 
 class EraSelectContainer extends Component {
@@ -94,7 +93,6 @@ class EraSelectContainer extends Component {
             </Fragment>
           )}
         </Spring>
-        <HomePlayer />
       </Fragment>
     )
   }
