@@ -17,7 +17,7 @@ const Player = props => {
                     <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
                     <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
                 </PlayerButton>
-            </PlayerButtonContainer> 
+            </PlayerButtonContainer>
         </Fragment>
 )}
 export default withConsumer(Player)
