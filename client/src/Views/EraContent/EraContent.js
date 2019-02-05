@@ -1,10 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import rapApi from '../../helpers/api';
 import SectionCover from '../../Components/StyledComponents /SectionCover';
 import EraIntroduction from '../../Components/EraIntroduction/EraIntroduction';
 import SectionTitle from '../../Components/StyledComponents /SectionTitle';
+import SectionCoverBlock from '../../Components/StyledComponents /SectionCoverBlock';
+import EpisodeLabel from '../../Components/StyledComponents /EpisodeLabel';
+import SectionSubtitle from '../../Components/StyledComponents /SectionSubtitle';
 class EraContent extends Component {
 
   state = {
@@ -62,23 +65,33 @@ class EraContent extends Component {
     return(
       <Fragment>
         {loading ? 
-          <p>Chargement...</p> : 
-          <SectionCover 
+
+          <SectionCover
+            backgroundColor="#000000">
+              Chargement...
+            </SectionCover>
+          : 
+          <Fragment>
+
+          <SectionCover
           backgroundImage={section_bgimage}
           backgroundColor={section_bgcolor}>
 
-          <Link to={'/g'}>Back</Link>
-
           <EraIntroduction>
-            <Fragment>
-              <p>{`Episode ${section_id}`}</p>
+            <SectionCoverBlock>
+              <EpisodeLabel>{`Episode ${section_id}`}</EpisodeLabel>
               <SectionTitle>{section_title}</SectionTitle>
               <hr />
-              <p>{section_subtitle}</p>
-            </Fragment>
+              <SectionSubtitle>{section_subtitle}</SectionSubtitle>
+            </SectionCoverBlock>
           </EraIntroduction>
             
           </SectionCover>
+
+          <SectionCover>
+            <p>lol</p>
+          </SectionCover>
+          </Fragment>
         }
       </Fragment>
     )

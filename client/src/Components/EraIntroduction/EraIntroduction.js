@@ -3,13 +3,13 @@ import { Transition, animated } from 'react-spring';
 
 class EraIntroduction extends React.Component {
   state = {
-    count: 2,
+    count: 1,
     showAt: null,
     show: false
   }
 
   componentDidMount(){
-    let showAt = setInterval(this.timer, 1000);
+    let showAt = setInterval(this.timer, 500);
 
     this.setState({showAt: showAt});
   }
@@ -33,15 +33,15 @@ class EraIntroduction extends React.Component {
   }
 
   render(){
-    
+
     const {show} = this.state;
 
     return(
       <Transition
         items={show}
-        from={{opacity: 0}}
-        enter={{opacity: 1}}
-        leave={{opacity: 0}}>
+        from={{opacity: 0, transform: 'translate3d(0,40px,0)'}}
+        enter={{opacity: 1, transform: 'translate3d(0,0,0)'}}
+        leave={{opacity: 0, transform: 'translate3d(0,40px,0)'}}>
           {show =>
             show && (props => 
             <animated.div style={props}>

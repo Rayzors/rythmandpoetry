@@ -5,7 +5,10 @@ import withConsumer from '../../Higher-Order-Components/withConsumer';
 import Menu from '../../Components/Menu/Menu';
 import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
 import FullScreenButton from '../../Components/FullScreenButton/FullScreenButton';
+import Burger from '../../Components/StyledComponents /Burger';
+
 import './global.css';
+import {Link} from 'react-router-dom';
 
 class Global extends Component {
   render() {
@@ -19,7 +22,16 @@ class Global extends Component {
 
     return (
       <Fragment>
-        <button style={{position: "fixed", zIndex: "999", right: 20 }} onClick={ context.toggleMenu }>Menu</button>
+        <Burger 
+          isActive={ context.menuIsActive }
+          onClick={ context.toggleMenu }>
+          <div></div>
+          <div></div>
+          <div></div>
+        </Burger>
+        <Link 
+        style={{position: "fixed", zIndex: "999", left: 20 }}
+        to="/g">Back</Link>
         {
           context.menuIsActive ?
           <Menu {...match}/>
