@@ -181,7 +181,10 @@ class RootProvider extends Component {
       setAmbientMusic: this.setAmbientMusic.bind(this),
       toggleSound: this.toggleSound.bind(this),
       setTrackList: this.setTrackList.bind(this),
-      nextSong: this.nextSong.bind(this)
+      nextSong: this.nextSong.bind(this),
+      toggleReadMode: this.toggleReadMode.bind(this),
+      setLowPass: this.setLowPass.bind(this),
+      removeLowPass: this.removeLowPass.bind(this)
     };
 
     return <Provider value={providerValue}>{this.props.children}</Provider>;
