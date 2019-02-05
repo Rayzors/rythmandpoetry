@@ -5,47 +5,55 @@ import withConsumer from '../../Higher-Order-Components/withConsumer';
 import Menu from '../../Components/Menu/Menu';
 import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
 import FullScreenButton from '../../Components/FullScreenButton/FullScreenButton';
+import Burger from '../../Components/StyledComponents /Burger';
+
 import './global.css';
+import {Link} from 'react-router-dom';
 
 class Global extends Component {
   render() {
     const { match, context } = this.props;
 
-    /**
-     * après avoir récupéré la route courante ( props.match.path ) dans /helpers/routes.js,
-     * on récupère les sous-routes correspondantes et on les affiche
+     /*
+      après avoir récupéré la route courante ( props.match.path ) dans /helpers/routes.js, 
+      on récupère les sous-routes correspondantes et on les affiche
      */
     const global = routes.find(({ path }) => path === match.path);
 
     return (
-      context.state.eras && (
-        <Fragment>
-          <button
-            style={{ position: 'fixed', zIndex: '999' }}
-            onClick={() => context.toggleMenu()}
-          >
-            Menu
-          </button>
-          {context.menuIsActive ? <Menu {...match} /> : null}
-          <Switch>
-            {global.routes.map((sub, i) =>
-              sub.redirect ? (
-                <Redirect to={match.path + sub.to} key={i} />
-              ) : (
-                <Route
-                  key={i}
-                  path={match.path + sub.path}
-                  component={sub.component}
-                />
-              )
-            )}
-          </Switch>
 
-          <AudioPlayerContainer style={{ position: 'fixed', zIndex: '999' }} />
+      <Fragment>
+        <Burger 
+          isActive={ context.menuIsActive }
+          onClick={ context.toggleMenu }>
+          <div></div>
+          <div></div>
+          <div></div>
+        </Burger>
+        <Link 
+        style={{position: "fixed", zIndex: "999", left: 20 }}
+        to="/g">Back</Link>
+        {
+          context.menuIsActive ?
+          <Menu {...match}/>
+          : null
+        }
+        <Switch>
+        {
+          global.routes.map( (sub, i) => (
+              sub.redirect ? 
+                <Redirect to={ match.path + sub.to} key={i}/> 
+                : 
+                <Route key={i} path={match.path + sub.path} component={sub.component} />
+            )
+          )
+        }
+        </Switch>
+        
+        <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
 
-          <FullScreenButton onClick={() => context.toggleFullscreen()}>
-            FS
-          </FullScreenButton>
+        <FullScreenButton onClick={() => context.toggleFullscreen()} />
+          
         </Fragment>
       )
     );

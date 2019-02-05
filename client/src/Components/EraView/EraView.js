@@ -3,6 +3,7 @@ import EraViewInfo from '../EraView/EraViewInfo';
 import EraViewCurrent from '../EraView/EraViewCurrent';
 import DashLine from '../DashLine/DashLine';
 import { ParallaxLayer } from 'react-spring/addons';
+import { Link } from 'react-router-dom';
 
 const EraView = (props) => {
   return (
@@ -24,6 +25,7 @@ const EraView = (props) => {
           />
           <DashLine />
           <p className="EraView__subTitle">{props.section_subtitle}</p>
+          <Link to={`/g/episodes/${props.section_id}`}>Visiter</Link>
         </EraViewInfo>
       </ParallaxLayer>
 

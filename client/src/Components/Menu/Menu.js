@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import withConsumer from '../../Higher-Order-Components/withConsumer';
+import withConsumer from '../../Higher-Order-Components/withConsumer'
+import { Transition, Trail } from 'react-spring';
+
 
 const styles = {
   position: 'fixed',
@@ -12,6 +14,7 @@ const styles = {
   flexDirection: 'column',
   color: '#fff'
 };
+
 
 const Menu = ({ path, context }) => {
   return (
