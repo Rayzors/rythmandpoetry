@@ -25,14 +25,14 @@ class EraContent extends Component {
 
   async componentDidMount() {
 
-    const { match : {params : {eraId} }} = this.props
+    const { match : { params : {id} }} = this.props
 
     // ca viendra de l'api et ca changera en fonction de l'id de l'aire
     try{
 
       const tracklist = await rapApi.getMusicsByEra(1) // 1 is the era id
 
-      const data = await rapApi.getEraById(eraId)
+      const data = await rapApi.getEraById(id)
 
       this.props.context.setTrackList( tracklist )
 
@@ -70,7 +70,7 @@ class EraContent extends Component {
 
           <SectionCover
             backgroundColor="#000000">
-              Chargement...
+              <p style={{color: "#ffffff"}}>Chargement...</p>
             </SectionCover>
           : 
           <Fragment>

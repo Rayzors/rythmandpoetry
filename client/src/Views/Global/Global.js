@@ -56,7 +56,6 @@ class Global extends Component {
           
         </Fragment>
       )
-    );
   }
 }
 
