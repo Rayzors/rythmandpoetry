@@ -14,7 +14,7 @@ class Sections
     $this->pdo = Database::get();
   }
 
-  private function executeSqlById(string $sql, int $id) 
+  private function executeSqlById(string $sql, int $id)
   {
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -31,7 +31,7 @@ class Sections
     return $row;
   }
 
-  private function executeSqlByIdAndAction(string $sql, int $id, string $action) 
+  private function executeSqlByIdAndAction(string $sql, int $id, string $action)
   {
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -49,7 +49,7 @@ class Sections
     return $row;
   }
 
-  private function executeSql(string $sql) 
+  private function executeSql(string $sql)
   {
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute();
@@ -69,7 +69,8 @@ class Sections
     section_subtitle,
     section_bgcolor,
     section_color,
-    section_bgimage
+    section_bgimage,
+    section_slug
     FROM
     sections;";
     return $this->executeSql($sql);
@@ -83,7 +84,8 @@ class Sections
     section_subtitle,
     section_bgcolor,
     section_color,
-    section_bgimage
+    section_bgimage,
+    section_slug
     FROM
     sections
     WHERE

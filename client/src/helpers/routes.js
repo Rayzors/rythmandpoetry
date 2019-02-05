@@ -7,34 +7,34 @@ import EraContent from '../Views/EraContent/EraContent';
 
 const routes = [
   {
-    name: "loadingScreen",
+    name: 'loadingScreen',
     exact: true,
-    path: "/",
+    path: '/',
     component: LoadingScreen
   },
   {
-    name: "homeScreen",
-    path: "/home",
+    name: 'homeScreen',
+    path: '/home',
     component: HomeScreen
   },
   {
-    name: "global",
+    name: 'global',
     component: Global,
-    path: "/g",
+    path: '/g',
     routes: [
       {
-        name: "eraSelect",
-        path: "/select-your-era",
+        name: 'eraSelect',
+        path: '/select-your-era',
         component: EraSelectContainer
       },
       {
-        name: "VisitEra",
-        path: "/episodes/:eraId",
-        component: EraContent,
+        name: 'VisitEra',
+        path: '/episodes/:eraName/:id',
+        component: EraContent
       },
       {
-        name: "hallOfFame",
-        path: "/hall-of-fame",
+        name: 'hallOfFame',
+        path: '/hall-of-fame',
         component: HallOfFame
       },
       {
@@ -47,6 +47,6 @@ const routes = [
     redirect: true,
     to: '/'
   }
-]
+];
 
 export default routes;

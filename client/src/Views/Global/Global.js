@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import  routes from '../../helpers/routes';
+import routes from '../../helpers/routes';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
 import Menu from '../../Components/Menu/Menu';
 import AudioPlayerContainer from '../../Components/Player/AudioPlayerContainer';
@@ -21,6 +21,7 @@ class Global extends Component {
     const global = routes.find(({ path }) => path === match.path);
 
     return (
+
       <Fragment>
         <Burger 
           isActive={ context.menuIsActive }
@@ -52,9 +53,10 @@ class Global extends Component {
         <AudioPlayerContainer style={{position: "fixed", zIndex: "999"}}/>
 
         <FullScreenButton onClick={() => context.toggleFullscreen()} />
-
-      </Fragment>
-    )
+          
+        </Fragment>
+      )
+    );
   }
 }
 

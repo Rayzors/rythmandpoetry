@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import withConsumer from '../../Higher-Order-Components/withConsumer';
 import { Link } from 'react-router-dom';
 import rapApi from '../../helpers/api';
@@ -8,6 +8,7 @@ import SectionTitle from '../../Components/StyledComponents /SectionTitle';
 import SectionCoverBlock from '../../Components/StyledComponents /SectionCoverBlock';
 import EpisodeLabel from '../../Components/StyledComponents /EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents /SectionSubtitle';
+
 class EraContent extends Component {
 
   state = {
@@ -20,6 +21,7 @@ class EraContent extends Component {
     section_color: "",
     section_bgimage: ""
   }
+
 
   async componentDidMount() {
 
