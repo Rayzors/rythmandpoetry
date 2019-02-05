@@ -8,6 +8,7 @@ export const Player = styled.div`
 
 export const PlayerButton = styled.button`
     position: fixed;
+    z-index: 999;
     bottom: 20px;
     right: 70px;
     width: 30px;

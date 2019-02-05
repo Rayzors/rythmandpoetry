@@ -8,9 +8,9 @@ const Player = props => {
     const { toggleSound } = props.context
     return (
      <PlayerButton className={props.className} onClick={ () => toggleSound() }>
-        <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
-        <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
-        <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
+        <div className={ !mute ? 'bar animated_bar' : 'bar' }></div>
+        <div className={ !mute ? 'bar animated_bar' : 'bar' }></div>
+        <div className={ !mute ? 'bar animated_bar' : 'bar' }></div>
     </PlayerButton>
 )}
 export default withConsumer(Player)
