@@ -23,9 +23,25 @@ class AudioPlayerContainer extends Component {
   
   componentDidMount() {
     // getting context state
+    const { currentMusic, filterValue } = this.props.context.state
     this.setState({
-      music_src: this.props.context.state.currentMusic
+      music_src: currentMusic,
+      filterValue
     })
+
+    this.$audio.crossOrigin = "anonymous"
+
+    this.audioContext = new AudioContext();
+    this.source = this.audioContext.createMediaElementSource( this.$audio )
+    this.filter = this.audioContext.createBiquadFilter()
+
+    this.source.connect( this.filter );
+    this.filter.connect( this.audioContext.destination )
+    this.filter.type = "lowpass"
+    this.filter.frequency.value = 24000
+    window.filter = this.filter
+
+
     this.$audio.addEventListener('canplay', () => {
       window.audio = this.$audio
       this.play() // autoplay
@@ -61,6 +77,11 @@ class AudioPlayerContainer extends Component {
           this.pause()
           this.$audio.load()
         }, 1200)
+      })
+    }
+    if(this.props.context.state.filterValue !== this.state.filterValue) {
+      this.setState({ filterValue: this.props.context.state.filterValue }, () => {
+        this.filter.frequency.value = this.state.filterValue
       })
     }
   }
