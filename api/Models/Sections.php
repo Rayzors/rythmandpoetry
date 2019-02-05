@@ -138,7 +138,7 @@ class Sections
       FROM
       content
       WHERE
-      fk_section_id = : id
+      fk_section_id = :id
       ";
     return $this->executeSqlById($sql, $id);
   }
@@ -153,9 +153,9 @@ class Sections
       FROM
       content
       WHERE
-      fk_section_id = : id
+      fk_section_id = :id
       and
-      content_type = : act
+      content_type = :act
       ";
     return $this->executeSqlByIdAndAction($sql, $id, $act);
   }
@@ -171,7 +171,7 @@ class Sections
       FROM
       artists
       WHERE
-      fk_section_id = : id
+      fk_section_id = :id
       ";
     return $this->executeSqlById($sql, $id);
   }
@@ -191,7 +191,7 @@ class Sections
       FROM
       musics
       WHERE
-      fk_section_id = : id
+      fk_section_id = :id
       ";
     return $this->executeSqlById($sql, $id);
   }
@@ -204,7 +204,7 @@ class Sections
       FROM
       playlists
       WHERE
-      fk_section_id = : id
+      fk_section_id = :id
       ";
     return $this->executeSqlById($sql, $id);
   }
