@@ -61,7 +61,7 @@ class EraContent extends Component {
       section_title, 
       section_subtitle, 
       section_bgcolor, 
-      section_bgimage, 
+      section_bgimage,
       section_id } = this.state;
 
     return(
