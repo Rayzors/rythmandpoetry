@@ -7,15 +7,17 @@ const Player = props => {
     const { mute, currentSong, filterValue } = props.context.state
     const { toggleSound } = props.context
     return (
-        <PlayerButtonContainer>
-            <MusicTitle>
-                <span>{ currentSong.music_title }</span>
-            </MusicTitle>
-            <PlayerButton className={props.className} onClick={ () => toggleSound() }>
-                <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
-                <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
-                <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
-            </PlayerButton>
-        </PlayerButtonContainer>
+        <Fragment>
+            <PlayerButtonContainer>
+                <MusicTitle>
+                    <span>{ currentSong.music_title }</span>
+                </MusicTitle>
+                <PlayerButton className={props.className} onClick={ () => toggleSound() }>
+                    <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
+                    <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
+                    <div className={ !mute ? 'bar animated_bar' : 'bar'}></div>
+                </PlayerButton>
+            </PlayerButtonContainer>
+        </Fragment>
 )}
 export default withConsumer(Player)

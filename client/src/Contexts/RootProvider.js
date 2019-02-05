@@ -115,14 +115,22 @@ class RootProvider extends Component {
       this.setState((prevState) => ({
         currentMusic: currentTracklist[currentTracklistItem + 1].music_src,
         currentTracklistItem: prevState.currentTracklistItem + 1
-      }));
+      }), 
+      () => {
+        this.setState({ currentSong: this.state.currentTracklist[this.state.currentTracklistItem] })
+      }
+      );
     } else {
       this.setState({ currentTracklistItem: 0 }, () => {
         this.setAmbientMusic(currentTracklist[0].music_src);
+        this.setState({ currentSong: this.state.currentTracklist[this.state.currentTracklistItem] })
       });
     }
   };
 
+  /**
+   * Change the filter value 24kHz <=> 500hz 
+   */
   toggleReadMode = () => {
     if( this.state.filterValue !== 24000 ) {
       let interval = setInterval( () => {
@@ -133,18 +141,18 @@ class RootProvider extends Component {
             if(newValue >= 24000) clearInterval(interval)
           }
         )
-        if(newValue >= 24000) newValue = 24000
+        if( newValue >= 24000 ) newValue = 24000
       }, 100)
-    } else if(this.state.filterValue >= 24000){
+    } else if( this.state.filterValue >= 24000 ){
       let interval = setInterval( () => {
-        let newValue = this.state.filterValue - 1000
+        let newValue = this.state.filterValue - 2000
         if(newValue <= 500) newValue = 500
         this.setState(({ filterValue: newValue }), 
           () => {
-            if(newValue <= 500) clearInterval(interval)
+            if( newValue <= 500 ) clearInterval(interval)
           }
         )
-        if(newValue <= 500) newValue = 500
+        if( newValue <= 500 ) newValue = 500
       }, 100)
     }
   }
