@@ -15,19 +15,9 @@ export const PlayerButtonContainer = styled.div`
 export const MusicTitle = styled.div`
     color: #fff;
     font-family: sans-serif;
-<<<<<<< HEAD
-<<<<<<< HEAD
     position: fixed;
     right: 115px;
     bottom: 20px;
-=======
-
->>>>>>> feature: add lowpass filter to audioplayer
-=======
-    position: fixed;
-    right: 115px;
-    bottom: 20px;
->>>>>>> fix: change currentSong in providerState
 `
 
 export const PlayerButton = styled.button`
