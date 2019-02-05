@@ -140,6 +140,7 @@ class RootProvider extends Component {
   }
 
   removeLowPass = () => {
+    // Increment by 1000 every 100ms
     let interval = setInterval( () => {
       let newValue = this.state.filterValue + 1000
       if(newValue >= 24000) newValue = 24000
