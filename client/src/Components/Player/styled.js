@@ -15,7 +15,9 @@ export const PlayerButtonContainer = styled.div`
 export const MusicTitle = styled.div`
     color: #fff;
     font-family: sans-serif;
-
+    position: fixed;
+    right: 115px;
+    bottom: 20px;
 `
 
 export const PlayerButton = styled.button`
