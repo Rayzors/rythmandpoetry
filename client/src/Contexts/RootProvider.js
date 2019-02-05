@@ -133,28 +133,40 @@ class RootProvider extends Component {
    */
   toggleReadMode = () => {
     if( this.state.filterValue !== 24000 ) {
-      let interval = setInterval( () => {
-        let newValue = this.state.filterValue + 1000
-        if(newValue >= 24000) newValue = 24000
-        this.setState(({ filterValue: newValue }), 
-          () => {
-            if(newValue >= 24000) clearInterval(interval)
-          }
-        )
-        if( newValue >= 24000 ) newValue = 24000
-      }, 100)
+      this.removeLowPass()
     } else if( this.state.filterValue >= 24000 ){
-      let interval = setInterval( () => {
-        let newValue = this.state.filterValue - 2000
-        if(newValue <= 500) newValue = 500
-        this.setState(({ filterValue: newValue }), 
-          () => {
-            if( newValue <= 500 ) clearInterval(interval)
-          }
-        )
-        if( newValue <= 500 ) newValue = 500
-      }, 100)
+      this.setLowPass()
     }
+  }
+
+  removeLowPass = () => {
+    let interval = setInterval( () => {
+      let newValue = this.state.filterValue + 1000
+      if(newValue >= 24000) newValue = 24000
+      this.setState(({ filterValue: newValue }), 
+        () => {
+          if(newValue >= 24000) clearInterval(interval)
+        }
+      )
+      if( newValue >= 24000 ) newValue = 24000
+    }, 100)
+  }
+
+  setLowPass = () => {
+    this.setState(({ filterValue: 3000 }),
+      () => {
+        let interval = setInterval( () => {
+          let newValue = this.state.filterValue - 200
+          if(newValue <= 500) newValue = 500
+          this.setState(({ filterValue: newValue }), 
+            () => {
+              if( newValue <= 500 ) clearInterval(interval)
+            }
+          )
+          if( newValue <= 500 ) newValue = 500
+        }, 100)
+      }
+    )
   }
 
   render() {
