@@ -6,7 +6,7 @@ import {
   Title,
   HallContainer,
   ArtistCard
-} from '../../Components/StyledComponents /HallOfFame'
+} from '../../Components/StyledComponents/HallOfFame'
 
 class HallOfFame extends Component {
 
