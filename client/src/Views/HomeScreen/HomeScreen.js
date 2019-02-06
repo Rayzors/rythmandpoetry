@@ -9,19 +9,6 @@ class HomeScreen extends Component {
         <h1>Home</h1>
         <p>Hey bro, Welcome to <strong>rythm and poetry</strong>. <br/> We will introduce you to different kind of rap.</p>
         <Link to="/g">Start</Link>
-        <Consumer>
-          {
-            context => {
-              return(
-                // Test of addArtist & setState 
-                <button onClick={
-                  () => context.setState( prevState => ({ lol: prevState.lol + 1 }), 
-                  () => context.addArtist(context.state.lol) )
-                }>log</button>
-              )
-            }
-          }
-        </Consumer>
       </div>
     )
   }
