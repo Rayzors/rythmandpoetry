@@ -23,9 +23,13 @@ const EraView = (props) => {
             className="EraView__title"
             dangerouslySetInnerHTML={{ __html: props.section_title }}
           />
-          <DashLine />
           <p className="EraView__subTitle">{props.section_subtitle}</p>
-          <Link to={`/g/episodes/${props.section_slug}/${props.section_id}`}>Visiter</Link>
+          <Link
+            to={`/g/episodes/${props.section_slug}/${props.section_id}`}
+            className="EraView__link"
+          >
+            BEGIN
+          </Link>
         </EraViewInfo>
       </ParallaxLayer>
 

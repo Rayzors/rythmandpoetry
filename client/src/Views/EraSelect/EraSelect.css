@@ -4,44 +4,82 @@
   justify-content: center;
 }
 
-.EraView__info{
+.EraView__info {
   color: #ffffff;
   position: absolute;
   z-index: 2;
   left: 5%;
-  top: 28%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
 }
 
-.EraView__title{
+.EraView__title {
   font-size: 100px;
   line-height: 99px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   text-transform: uppercase;
   /* line-height: 1.5; */
-} 
-
-.EraView__subTitle{
-  font-size: 14px;
-  font-family: 'Playfair Display';
+  position: relative;
+  padding: 19px 0;
 }
 
-.EraView__current{
+.EraView__title::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: #ffffff;
+}
+
+.EraView__subTitle {
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.EraView__current {
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
+.EraView__link {
+  display: block;
+  width: 82px;
+  height: 82px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 31px 0 0 30%;
+  transform: translateX(-50%);
+  transition: 0.26s ease;
+}
+
+.EraView__link:hover {
+  background: #fff;
+  color: #000;
+}
+
 .App .EraView__bgImageContainer {
   display: flex;
   justify-content: flex-end;
-  overflow: hidden;
 }
+
 .App .EraView__bgImage {
   position: relative;
   background-size: cover;
   transform: rotate(-3deg);
   left: 2%;
   width: 50vw;
-  height: 50vh;
+  height: 80vh;
 }
