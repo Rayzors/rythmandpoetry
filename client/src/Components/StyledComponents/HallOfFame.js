@@ -42,15 +42,22 @@ export const ArtistCard = styled.article `
     line-height: 16px;
     font-size: 14px;
     font-weight: 600;
-
-    & img {
-        width: 100%;
-        max-width: 250px;
-    }
-
     
 `
 
-export const ArtistName = styled.p`
+export const ArticleCardImage = styled.img`
+
+    width: 100%;
+    max-width: 250px;
+
+    filter: ${ props => props.unlocked === true ? 'none' : 'grayscale(100%)'};
+    
+`
+
+export const ArticleCardName = styled.p`
+
+    display: ${ props => props.unlocked === true ? 'block' : 'none'};
+    margin-bottom: 32px;
+    text-align: center;
 
 `

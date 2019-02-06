@@ -49,7 +49,12 @@ class AudioPlayerContainer extends Component {
     });
     this.$audio.addEventListener('ended', () => {
       console.warn('ended');
-      this.props.context.nextSong();
+      const { context } = this.props
+      if(context.state.currentTracklist.length > 0) {
+        context.nextSong();
+      } else {
+        this.play() // loop song if tracklist is undefined
+      }
     });
     this.$audio.volume = this.state.volume; // force when the volume attribute is not working
   }
@@ -100,7 +105,10 @@ class AudioPlayerContainer extends Component {
     context.setState({ isFading: true });
     let fadePoint = this.$audio.currentTime;
     let fadeAudio = setInterval(() => {
-      if (!this.$audio) return;
+      if (!this.$audio) {
+        this.setState({ isFading: true })        
+        return;
+      }
       let volume = Math.round(this.$audio.volume * 100);
       if (this.$audio.currentTime >= fadePoint && volume >= 0.0) {
         if (this.$audio.volume - 0.1 >= 0 && this.$audio.volume - 0.1 <= 1) {
@@ -123,7 +131,10 @@ class AudioPlayerContainer extends Component {
     this.setState({ isFading: true });
     let fadePoint = this.$audio.currentTime + 2.5;
     let fadeAudio = setInterval(() => {
-      if (!this.$audio) return;
+      if (!this.$audio) {
+        this.setState({ isFading: true })
+        return;
+      }
       if (this.$audio.currentTime <= fadePoint && this.$audio.volume <= 1.0) {
         if (this.$audio.volume + 0.1 <= 1.0) {
           let volume = (this.$audio.volume + 0.1).toFixed(1);
@@ -158,6 +169,7 @@ class AudioPlayerContainer extends Component {
         })
         .catch((e) => {
           this.pause();
+          console.error(e)
         });
     }
   };

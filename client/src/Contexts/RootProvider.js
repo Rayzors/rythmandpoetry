@@ -57,6 +57,11 @@ class RootProvider extends Component {
     }
   };
 
+  isUnlockedArtist = artistId => {
+    const { unlockedArtist } = this.state
+    return unlockedArtist.some( el => parseInt(artistId) === el )
+  }
+
   /**
    * enable/disable fullscreen
    */
@@ -185,6 +190,7 @@ class RootProvider extends Component {
       state: this.state,
       menuIsActive: this.state.menuIsActive,
       addArtist: this.addArtist,
+      isUnlockedArtist: this.isUnlockedArtist.bind(this),
       toggleMenu: this.toggleMenu,
       toggleFullscreen: this.toggleFullscreen,
       setState: this.setState.bind(this),
