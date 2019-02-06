@@ -53,6 +53,4 @@ export const ArtistCard = styled.article `
 
 export const ArtistName = styled.p`
 
-    
-
 `
