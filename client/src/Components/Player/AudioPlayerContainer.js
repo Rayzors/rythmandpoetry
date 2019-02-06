@@ -101,6 +101,7 @@ class AudioPlayerContainer extends Component {
   fadeOutAudio = () => {
     const { context } = this.props;
     if (!this.$audio || context.state.isFading) return;
+    this.setState({ isFading: true });
     context.setState({ isFading: true });
     let fadePoint = this.$audio.currentTime;
     let fadeAudio = setInterval(() => {
@@ -128,6 +129,7 @@ class AudioPlayerContainer extends Component {
     const { context } = this.props;
     if (!this.$audio || context.state.isFading) return;
     this.setState({ isFading: true });
+    context.setState({ isFading: true });
     let fadePoint = this.$audio.currentTime + 2.5;
     let fadeAudio = setInterval(() => {
       if (!this.$audio) {
