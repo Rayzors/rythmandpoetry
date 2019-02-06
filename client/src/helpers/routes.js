@@ -3,6 +3,7 @@ import HomeScreen from '../Views/HomeScreen/HomeScreen';
 import EraSelectContainer from '../Views/EraSelect/EraSelectContainer';
 import Global from '../Views/Global/Global';
 import HallOfFame from '../Views/HallOfFame/HallOfFame';
+import ArtistContainer from '../Views/HallOfFame/ArtistContainer';
 import EraContent from '../Views/EraContent/EraContent';
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
         name: 'hallOfFame',
         path: '/hall-of-fame',
         component: HallOfFame
+      },
+      {
+        name: 'artist',
+        path: '/artist/:id',
+        component: ArtistContainer
       },
       {
         redirect: true,
