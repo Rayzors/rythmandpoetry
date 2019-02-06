@@ -209,5 +209,18 @@ class Sections
     return $this->executeSqlById($sql, $id);
   }
 
+  public function getArtistsById(int $id) : ? array
+  {
+    $sql = "SELECT
+    artist_id,
+    artist_name,
+    artist_content,
+    artist_cover
+    FROM
+    artists
+    WHERE
+    artist_id = :id;";
+    return $this->executeSqlById($sql, $id);
+  }
 
 }

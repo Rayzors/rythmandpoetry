@@ -50,7 +50,15 @@ class Api {
    * Use await to call this function
    */
   async getArtists() {
-    return this.callApi('/era/artists');
+    return this.callApi('/artists');
+  }
+
+  /**
+   * Returns one artists
+   * Use await to call this function
+   */
+  async getArtistsById($id) {
+    return this.callApi(`/artist/${$id}`);
   }
 
   /**

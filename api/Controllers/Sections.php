@@ -35,6 +35,13 @@ class Sections
     return $this->setHeadersAndReturnJson($allArtist);
   }
 
+  public function getArtistsById($request)
+  {
+    $Sections = new modelSections();
+    $allArtist = $Sections->getArtistsById($request->id);
+    return $this->setHeadersAndReturnJson($allArtist);
+  }
+
   public function getContentBySection($request)
   {
     $Sections = new modelSections();
