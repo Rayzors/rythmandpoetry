@@ -14,9 +14,11 @@ class RootProvider extends Component {
       menuIsActive: false,
       fullScreen: false,
       mute: false,
+      filterValue: 24000,
       currentTracklist: [],
       currentTracklistItem: null,
-      currentMusic: '',
+      currentMusic: '', // current music_src for <audio/>
+      currentSong: {}, // Object that contains infos 
       isFading: false,
       eras: [],
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
@@ -79,8 +81,8 @@ class RootProvider extends Component {
 
   setAmbientMusic = (musicSrc) => {
     //Ambiant music
-    if (this.state.currentMusic !== musicSrc) {
-      this.setState({ currentMusic: musicSrc });
+    if(this.state.currentMusic !== musicSrc) {
+      this.setState({ currentMusic: musicSrc }, () => this.setCurrentTitle())
     }
   };
 
@@ -93,11 +95,19 @@ class RootProvider extends Component {
     this.setState(
       { currentTracklist: [...array], currentTracklistItem: 0 },
       () => {
-        this.state.currentTracklist[0] &&
-          this.setAmbientMusic(this.state.currentTracklist[0].music_src);
+        this.state.currentTracklist[0] && this.setAmbientMusic(this.state.currentTracklist[0].music_src) && this.setCurrentTitle()
       }
     );
   };
+
+  setCurrentTitle = () => {
+    const { currentTracklist, currentTracklistItem } = this.state
+    if( currentTracklist.length > 0 ) {
+      this.setState({
+        currentSong: currentTracklist[currentTracklistItem]
+      })
+    }
+  }
 
   nextSong = () => {
     const { currentTracklist, currentTracklistItem } = this.state;
@@ -105,13 +115,60 @@ class RootProvider extends Component {
       this.setState((prevState) => ({
         currentMusic: currentTracklist[currentTracklistItem + 1].music_src,
         currentTracklistItem: prevState.currentTracklistItem + 1
-      }));
+      }), 
+      () => {
+        this.setState({ currentSong: this.state.currentTracklist[this.state.currentTracklistItem] })
+      }
+      );
     } else {
       this.setState({ currentTracklistItem: 0 }, () => {
         this.setAmbientMusic(currentTracklist[0].music_src);
+        this.setState({ currentSong: this.state.currentTracklist[this.state.currentTracklistItem] })
       });
     }
   };
+
+  /**
+   * Change the filter value 24kHz <=> 500hz 
+   */
+  toggleReadMode = () => {
+    if( this.state.filterValue !== 24000 ) {
+      this.removeLowPass()
+    } else if( this.state.filterValue >= 24000 ){
+      this.setLowPass()
+    }
+  }
+
+  removeLowPass = () => {
+    // Increment by 1000 every 100ms
+    let interval = setInterval( () => {
+      let newValue = this.state.filterValue + 1000
+      if(newValue >= 24000) newValue = 24000
+      this.setState(({ filterValue: newValue }), 
+        () => {
+          if(newValue >= 24000) clearInterval(interval)
+        }
+      )
+      if( newValue >= 24000 ) newValue = 24000
+    }, 100)
+  }
+
+  setLowPass = () => {
+    this.setState(({ filterValue: 3000 }),
+      () => {
+        let interval = setInterval( () => {
+          let newValue = this.state.filterValue - 200
+          if(newValue <= 500) newValue = 500
+          this.setState(({ filterValue: newValue }), 
+            () => {
+              if( newValue <= 500 ) clearInterval(interval)
+            }
+          )
+          if( newValue <= 500 ) newValue = 500
+        }, 100)
+      }
+    )
+  }
 
   render() {
     let providerValue = {
@@ -124,7 +181,10 @@ class RootProvider extends Component {
       setAmbientMusic: this.setAmbientMusic.bind(this),
       toggleSound: this.toggleSound.bind(this),
       setTrackList: this.setTrackList.bind(this),
-      nextSong: this.nextSong.bind(this)
+      nextSong: this.nextSong.bind(this),
+      toggleReadMode: this.toggleReadMode.bind(this),
+      setLowPass: this.setLowPass.bind(this),
+      removeLowPass: this.removeLowPass.bind(this)
     };
 
     return <Provider value={providerValue}>{this.props.children}</Provider>;
