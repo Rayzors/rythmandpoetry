@@ -31,14 +31,13 @@ class Global extends Component {
           <div></div>
           <div></div>
         </Burger>
+
         <Link 
-        style={{position: "fixed", zIndex: "999", left: 20 }}
+        style={{position: "fixed", zIndex: "100", left: 20 }}
         to="/g">Back</Link>
-        {
-          context.menuIsActive ?
-          <Menu {...match}/>
-          : null
-        }
+      
+        <Menu {...match}/>
+          
         <Switch>
         {
           global.routes.map( (sub, i) => (

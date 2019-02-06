@@ -9,6 +9,7 @@ export const PlayerButtonContainer = styled.div`
     display: flex;
 
     position: fixed;
+    z-index: 999;
     bottom: 20px;
     right: 70px;
 `

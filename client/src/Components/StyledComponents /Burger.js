@@ -13,13 +13,11 @@ const Burger = styled.button`
   right: 100px;
   top: 65px;
   transition: all ease-in-out .2s;
-
+  cursor: pointer;
   ${Burger}:hover{
    background: #FFF;
   }
-
-
-
+  
 `;
 
 export default Burger;
