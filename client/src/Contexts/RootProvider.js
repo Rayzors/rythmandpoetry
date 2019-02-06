@@ -20,6 +20,7 @@ class RootProvider extends Component {
       currentMusic: '', // current music_src for <audio/>
       currentSong: {}, // Object that contains infos 
       isFading: false,
+      applyingFilter: false,
       eras: [],
       ...rapStorage.getStorage() // Getting the localStorage template and setting it as state
     };
@@ -74,9 +75,18 @@ class RootProvider extends Component {
    * open/close the menu to select Eras and access to hallOfFame
    */
   toggleMenu = () => {
+    const { applyingFilter } = this.state
+    if( applyingFilter ) return
     this.setState((prevState) => ({
       menuIsActive: !prevState.menuIsActive
-    }));
+    }), () => {
+      const { menuIsActive } = this.state
+      if(menuIsActive) {
+        this.setLowPass()
+      } else {
+        this.removeLowPass()
+      }
+    } );
   };
 
   setAmbientMusic = (musicSrc) => {
@@ -141,31 +151,31 @@ class RootProvider extends Component {
 
   removeLowPass = () => {
     // Increment by 1000 every 100ms
-    let interval = setInterval( () => {
-      let newValue = this.state.filterValue + 1000
-      if(newValue >= 24000) newValue = 24000
-      this.setState(({ filterValue: newValue }), 
-        () => {
-          if(newValue >= 24000) clearInterval(interval)
-        }
+    this.setState({ applyingFilter: true },
+      () => {
+        let interval = setInterval( () => {
+          let newValue = this.state.filterValue + 1000
+          if(newValue >= 24000) newValue = 24000
+          this.setState(({ filterValue: newValue }), 
+            () => newValue >= 24000 && this.setState( { applyingFilter: false }, () =>  clearInterval(interval))
+          )
+        }, 20)
+      }
       )
-      if( newValue >= 24000 ) newValue = 24000
-    }, 100)
   }
 
   setLowPass = () => {
-    this.setState(({ filterValue: 3000 }),
+    this.setState(({ filterValue: 3000, applyingFilter: true }),
       () => {
         let interval = setInterval( () => {
           let newValue = this.state.filterValue - 200
-          if(newValue <= 500) newValue = 500
+          if(newValue <= 500) { 
+            newValue = 500
+          }
           this.setState(({ filterValue: newValue }), 
-            () => {
-              if( newValue <= 500 ) clearInterval(interval)
-            }
+            () =>  newValue <= 500 && this.setState( { applyingFilter: false }, () =>  clearInterval(interval))
           )
-          if( newValue <= 500 ) newValue = 500
-        }, 100)
+        }, 35)
       }
     )
   }
