@@ -46,8 +46,13 @@ export const ArtistCard = styled.article `
     & img {
         width: 100%;
         max-width: 250px;
-        margin-bottom: 12px;
     }
 
     
+`
+
+export const ArtistName = styled.p`
+
+    
+
 `
