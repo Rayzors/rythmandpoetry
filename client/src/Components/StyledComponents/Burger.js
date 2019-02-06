@@ -10,7 +10,7 @@ const Burger = styled.button`
   border: none;
   position: fixed;
   z-index: 999;
-  left: 5%;
+  right: 5%;
   top: 65px;
   transition: all ease-in-out 0.2s;
   cursor: pointer;
