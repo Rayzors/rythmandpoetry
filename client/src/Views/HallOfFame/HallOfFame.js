@@ -39,16 +39,25 @@ class HallOfFame extends Component {
           {
             artists.map( artist => {
               const unlocked = isUnlockedArtist(artist.artist_id)
-              return (
+              return unlocked && (
               <Link key={ artist.artist_id } to={`/g/artist/${artist.artist_id}`} style={{ textDecoration: 'none' }}>
                 <ArtistCard>
-                  <ArticleCardImage src={ /* artist.artist_cover */ `https://image.noelshack.com/fichiers/2019/06/3/1549451020-group-7.png` } unlocked={unlocked} />
+                  <ArticleCardImage src={ artist.artist_cover } unlocked={unlocked} />
                   <ArticleCardName style={ { textAlign: 'center'} } unlocked={unlocked} >
                     { artist.artist_name }
                   </ArticleCardName>
                 </ArtistCard>
               </Link>
-            ) }
+            ) || (
+              <ArtistCard key={ artist.artist_id }>
+                <ArticleCardImage src={ artist.artist_cover } unlocked={unlocked} />
+                <ArticleCardName style={ { textAlign: 'center'} } unlocked={unlocked} >
+                  { artist.artist_name }
+                </ArticleCardName>
+              </ArtistCard>
+            )
+          
+          }
             )
           }
         </HallContainer>

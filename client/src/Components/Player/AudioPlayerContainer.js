@@ -39,7 +39,6 @@ class AudioPlayerContainer extends Component {
     this.filter.connect(this.audioContext.destination);
     this.filter.type = 'lowpass';
     this.filter.frequency.value = 24000;
-    window.filter = this.filter;
 
     this.$audio.addEventListener('canplay', () => {
       window.audio = this.$audio;
