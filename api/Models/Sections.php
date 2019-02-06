@@ -90,7 +90,7 @@ class Sections
     content.content_text
     FROM
     sections
-    INNER JOIN content ON sections.section_id = content.fk_section_id
+    LEFT OUTER JOIN content ON sections.section_id = content.fk_section_id
     WHERE
     sections.section_id = :id";
     return $this->executeSqlById($sql, $id);
