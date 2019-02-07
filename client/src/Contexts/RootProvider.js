@@ -9,7 +9,6 @@ class RootProvider extends Component {
   constructor() {
     super();
     this.state = {
-      lol: 0,
       selectedEra: null,
       menuIsActive: false,
       fullScreen: false,

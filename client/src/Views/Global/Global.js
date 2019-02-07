@@ -8,9 +8,10 @@ import FullScreenButton from '../../Components/FullScreenButton/FullScreenButton
 import Burger from '../../Components/StyledComponents/Burger';
 import BurgerSVG from '../../Components/BurgerSVG/BurgerSVG';
 import HomePlayer from '../../Components/Player/Player';
-
+import LogoMin from '../../Components/Logo/LogoMin';
 import './global.css';
 import { Link } from 'react-router-dom';
+import Arrow from '../../Components/Arrow/Arrow';
 
 class Global extends Component {
   render() {
@@ -28,9 +29,28 @@ class Global extends Component {
           <BurgerSVG />
         </Burger>
 
-        <Link style={{ position: 'fixed', zIndex: '100', left: 20 }} to="/g">
-          Back
-        </Link>
+        {
+          window.location.pathname !== "/g/select-your-era" ? 
+            <Link style={{ 
+              position: 'fixed',
+              zIndex: '100', 
+              left: 20,
+              color: "#ffffff",
+              fontSize: "15px",
+              top: 40,
+              textDecoration: "none",
+              fontFamily: "Roboto"}} to="/g">
+
+
+              <Arrow /> 
+              Back to the episodes
+              
+            </Link>
+          :
+          null
+        }
+        
+        <LogoMin/>
 
         <Menu {...match} />
 

@@ -17,8 +17,9 @@ const styles = {
 };
 
 class Menu extends React.Component {
-  render() {
-    const { path, context } = this.props;
+ 
+  render(){
+    const { path, context } = this.props; 
 
     const show = context.menuIsActive;
 
@@ -27,38 +28,33 @@ class Menu extends React.Component {
         items={show}
         from={{ ...styles, height: 0 }}
         enter={{ ...styles, height: window.innerHeight }}
-        leave={{ ...styles, height: 0 }}
-      >
-        {(show) =>
-          show &&
-          ((props) => (
-            <MenuOverlay style={{ ...props }}>
-              <MenuContainer>
-                {context.state.eras.map(
-                  (era, index) => (
-                    console.log(era),
-                    (
+        leave={{ ...styles, height: 0 }}>
+        
+          {
+            show =>
+              show && (props => 
+                <MenuOverlay style={{ ...props}}>
+                  <MenuContainer>
+                    {context.state.eras.map((era, index) => (
                       <Link
                         key={index}
                         onClick={context.toggleMenu}
-                        to={`${path}/episodes/${era.section_slug}/${
-                          era.section_id
-                        }`}
+                        to={`${path}/episodes/${era.section_slug}/${era.section_id}`}
                       >
-                        <MenuItem background={era.section_bgimage}>
-                          {era.section_title}
-                        </MenuItem>
+                        <MenuItem
+                          background={era.section_bgimage}
+                        >{era.section_title}</MenuItem>
+
                       </Link>
-                    )
-                  )
-                )}
-              </MenuContainer>
-            </MenuOverlay>
-          ))
-        }
+                    ))} 
+                  </MenuContainer>
+                </MenuOverlay>
+              )
+          }
+
       </Transition>
     );
   }
-}
+};
 
 export default withConsumer(Menu);
