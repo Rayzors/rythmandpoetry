@@ -10,7 +10,7 @@ const EraView = (props) => {
     <Fragment>
       <ParallaxLayer
         offset={props.current - 1}
-        speed={0}
+        speed={0.3}
         onWheel={(e) => props.handleWheel(e, props.current)}
         style={{ zIndex: '1' }}
       >
@@ -35,9 +35,12 @@ const EraView = (props) => {
 
       <ParallaxLayer
         offset={props.current - 1}
-        speed={0}
+        speed={0.1}
         onWheel={(e) => props.handleWheel(e, props.current)}
-        className="EraView__bgImageContainer"
+        className={
+          'EraView__bgImageContainer ' +
+          (props.current % 2 === 0 ? 'reverse' : '')
+        }
       >
         <div
           style={{ backgroundImage: `url(${props.section_bgimage})` }}

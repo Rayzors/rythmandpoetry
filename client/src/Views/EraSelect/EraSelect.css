@@ -1,3 +1,7 @@
+.EraSelectContainer {
+  perspective: 500px;
+}
+
 .EraSelectContainer > div > div {
   display: flex;
   align-items: center;
@@ -12,6 +16,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 70%;
+  animation: wiggle2 2s ease-in-out infinite alternate;
 }
 
 .EraView__title {
@@ -79,7 +84,50 @@
   position: relative;
   background-size: cover;
   transform: rotate(-3deg);
+  transform-origin: center;
   left: 2%;
   width: 50vw;
   height: 80vh;
+  animation: wiggle 2s ease-in-out infinite alternate;
+}
+
+.App .EraView__bgImageContainer.reverse > .EraView__bgImage {
+  transform: rotate(3deg);
+}
+
+@media (max-width: 40em) {
+  .EraView__title {
+    line-height: 1;
+    font-size: 32px;
+  }
+  .EraView__subTitle {
+    line-height: 1;
+    font-size: 12px;
+  }
+  .EraView__link {
+    margin-left: 50%;
+    align-self: flex-end;
+  }
+  .App .EraView__bgImage {
+    height: 50vh;
+    width: 90vw;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(-1%) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(1%) rotate(-3deg);
+  }
+}
+
+@keyframes wiggle2 {
+  0% {
+    transform: translateY(-49%);
+  }
+  100% {
+    transform: translateY(-51%);
+  }
 }
