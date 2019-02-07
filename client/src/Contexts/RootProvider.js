@@ -70,7 +70,7 @@ class RootProvider extends Component {
       if (this.state.fullScreen === true) {
         await document.exitFullscreen();
       } else {
-        await document.body.requestFullscreen();
+        await document.documentElement.requestFullscreen();
       }
     } catch (fullscreenError) {
       alert('il y a eu un problème lors du passage en plein écran.');
