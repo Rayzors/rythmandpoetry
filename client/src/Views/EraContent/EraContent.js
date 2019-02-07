@@ -8,6 +8,7 @@ import SectionTitle from '../../Components/StyledComponents/SectionTitle';
 import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlock';
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
+import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
 
 class EraContent extends Component {
   state = {
@@ -91,6 +92,7 @@ class EraContent extends Component {
                   <SectionSubtitle>{section_subtitle}</SectionSubtitle>
                 </SectionCoverBlock>
               </EraIntroduction>
+              <SectionScrollCTA />
             </SectionCover>
 
             <SectionCover>

@@ -6,9 +6,10 @@ const SectionCover = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;  
-  background-color: ${props => props.backgroundColor || "none"};
-  background-image: ${props => `url(${props.backgroundImage})` || "none"};
+  justify-content: space-around;
+  background-color: ${(props) => props.backgroundColor || 'none'};
+  background-image: ${(props) => `url(${props.backgroundImage})` || 'none'};
+  position: relative;
 `;
 
 export default SectionCover;
