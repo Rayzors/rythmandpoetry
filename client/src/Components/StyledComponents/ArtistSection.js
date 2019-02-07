@@ -4,7 +4,6 @@ export const ArtistSection = styled.section`
 
     width: 80vw;  
     margin: 100px auto;
-    background-color: #000;
     color: #fff;
 
     & .heading h2 {
@@ -30,7 +29,7 @@ export const ArtistCover = styled.div`
 
 export const ArtistDescription = styled.div`
 
-    width: 493px;
+    width: 50%;
 
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     font-style: italic;
@@ -38,5 +37,5 @@ export const ArtistDescription = styled.div`
     line-height: 32px;
     font-size: 25px;
     text-align: justify;
-
+    margin: 0 auto;
 `
