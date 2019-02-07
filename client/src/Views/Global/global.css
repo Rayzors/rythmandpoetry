@@ -1,10 +1,10 @@
 .bar {
-  background: #FFFFFF;
+  background: #ffffff;
   bottom: 7px;
   height: 3px;
   position: absolute;
-  width: 5px;  
-  border-radius: 1px;    
+  width: 5px;
+  border-radius: 1px;
   opacity: 0.3;
 }
 
@@ -12,29 +12,39 @@
   animation: sound 0ms -800ms linear infinite alternate;
 }
 
-
-.bar:nth-child(1)  { 
-  left: 7px; 
-  animation-duration: 474ms; 
+.bar:nth-child(1) {
+  left: 7px;
+  animation-duration: 474ms;
 }
 
-.bar:nth-child(2)  { 
-  left: 13px; 
-  animation-duration: 433ms; 
+.bar:nth-child(2) {
+  left: 13px;
+  animation-duration: 433ms;
 }
 
-.bar:nth-child(3)  { 
-  left: 19px; 
-  animation-duration: 407ms; 
+.bar:nth-child(3) {
+  left: 19px;
+  animation-duration: 407ms;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  opacity: 0.7;
 }
 
 @keyframes sound {
   0% {
-     opacity: .35;
-      height: 3px; 
+    opacity: 0.35;
+    height: 3px;
   }
   100% {
-      opacity: 1;       
-      height: 16px;        
+    opacity: 1;
+    height: 16px;
   }
 }
