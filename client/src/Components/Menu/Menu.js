@@ -5,6 +5,7 @@ import { Transition, Trail, animated } from 'react-spring';
 import MenuOverlay from '../StyledComponents/MenuOverlay';
 import MenuItem from '../StyledComponents/MenuItem';
 import MenuContainer from '../StyledComponents/MenuContainer';
+import Frame from '../../assets/images/frame.png';
 
 const styles = {
   position: 'fixed',
@@ -13,12 +14,21 @@ const styles = {
   width: window.innerWidth,
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-around',
   color: '#fff'
 };
 
+const MenuitemInnerStyles = {
+  position: "absolute",
+  bottom: 10,
+  fontSize: 25
+}
+
 class Menu extends React.Component {
-  render() {
-    const { path, context } = this.props;
+
+  render(){
+
+    const { path, context } = this.props; 
 
     const show = context.menuIsActive;
 
@@ -27,38 +37,49 @@ class Menu extends React.Component {
         items={show}
         from={{ ...styles, height: 0 }}
         enter={{ ...styles, height: window.innerHeight }}
-        leave={{ ...styles, height: 0 }}
-      >
-        {(show) =>
-          show &&
-          ((props) => (
-            <MenuOverlay style={{ ...props }}>
-              <MenuContainer>
-                {context.state.eras.map(
-                  (era, index) => (
-                    console.log(era),
-                    (
+        leave={{ ...styles, height: 0 }}>
+        
+          {
+            show =>
+              show && (props => 
+                <MenuOverlay style={{ ...props}}>
+                  <MenuContainer>
+                    {context.state.eras.map((era, index) => (
                       <Link
                         key={index}
                         onClick={context.toggleMenu}
-                        to={`${path}/episodes/${era.section_slug}/${
-                          era.section_id
-                        }`}
+                        to={`${path}/episodes/${era.section_slug}/${era.section_id}`}
                       >
                         <MenuItem background={era.section_bgimage}>
-                          {era.section_title}
+                          <p style={{...MenuitemInnerStyles}}>{era.section_title}</p>
                         </MenuItem>
+
                       </Link>
-                    )
-                  )
-                )}
-              </MenuContainer>
-            </MenuOverlay>
-          ))
-        }
+                    ))} 
+
+                    <Link 
+                      onClick={context.toggleMenu}
+                      to={`${path}/hall-of-fame`}>
+
+                        <MenuItem background={Frame}>
+                          <p style={{
+                            ...MenuitemInnerStyles, 
+                            textAlign: "center",
+                            width: "100%",
+                            bottom: "50%"
+                            }}>The hall of fame</p>
+                        </MenuItem>
+
+                    </Link>
+
+                  </MenuContainer>
+                </MenuOverlay>
+              )
+          }
+
       </Transition>
     );
   }
-}
+};
 
 export default withConsumer(Menu);

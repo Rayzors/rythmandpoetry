@@ -1,6 +1,6 @@
-// import baseURL from '../env/jenesaispas'
+// import baseURL from '../env/jenesaispas's
 const baseURL = 'https://rapapi.kevinmanssat.fr';
-// const baseURL = 'http://54.190.49.146/api'
+//const baseURL = 'http://54.190.49.146/api'
 
 class Api {
   /**
@@ -21,6 +21,7 @@ class Api {
       method: 'GET',
       mode: 'cors'
     };
+
     const response = await fetch(request, options);
     const json = await response.json();
     return json;
