@@ -113,7 +113,7 @@ class EraContent extends Component {
 
             <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
               <ArtistSection>
-                <div class="heading">
+                <div className="heading">
                   <h2>Something born</h2>
                 </div>
                 <ArtistUnlocker artistId={ artists[0].artist_id } />

@@ -5,12 +5,13 @@ import { Transition, Trail, animated } from 'react-spring';
 import MenuOverlay from '../StyledComponents/MenuOverlay';
 import MenuItem from '../StyledComponents/MenuItem';
 import MenuContainer from '../StyledComponents/MenuContainer';
+import Frame from '../../assets/images/frame.png';
 
 const styles = {
   position: 'fixed',
   zIndex: '998',
   backgroundColor: '#000000',
-  width: "100vh",
+  width: '100vh',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
@@ -32,16 +33,15 @@ class Menu extends React.Component {
     return (
       <Transition
         items={show}
-        from={{ ...styles, height: '0vh' }}
-        enter={{ ...styles, height: '100vh' }}
-        leave={{ ...styles, height: '0vh' }}>
-
-      >
+        from={{ height: '0vh' }}
+        enter={{ height: '100vh' }}
+        leave={{  height: '0vh' }}>
           {
             show =>
               show && (props => 
-                <MenuOverlay style={{ ...props}}>
+                <MenuOverlay style={{...props, ...styles, width: '100vw'}}>
                   <MenuContainer>
+
                     {context.state.eras.map((era, index) => (
                       <Link
                         key={index}
