@@ -8,6 +8,7 @@ import SectionTitle from '../../Components/StyledComponents/SectionTitle';
 import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlock';
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
+import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
 import { ArtistSection, ArtistCover, ArtistDescription } from '../../Components/StyledComponents/ArtistSection';
 import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
 
@@ -67,6 +68,11 @@ class EraContent extends Component {
     }
   }
 
+  createMarkup = markup => {
+      return({__html: markup})
+  }
+
+
   render() {
     const {
       loading,
@@ -98,6 +104,7 @@ class EraContent extends Component {
                   <SectionSubtitle>{section_subtitle}</SectionSubtitle>
                 </SectionCoverBlock>
               </EraIntroduction>
+              <SectionScrollCTA />
             </SectionCover>
 
             <SectionCover>
@@ -111,12 +118,8 @@ class EraContent extends Component {
                 </div>
                 <ArtistUnlocker artistId={ artists[0].artist_id } />
                 <ArtistCover>
-                  <img src={ artists[0].artist_cover } unlocked={true} />
-                  <ArtistDescription>
-                    <p>
-                    All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has Kool Dj Herc. 
-                    </p>
-                  </ArtistDescription>
+                  <img src={ artists[0].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`)} />
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>

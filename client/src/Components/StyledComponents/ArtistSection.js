@@ -38,4 +38,8 @@ export const ArtistDescription = styled.div`
     font-size: 25px;
     text-align: justify;
     margin: 0 auto;
+
+    & .highlight {
+        color: #B21131;
+    }
 `
