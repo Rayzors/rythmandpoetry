@@ -41,7 +41,8 @@ class EraContent extends Component {
 
       const datas = await rapApi.getEraById(id);
 
-      const artists = await rapApi.getArtists();
+      const artists = await rapApi.getArtists()
+      console.log(artists)
 
       this.props.context.setTrackList(tracklist);
 
@@ -70,9 +71,12 @@ class EraContent extends Component {
     }
   }
 
-  createMarkup = (markup) => {
-    return { __html: markup };
-  };
+  createMarkup = markup => {
+      return({__html: markup})
+  }
+
+  open = artist =>  this.setState( { modalOpened: true, currentDisplayedArtist: artist }) 
+  close = () =>  this.setState( { modalOpened: false } ) 
 
   render() {
     const {
@@ -114,22 +118,15 @@ class EraContent extends Component {
               <p>lol</p>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
               <ArtistSection>
                 <div className="heading">
                   <h2>Something born</h2>
                 </div>
-                <ArtistUnlocker artistId={artists[0].artist_id} />
+                <ArtistUnlocker artistId={ artists[0].artist_id } />
                 <ArtistCover>
-                  <img src={artists[0].artist_cover} />
-                  <ArtistDescription
-                    dangerouslySetInnerHTML={this.createMarkup(
-                      `All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`
-                    )}
-                  />
+                  <img src={ artists[0].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`)} />
                   <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[0], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
