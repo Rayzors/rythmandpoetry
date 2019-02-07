@@ -43,3 +43,22 @@ export const ArtistDescription = styled.div`
         color: #B21131;
     }
 `
+
+export const ArtistSeeMore = styled.div`
+
+    display: flex;
+    justify-content: center;
+
+    & span {
+        margin-top: 50px;
+        padding: 15px 50px;
+    
+        background-color: #000;
+        color: #FFF;
+        border-radius: 50px;
+
+        cursor: pointer;
+    }
+
+
+`

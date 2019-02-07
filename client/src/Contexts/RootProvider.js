@@ -46,7 +46,7 @@ class RootProvider extends Component {
     if (!stateUnlockedArtist.includes(artistId)) {
       // update state
       this.setState((prevState) => ({
-        unlockedArtist: [...prevState.unlockedArtist, artistId]
+        unlockedArtist: [...prevState.unlockedArtist, parseInt(artistId)]
       }));
       // update localStorage
       rapStorage.setItem('unlockedArtist', this.state.unlockedArtist);

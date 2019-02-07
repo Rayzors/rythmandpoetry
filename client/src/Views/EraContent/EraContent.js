@@ -9,8 +9,10 @@ import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlo
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
 import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
-import { ArtistSection, ArtistCover, ArtistDescription } from '../../Components/StyledComponents/ArtistSection';
+import { ArtistSection, ArtistCover, ArtistDescription, ArtistSeeMore } from '../../Components/StyledComponents/ArtistSection';
 import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
+import Modal from '../../Views/HallOfFame/Modal'
+import { SedgwickSection, SedgwickContent } from '../../Components/StyledComponents/Sedgwick';
 
 class EraContent extends Component {
   state = {
@@ -22,7 +24,8 @@ class EraContent extends Component {
     section_bgcolor: '',
     section_color: '',
     section_bgimage: '',
-    section_content: []
+    section_content: [],
+    modalOpened: false
   };
 
   async componentDidMount() {
@@ -72,6 +75,8 @@ class EraContent extends Component {
       return({__html: markup})
   }
 
+  open = artist =>  this.setState( { modalOpened: true, currentDisplayedArtist: artist }) 
+  close = () =>  this.setState( { modalOpened: false } ) 
 
   render() {
     const {
@@ -81,7 +86,9 @@ class EraContent extends Component {
       section_bgcolor,
       section_bgimage,
       section_id,
-      artists
+      artists,
+      modalOpened,
+      currentDisplayedArtist
     } = this.state;
 
     return (
@@ -113,18 +120,65 @@ class EraContent extends Component {
 
             <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
               <ArtistSection>
-                <div class="heading">
+                <div className="heading">
                   <h2>Something born</h2>
                 </div>
                 <ArtistUnlocker artistId={ artists[0].artist_id } />
                 <ArtistCover>
                   <img src={ artists[0].artist_cover } />
                   <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[0], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>
+
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection>
+                <div className="heading">
+                  <h2>The seed is planted</h2>
+                </div>
+                <ArtistUnlocker artistId={ artists[1].artist_id } />
+                <ArtistCover>
+                  <img src={ artists[1].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`<span class="highlight">Afrika bambaataa</span> is from the East Side of the Bronx and he was a Gang Member of the Black Spades but after loosing some friends he formed a group named “Zulu Nation” peacefull and trying to calm the youth with art and music a group designed to promote hip hop and championning messages of peace, love and unity`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[1], modalOpened: true }) }><span>More</span></ArtistSeeMore>
+                </ArtistCover>
+              </ArtistSection>
+            </SectionCover>
+
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection>
+                <div className="heading">
+                  <h2>Something born</h2>
+                </div>
+                <ArtistUnlocker artistId={ artists[2].artist_id } />
+                <ArtistCover>
+                  <img src={ artists[2].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[2], modalOpened: true }) }><span>More</span></ArtistSeeMore>
+                </ArtistCover>
+              </ArtistSection>
+            </SectionCover>
+
+            <SectionCover backgroundImage={'/images/sedgwick-ave.png'} alignItem={false} >
+              <SedgwickSection>
+                <SedgwickContent alignLeft>
+                  <p>
+                      On a hot August night in 1973, Clive Campbell, known as DJ Kool Herc, and his sister Cindy put on a ‘back to school jam’ in the recreation room of their apartment block at 1520 Sedgwick Avenue in the west Bronx. Entrance cost 25c for ‘ladies’ and 50c for ‘fellas’
+                  </p>
+                </SedgwickContent>
+                <SedgwickContent>
+                  <img src={'/images/KoolHercParty.jpg'} />
+                </SedgwickContent>
+              </SedgwickSection>
+            </SectionCover>
           </Fragment>
         )}
+        <Modal 
+          modalOpened={ modalOpened } 
+          close={ this.close }
+          artist={ currentDisplayedArtist }
+        />
       </Fragment>
     );
   }
