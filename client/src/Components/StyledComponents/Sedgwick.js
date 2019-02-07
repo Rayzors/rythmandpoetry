@@ -35,13 +35,35 @@ export const SedgwickContent = styled.div`
     & img {
         width: 100%;
     }
+    
 
 
     @media only screen and (max-width: 768px) {
 
         width: 100%;
+        margin-left: 0;
 
     }
 
+
+`
+
+export const SedgwickSubtitle = styled.div`
+
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+
+    & p {
+        max-width: 320px;
+    
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-weight: 800;
+        line-height: 32px;
+        font-size: ${ props => props.heading ? '48px' : '25px' };
+        text-align: center;
+        font-variant: small-caps;
+    }
 
 `

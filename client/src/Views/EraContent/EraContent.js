@@ -12,7 +12,7 @@ import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA
 import { ArtistSection, ArtistCover, ArtistDescription, ArtistSeeMore } from '../../Components/StyledComponents/ArtistSection';
 import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
 import Modal from '../../Views/HallOfFame/Modal'
-import { SedgwickSection, SedgwickContent } from '../../Components/StyledComponents/Sedgwick';
+import { SedgwickSection, SedgwickContent, SedgwickSubtitle } from '../../Components/StyledComponents/Sedgwick';
 
 class EraContent extends Component {
   state = {
@@ -132,6 +132,29 @@ class EraContent extends Component {
               </ArtistSection>
             </SectionCover>
 
+            <SectionCover backgroundImage={'/images/sedgwick-ave.png'} alignItem={false} >
+              <SedgwickSection>
+                <SedgwickContent alignLeft>
+                  <p>
+                      On a hot August night in 1973, Clive Campbell, known as DJ Kool Herc, and his sister Cindy put on a ‘back to school jam’ in the recreation room of their apartment block at 1520 Sedgwick Avenue in the west Bronx. Entrance cost 25c for ‘ladies’ and 50c for ‘fellas’
+                  </p>
+                </SedgwickContent>
+                <SedgwickContent>
+                  <img src={'/images/KoolHercParty.jpg'} />
+                </SedgwickContent>
+                <SedgwickSubtitle>
+                  <p>
+                    The party was not simply a huge success
+                  </p>
+                </SedgwickSubtitle>
+                <SedgwickSubtitle heading >
+                  <p>
+                    It was iconic
+                  </p>
+                </SedgwickSubtitle>
+              </SedgwickSection>
+            </SectionCover>
+
             <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
               <ArtistSection>
                 <div className="heading">
@@ -160,18 +183,6 @@ class EraContent extends Component {
               </ArtistSection>
             </SectionCover>
 
-            <SectionCover backgroundImage={'/images/sedgwick-ave.png'} alignItem={false} >
-              <SedgwickSection>
-                <SedgwickContent alignLeft>
-                  <p>
-                      On a hot August night in 1973, Clive Campbell, known as DJ Kool Herc, and his sister Cindy put on a ‘back to school jam’ in the recreation room of their apartment block at 1520 Sedgwick Avenue in the west Bronx. Entrance cost 25c for ‘ladies’ and 50c for ‘fellas’
-                  </p>
-                </SedgwickContent>
-                <SedgwickContent>
-                  <img src={'/images/KoolHercParty.jpg'} />
-                </SedgwickContent>
-              </SedgwickSection>
-            </SectionCover>
           </Fragment>
         )}
         <Modal 

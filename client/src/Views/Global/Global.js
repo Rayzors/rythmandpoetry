@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import Arrow from '../../Components/Arrow/Arrow';
 import * as PIXI from 'pixi.js';
 import * as filters from 'pixi-filters';
+import NotifContainer from '../../Components/Notif/NotifContainer';
 
 class Global extends Component {
   canvasConfig() {
@@ -109,6 +110,7 @@ class Global extends Component {
           )}
         </Switch>
 
+        <NotifContainer />
         {/* audio logic */}
         <AudioPlayerContainer style={{ position: 'fixed', zIndex: '999' }} />
         {/* audio view  */}

@@ -9,6 +9,7 @@ class RootProvider extends Component {
   constructor() {
     super();
     this.state = {
+      notif: null,
       selectedEra: null,
       menuIsActive: false,
       fullScreen: false,
@@ -50,7 +51,11 @@ class RootProvider extends Component {
       }));
       // update localStorage
       rapStorage.setItem('unlockedArtist', this.state.unlockedArtist);
-      this.setState({ notif: 'you just unlocked an artist'  })
+      this.setState({ notif: 'You just unlocked an artist!'  },
+        () => setTimeout(() => {
+          this.setState({ notif: null })
+        }, 2000)
+      )
       console.log('you just unlocked an artist ' + artistId);
     } else {
       console.log('already unlocked ' + artistId);
