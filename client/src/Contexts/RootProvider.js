@@ -50,6 +50,7 @@ class RootProvider extends Component {
       }));
       // update localStorage
       rapStorage.setItem('unlockedArtist', this.state.unlockedArtist);
+      this.setState({ notif: 'you just unlocked an artist'  })
       console.log('you just unlocked an artist ' + artistId);
     } else {
       console.log('already unlocked ' + artistId);

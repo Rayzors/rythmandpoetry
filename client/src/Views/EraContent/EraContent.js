@@ -9,6 +9,9 @@ import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlo
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
 import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
+import { ArtistSection } from '../../Components/StyledComponents/ArtistSection';
+import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
+import { ArtistCard, ArtistCardImage, ArtistCardName } from '../../Components/StyledComponents/HallOfFame';
 
 class EraContent extends Component {
   state = {
@@ -97,6 +100,21 @@ class EraContent extends Component {
 
             <SectionCover>
               <p>lol</p>
+            </SectionCover>
+
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection>
+                <div class="heading">
+                  <h2>Something born</h2>
+                </div>
+                <ArtistUnlocker artistId={ 3 } />
+                <ArtistCard>
+                  <ArtistCardImage src={ artist.artist_cover } unlocked={unlocked} />
+                  <ArtistCardName unlocked={unlocked} >
+                    { artist.artist_name }
+                  </ArtistCardName>
+                </ArtistCard>
+              </ArtistSection>
             </SectionCover>
           </Fragment>
         )}
