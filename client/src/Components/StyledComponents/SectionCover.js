@@ -9,6 +9,8 @@ const SectionCover = styled.section`
   justify-content: space-around;  
   background-color: ${props => props.backgroundColor || "none"};
   background-image: ${props => `url(${props.backgroundImage})` || "none"};
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export default SectionCover;
