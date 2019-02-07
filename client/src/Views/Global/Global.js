@@ -23,7 +23,7 @@ class Global extends Component {
       width: window.innerWidth,
       transparent: true,
       backgroundColor: 0x00ff00,
-      resizeTo: window
+      autoResize: true
     });
     document.querySelector('.App').appendChild(app.view);
 
@@ -48,6 +48,8 @@ class Global extends Component {
 
   animate(el, test) {
     requestAnimationFrame(() => this.animate(el, test));
+
+    el.renderer.resize(window.innerWidth, window.innerHeight);
 
     test.filters[0].seed = Math.random();
 
