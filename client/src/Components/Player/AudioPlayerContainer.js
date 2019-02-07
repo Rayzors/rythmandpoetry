@@ -120,7 +120,8 @@ class AudioPlayerContainer extends Component {
       // When volume at 0 stop interval
       if (volume === 0.0) {
         clearInterval(fadeAudio);
-        this.props.context.setState({ isFading: false });
+        this.setState({ isFading: false, played: false })
+        context.setState({ isFading: false });
       }
     }, 100);
   };
@@ -146,13 +147,14 @@ class AudioPlayerContainer extends Component {
       // When volume at 1 stop interval
       if (this.$audio.volume === 1) {
         clearInterval(fadeAudio);
+        this.setState({ isFading: false, played: true })
         context.setState({ isFading: false });
       }
     }, 100);
   };
 
   play = () => {
-    if (this.state.mute || !this.$audio) return;
+    if ((this.state.mute || !this.$audio) && !this.state.played) return;
     const playPromise = this.$audio.play();
     if (playPromise !== null && !this.state.played) {
       playPromise
