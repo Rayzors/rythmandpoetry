@@ -23,7 +23,6 @@ class HallOfFame extends Component {
   async componentDidMount() {
     const { context } = this.props;
     const artists = await rapApi.getArtists();
-    console.log(artists);
     this.setState({ artists });
   }
 
