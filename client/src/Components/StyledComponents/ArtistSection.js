@@ -17,3 +17,26 @@ export const ArtistSection = styled.section`
     }
 
 `
+
+export const ArtistCover = styled.div`
+
+    & img {
+        margin: 55px auto;
+        display: block;
+        max-width: 168px;
+    }
+
+`
+
+export const ArtistDescription = styled.div`
+
+    width: 493px;
+
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-weight: 800;
+    line-height: 32px;
+    font-size: 25px;
+    text-align: justify;
+
+`

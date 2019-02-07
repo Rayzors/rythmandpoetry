@@ -8,10 +8,8 @@ import SectionTitle from '../../Components/StyledComponents/SectionTitle';
 import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlock';
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
-import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
-import { ArtistSection } from '../../Components/StyledComponents/ArtistSection';
+import { ArtistSection, ArtistCover, ArtistDescription } from '../../Components/StyledComponents/ArtistSection';
 import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
-import { ArtistCard, ArtistCardImage, ArtistCardName } from '../../Components/StyledComponents/HallOfFame';
 
 class EraContent extends Component {
   state = {
@@ -39,9 +37,13 @@ class EraContent extends Component {
 
       const datas = await rapApi.getEraById(id);
 
+      const artists = await rapApi.getArtists()
+      console.log(artists)
+
       this.props.context.setTrackList(tracklist);
 
       this.setState({
+        artists,
         loading: false,
         show: true,
         section_id: datas[0].section_id,
@@ -72,7 +74,8 @@ class EraContent extends Component {
       section_subtitle,
       section_bgcolor,
       section_bgimage,
-      section_id
+      section_id,
+      artists
     } = this.state;
 
     return (
@@ -95,7 +98,6 @@ class EraContent extends Component {
                   <SectionSubtitle>{section_subtitle}</SectionSubtitle>
                 </SectionCoverBlock>
               </EraIntroduction>
-              <SectionScrollCTA />
             </SectionCover>
 
             <SectionCover>
@@ -107,13 +109,15 @@ class EraContent extends Component {
                 <div class="heading">
                   <h2>Something born</h2>
                 </div>
-                <ArtistUnlocker artistId={ 3 } />
-                <ArtistCard>
-                  <ArtistCardImage src={ artist.artist_cover } unlocked={unlocked} />
-                  <ArtistCardName unlocked={unlocked} >
-                    { artist.artist_name }
-                  </ArtistCardName>
-                </ArtistCard>
+                <ArtistUnlocker artistId={ artists[0].artist_id } />
+                <ArtistCover>
+                  <img src={ artists[0].artist_cover } unlocked={true} />
+                  <ArtistDescription>
+                    <p>
+                    All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has Kool Dj Herc. 
+                    </p>
+                  </ArtistDescription>
+                </ArtistCover>
               </ArtistSection>
             </SectionCover>
           </Fragment>
