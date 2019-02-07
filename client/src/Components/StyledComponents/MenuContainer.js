@@ -8,6 +8,7 @@ const MenuContainer = styled.div`
   grid-row-gap: 40px;
   width: 80vw;
   height: 80vh; 
+  margin-top: 100px;
   align-self: center;
 `;
 

@@ -10,7 +10,7 @@ const styles = {
   position: 'fixed',
   zIndex: '998',
   backgroundColor: '#000000',
-  width: window.innerWidth,
+  width: "100vh",
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
@@ -32,38 +32,48 @@ class Menu extends React.Component {
     return (
       <Transition
         items={show}
-        from={{ ...styles, height: 0 }}
-        enter={{ ...styles, height: window.innerHeight }}
-        leave={{ ...styles, height: 0 }}
-      >
-        {(show) =>
-          show &&
-          ((props) => (
-            <MenuOverlay style={{ ...props }}>
-              <MenuContainer>
-                {context.state.eras.map((era, index) => (
-                  <Link
-                    key={index}
-                    onClick={context.toggleMenu}
-                    to={`${path}/episodes/${era.section_slug}/${
-                      era.section_id
-                    }`}
-                  >
-                    <MenuItem background={era.section_bgimage}>
-                      <p style={{ ...MenuitemInnerStyles }}>
-                        {era.section_title}
-                      </p>
-                    </MenuItem>
-                  </Link>
-                ))}
+        from={{ ...styles, height: '0vh' }}
+        enter={{ ...styles, height: '100vh' }}
+        leave={{ ...styles, height: '0vh' }}>
 
-                <Link onClick={context.toggleMenu} to={`${path}/hall-of-fame`}>
-                  <MenuItem background={'/images/wallOfFame.png'} />
-                </Link>
-              </MenuContainer>
-            </MenuOverlay>
-          ))
-        }
+      >
+          {
+            show =>
+              show && (props => 
+                <MenuOverlay style={{ ...props}}>
+                  <MenuContainer>
+                    {context.state.eras.map((era, index) => (
+                      <Link
+                        key={index}
+                        onClick={context.toggleMenu}
+                        to={`${path}/episodes/${era.section_slug}/${era.section_id}`}
+                      >
+                        <MenuItem background={era.section_bgimage}>
+                          <p style={{...MenuitemInnerStyles}}>{era.section_title}</p>
+                        </MenuItem>
+
+                      </Link>
+                    ))} 
+
+                    <Link 
+                      onClick={context.toggleMenu}
+                      to={`${path}/hall-of-fame`}>
+
+                        <MenuItem background={Frame}>
+                          <p style={{
+                            ...MenuitemInnerStyles, 
+                            textAlign: "center",
+                            width: "100%",
+                            bottom: "50%"
+                            }}>The hall of fame</p>
+                        </MenuItem>
+
+                    </Link>
+
+                  </MenuContainer>
+                </MenuOverlay>
+              )
+          }
       </Transition>
     );
   }
