@@ -24,7 +24,6 @@ class HallOfFame extends Component {
 
   async componentDidMount() {
     const { context } = this.props
-    context.setAmbientMusic( 'http://54.190.49.146/musics/what_so_not.mp3' )
     const artists = await rapApi.getArtists()
     console.log(artists)
     this.setState({ artists })
