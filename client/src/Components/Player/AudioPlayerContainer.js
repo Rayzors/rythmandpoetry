@@ -60,6 +60,7 @@ class AudioPlayerContainer extends Component {
 
   componentDidUpdate() {
     // looking if context state has changed to mute the sound
+    const { context } = this.props
     if (!this.$audio) return;
     if (this.props.context.state.mute !== this.state.mute) {
       this.setState(
@@ -74,6 +75,12 @@ class AudioPlayerContainer extends Component {
         }
       );
     }
+ 
+    if(this.state.played === true && this.state.mute === true && !context.state.mute) {
+      this.fadeInAudio();
+      if (!this.state.played) this.play();
+    }
+
     // looking if the context state has changed to change the current music
     if (this.props.context.state.currentMusic !== this.state.music_src) {
       this.fadeOutAudio();
@@ -128,7 +135,7 @@ class AudioPlayerContainer extends Component {
 
   fadeInAudio = () => {
     const { context } = this.props;
-    if (!this.$audio || context.state.isFading) return;
+    if (!this.$audio || context.state.isFading || context.state.mute) return;
     this.setState({ isFading: true });
     context.setState({ isFading: true });
     let fadePoint = this.$audio.currentTime + 2.5;
