@@ -54,19 +54,14 @@
 }
 
 .EraView__link {
-  display: block;
-  width: 82px;
-  height: 82px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  border-radius: 25px;
   color: #ffffff;
+  background: #1c1c1c;
   text-decoration: none;
-  margin: 31px 0 0 30%;
-  transform: translateX(-50%);
+  padding: 1em 2em;
+  margin: 31px 0 0 0;
   transition: 0.26s ease;
 }
 

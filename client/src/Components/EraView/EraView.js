@@ -28,7 +28,7 @@ const EraView = (props) => {
             to={`/g/episodes/${props.section_slug}/${props.section_id}`}
             className="EraView__link"
           >
-            BEGIN
+            Let's begin
           </Link>
         </EraViewInfo>
       </ParallaxLayer>
