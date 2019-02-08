@@ -46,12 +46,14 @@ class Global extends Component {
     this.animate(app, rect);
   }
 
-  animate(el, test) {
-    requestAnimationFrame(() => this.animate(el, test));
+  animate(el, shape) {
+    requestAnimationFrame(() => this.animate(el, shape));
 
     el.renderer.resize(window.innerWidth, window.innerHeight);
+    shape.height = window.innerHeight;
+    shape.width = window.innerWidth;
 
-    test.filters[0].seed = Math.random();
+    shape.filters[0].seed = Math.random();
 
     el.render(el.stage);
   }
