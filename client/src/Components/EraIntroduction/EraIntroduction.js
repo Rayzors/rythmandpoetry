@@ -37,19 +37,9 @@ class EraIntroduction extends React.Component {
     const {show} = this.state;
 
     return(
-      <Transition
-        items={show}
-        from={{opacity: 0, transform: 'translate3d(0,40px,0)'}}
-        enter={{opacity: 1, transform: 'translate3d(0,0,0)'}}
-        leave={{opacity: 0, transform: 'translate3d(0,40px,0)'}}>
-          {show =>
-            show && (props => 
-            <animated.div style={props}>
-              {this.props.children}
-            </animated.div>
-            )
-          }
-      </Transition>
+      <div data-aos="fade-up">
+        {this.props.children}
+      </div>
     )
     
   }

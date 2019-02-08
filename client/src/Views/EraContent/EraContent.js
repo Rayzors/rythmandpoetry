@@ -134,11 +134,8 @@ class EraContent extends Component {
               <p>lol</p>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-right">
                 <div className="heading">
                   <h2>Something born</h2>
                 </div>
@@ -169,7 +166,7 @@ class EraContent extends Component {
               alignItem={false}
             >
               <SedgwickSection>
-                <SedgwickContent alignLeft>
+                <SedgwickContent alignLeft data-aos="fade-right">
                   <p>
                     On a hot August night in 1973, Clive Campbell, known as DJ
                     Kool Herc, and his sister Cindy put on a ‘back to school
@@ -178,30 +175,24 @@ class EraContent extends Component {
                     ‘ladies’ and 50c for ‘fellas’
                   </p>
                 </SedgwickContent>
-                <SedgwickContent>
+                <SedgwickContent data-aos="fade-left">
                   <img src={'/images/KoolHercParty.jpg'} />
                 </SedgwickContent>
-                <SedgwickSubtitle>
-                  <p>The party was not simply a huge success</p>
+                <SedgwickSubtitle data-aos="fade-up">
+                  <p>
+                    The party was not simply a huge success
+                  </p>
                 </SedgwickSubtitle>
-                <SedgwickSubtitle heading>
-                  <p>It was iconic</p>
+                <SedgwickSubtitle heading data-aos="fade-up">
+                  <p>
+                    It was iconic
+                  </p>
                 </SedgwickSubtitle>
               </SedgwickSection>
             </SectionCover>
 
-            <SectionCover
-              backgroundImage={'/images/KoolHercBD.jpg'}
-              minHeight={'70vh'}
-              alignItem={false}
-            >
-              <SimpleText
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
-                }}
-              >
+            <SectionCover backgroundImage={"/images/KoolHercBD.jpg"} minHeight={'70vh'} alignItem={false} >
+              <SimpleText style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }} data-aos="fade-right">
                 <div>
                   <h2>
                     IF IT WAS ICONIC IS ALSO BECAUSE OF KOOL HERC MATE COKE LA
@@ -224,78 +215,36 @@ class EraContent extends Component {
               </SimpleText>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-right">
                 <div className="heading">
                   <h2>The seed is planted</h2>
                 </div>
                 <ArtistUnlocker artistId={artists[1].artist_id} />
                 <ArtistCover>
-                  <img src={artists[1].artist_cover} />
-                  <ArtistDescription
-                    dangerouslySetInnerHTML={this.createMarkup(
-                      `<span class="highlight">Afrika bambaataa</span> is from the East Side of the Bronx and he was a Gang Member of the Black Spades but after loosing some friends he formed a group named “Zulu Nation” peacefull and trying to calm the youth with art and music a group designed to promote hip hop and championning messages of peace, love and unity`
-                    )}
-                  />
-                  <ArtistSeeMore
-                    onClick={() =>
-                      this.setState({
-                        currentDisplayedArtist: artists[1],
-                        modalOpened: true
-                      })
-                    }
-                  >
-                    <span>More</span>
-                  </ArtistSeeMore>
+                  <img src={ artists[1].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`THE LUCKY FEW WHO WITNESSeD IT, KOOL HERC “BREAKS” ARE FIrst hip hop and raps converts<br/><br/>And one of those is a young DJ<br/><br/><span class="highlight">Afrika bambaataa</span> is from the East Side of the Bronx and he was a Gang Member of the Black Spades but after loosing some friends he formed a group named “Zulu Nation” peacefull and trying to calm the youth with art and music a group designed to promote hip hop and championning messages of peace, love and unity`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[1], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-left">
                 <div className="heading">
-                  <h2>Something born</h2>
+                  <h2>HIP HOP WAS STILL VERY RAW</h2>
                 </div>
                 <ArtistUnlocker artistId={artists[2].artist_id} />
                 <ArtistCover>
-                  <img src={artists[2].artist_cover} />
-                  <ArtistDescription
-                    dangerouslySetInnerHTML={this.createMarkup(
-                      `All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`
-                    )}
-                  />
-                  <ArtistSeeMore
-                    onClick={() =>
-                      this.setState({
-                        currentDisplayedArtist: artists[2],
-                        modalOpened: true
-                      })
-                    }
-                  >
-                    <span>More</span>
-                  </ArtistSeeMore>
+                  <img src={ artists[2].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`But there was someone working on changing that someone perfectioning What Kool Herc & Afrika Bambata had started<br/><br/><span class="highlight">GRANDMASTER FLASH</span>`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[2], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>
 
-            <SectionCover
-              backgroundImage={'/images/HHFT-FLASH.png'}
-              minHeight={'70vh'}
-              alignItem={false}
-            >
-              <SimpleText
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
-                }}
-              >
+            <SectionCover backgroundImage={"/images/HHFT-FLASH.png"} minHeight={'70vh'} alignItem={false}>
+              <SimpleText style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }} data-aos="fade-right">
                 <div>
                   <p>
                     Grandmaster Flash was frustrated with the radio blends in
@@ -318,10 +267,8 @@ class EraContent extends Component {
 
             <SectionCover backgroundColor={'#561222'} alignItem={false}>
               <AlbumContainer>
-                <AlbumContainerTitle>
-                  when the beats meet the rhymes
-                </AlbumContainerTitle>
-                <Album>
+                <AlbumContainerTitle data-aos="fade-right">when the beats meet the rhymes</AlbumContainerTitle>
+                <Album data-aos="fade-right">
                   <AlbumContent>
                     <p>
                       Grandmaster Flash rapped and made the shout outs on his
@@ -341,7 +288,7 @@ class EraContent extends Component {
                   </AlbumContent>
                   <AlbumCover src={'/images/furiousfive.png'} />
                 </Album>
-                <Album>
+                <Album data-aos="fade-right">
                   <AlbumContent>
                     <p>
                       One of the more impactfull song of the Furious Five is The
