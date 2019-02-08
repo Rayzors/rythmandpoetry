@@ -11,7 +11,7 @@ const Burger = styled.button`
   position: fixed;
   z-index: 999;
   right: 5%;
-  top: 65px;
+  top: 40px;
   transition: all ease-in-out 0.2s;
   cursor: pointer;
   padding: 0;
