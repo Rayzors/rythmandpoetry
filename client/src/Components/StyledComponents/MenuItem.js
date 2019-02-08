@@ -8,9 +8,14 @@ const MenuItem = styled.div`
   text-decoration: none;
   font-size: 24px;
   text-transform: uppercase;
-  width: 230px;
-  height: 100%s;
-  background: ${props => `url(${props.background}), no-repeat`};
+  height: 100%;
+  position: relative;
+  background: ${(props) => `no-repeat center url(${props.background})`};
+  background-size: cover;
+  transition: all ease-in-out 0.3s;
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 export default MenuItem;
