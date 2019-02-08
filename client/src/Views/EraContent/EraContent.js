@@ -10,7 +10,8 @@ import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
 import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
 import { ArtistSection, ArtistCover, ArtistDescription } from '../../Components/StyledComponents/ArtistSection';
-import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
+import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker';
+import ParallaxSection from '../../Components/ParallaxSection/ParallaxSection';
 
 class EraContent extends Component {
   state = {
@@ -39,7 +40,6 @@ class EraContent extends Component {
       const datas = await rapApi.getEraById(id);
 
       const artists = await rapApi.getArtists()
-      console.log(artists)
 
       this.props.context.setTrackList(tracklist);
 
@@ -72,7 +72,6 @@ class EraContent extends Component {
       return({__html: markup})
   }
 
-
   render() {
     const {
       loading,
@@ -100,16 +99,14 @@ class EraContent extends Component {
                 <SectionCoverBlock>
                   <EpisodeLabel>{`Episode ${section_id}`}</EpisodeLabel>
                   <SectionTitle>{section_title}</SectionTitle>
-                  <hr />
+                  <hr style={{width: '50%', border: '1px solid #fff'}}/>
                   <SectionSubtitle>{section_subtitle}</SectionSubtitle>
                 </SectionCoverBlock>
               </EraIntroduction>
               <SectionScrollCTA />
             </SectionCover>
 
-            <SectionCover>
-              <p>lol</p>
-            </SectionCover>
+            <ParallaxSection/>
 
             <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
               <ArtistSection>
