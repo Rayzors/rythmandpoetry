@@ -9,17 +9,17 @@ export const Snotif = styled.div`
     height: 80px;
 
     background-color: #1C1C1C;
-    border-radius: 50px 0 0 50px;
+    border-radius: 0px 50px 50px 0px;
 
     position: fixed;
     z-index: 999;
-    right: 0;
+    left: 0;
     bottom: 60px;
 
     color: #FFF;
 
     transition: transform 0.3s ease;
-    transform: ${ props => props.notif ? 'translateX(0%)' : 'translateX(100%)' };
+    transform: ${ props => props.notif ? 'translateX(0%)' : 'translateX(-100%)' };
 
 
 `

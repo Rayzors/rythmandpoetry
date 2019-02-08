@@ -11,34 +11,15 @@ import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
 import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
 import ParallaxSection from '../../Components/ParallaxSection/ParallaxSection';
 
-import {
-  ArtistSection,
-  ArtistCover,
-  ArtistDescription,
-  ArtistSeeMore
-} from '../../Components/StyledComponents/ArtistSection';
-
-import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker';
-
-import Modal from '../../Views/HallOfFame/Modal';
-
-import {
-  SedgwickSection,
-  SedgwickContent,
-  SedgwickSubtitle
-} from '../../Components/StyledComponents/Sedgwick';
-
-import { SimpleText } from '../../Components/StyledComponents/SimpleText';
-
-import {
-  AlbumContainer,
-  AlbumContainerTitle,
-  Album,
-  AlbumContent,
-  AlbumCover
-} from '../../Components/StyledComponents/AlbumSections';
 
 import Loading from '../../Components/StyledComponents/Loading';
+import { ArtistSection, ArtistCover, ArtistDescription, ArtistSeeMore } from '../../Components/StyledComponents/ArtistSection';
+import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
+import Modal from '../../Views/HallOfFame/Modal'
+import { SedgwickSection, SedgwickContent, SedgwickSubtitle } from '../../Components/StyledComponents/Sedgwick';
+import { SimpleText } from '../../Components/StyledComponents/SimpleText'
+import { AlbumContainer, AlbumContainerTitle, Album, AlbumContent, AlbumCover } from '../../Components/StyledComponents/AlbumSections';
+import { VideoContainer, VideoContentContainer, BronxTitle, Bronx, BronxContent, BronxCover } from '../../Components/StyledComponents/BronxBurning';
 
 class EraContent extends Component {
   state = {
@@ -140,11 +121,39 @@ class EraContent extends Component {
 
             <ParallaxSection/>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover >
+            <VideoContainer style={{ padding: '3em' }}>
+              <video muted autoPlay loop>
+                <source src="/images/bronxIsBurningVIDEO.mp4" /> 
+              </video>
+              <VideoContentContainer>
+                <BronxTitle>
+                  Bronx&nbsp;is<br/>
+                  <span>BURNING</span>
+                </BronxTitle>
+                <Bronx data-aos="fade-right" style={{ margin: '100px 50px auto 50px' }}>
+                  <BronxContent>
+                    <p>
+                    Long time ago in the bronx neighborhood, the crime and delinquency was making the rules. 
+                    This strange place was also known has «  planet rock » was the cradle of a divided community, where gangs, drugs and violence was dime a dozen. <br/><br/>
+
+                    In 1970, Robert Moses, an Urbanist begins the construction of the cross Bronx Highway, forcing the wealthiest population to move out due to the drop of the interest rate. there remained only poor people. 
+                    This situation resulted in an incrementation of criminality and some people voluntary stetted fire to building to earn the insurance money this was the beginning of a mess.<br/><br/>
+
+                    From this cold and sad atmosphere, the planet rock needed something to bring people together, something joyfull and warm.
+                    </p>
+                  </BronxContent>
+                  <BronxCover src={ '/images/video.png' } />
+                </Bronx>
+                <BronxTitle style={{ width: 'auto', marginTop: '100px' }}>
+                  <span>AND IS ON THIS CHAOS</span>
+                </BronxTitle>
+              </VideoContentContainer>
+            </VideoContainer>
+            </SectionCover>
+
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-right">
                 <div className="heading">
                   <h2>Something born</h2>
                 </div>
@@ -175,7 +184,7 @@ class EraContent extends Component {
               alignItem={false}
             >
               <SedgwickSection>
-                <SedgwickContent alignLeft>
+                <SedgwickContent alignLeft data-aos="fade-right">
                   <p>
                     On a hot August night in 1973, Clive Campbell, known as DJ
                     Kool Herc, and his sister Cindy put on a ‘back to school
@@ -184,30 +193,24 @@ class EraContent extends Component {
                     ‘ladies’ and 50c for ‘fellas’
                   </p>
                 </SedgwickContent>
-                <SedgwickContent>
+                <SedgwickContent data-aos="fade-left">
                   <img src={'/images/KoolHercParty.jpg'} />
                 </SedgwickContent>
-                <SedgwickSubtitle>
-                  <p>The party was not simply a huge success</p>
+                <SedgwickSubtitle data-aos="fade-up">
+                  <p>
+                    The party was not simply a huge success
+                  </p>
                 </SedgwickSubtitle>
-                <SedgwickSubtitle heading>
-                  <p>It was iconic</p>
+                <SedgwickSubtitle heading data-aos="fade-up">
+                  <p>
+                    It was iconic
+                  </p>
                 </SedgwickSubtitle>
               </SedgwickSection>
             </SectionCover>
 
-            <SectionCover
-              backgroundImage={'/images/KoolHercBD.jpg'}
-              minHeight={'70vh'}
-              alignItem={false}
-            >
-              <SimpleText
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
-                }}
-              >
+            <SectionCover backgroundImage={"/images/KoolHercBD.jpg"} minHeight={'70vh'} alignItem={false} >
+              <SimpleText style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }} data-aos="fade-right">
                 <div>
                   <h2>
                     IF IT WAS ICONIC IS ALSO BECAUSE OF KOOL HERC MATE COKE LA
@@ -230,78 +233,36 @@ class EraContent extends Component {
               </SimpleText>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-right">
                 <div className="heading">
                   <h2>The seed is planted</h2>
                 </div>
                 <ArtistUnlocker artistId={artists[1].artist_id} />
                 <ArtistCover>
-                  <img src={artists[1].artist_cover} />
-                  <ArtistDescription
-                    dangerouslySetInnerHTML={this.createMarkup(
-                      `<span class="highlight">Afrika bambaataa</span> is from the East Side of the Bronx and he was a Gang Member of the Black Spades but after loosing some friends he formed a group named “Zulu Nation” peacefull and trying to calm the youth with art and music a group designed to promote hip hop and championning messages of peace, love and unity`
-                    )}
-                  />
-                  <ArtistSeeMore
-                    onClick={() =>
-                      this.setState({
-                        currentDisplayedArtist: artists[1],
-                        modalOpened: true
-                      })
-                    }
-                  >
-                    <span>More</span>
-                  </ArtistSeeMore>
+                  <img src={ artists[1].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`THE LUCKY FEW WHO WITNESSeD IT, KOOL HERC “BREAKS” ARE FIrst hip hop and raps converts<br/><br/>And one of those is a young DJ<br/><br/><span class="highlight">Afrika bambaataa</span> is from the East Side of the Bronx and he was a Gang Member of the Black Spades but after loosing some friends he formed a group named “Zulu Nation” peacefull and trying to calm the youth with art and music a group designed to promote hip hop and championning messages of peace, love and unity`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[1], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>
 
-            <SectionCover
-              style={{ backgroundColor: '#F8C918' }}
-              alignItem={false}
-            >
-              <ArtistSection>
+            <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>
+              <ArtistSection data-aos="fade-left">
                 <div className="heading">
-                  <h2>Something born</h2>
+                  <h2>HIP HOP WAS STILL VERY RAW</h2>
                 </div>
                 <ArtistUnlocker artistId={artists[2].artist_id} />
                 <ArtistCover>
-                  <img src={artists[2].artist_cover} />
-                  <ArtistDescription
-                    dangerouslySetInnerHTML={this.createMarkup(
-                      `All of a sudden, this light was bring by a hero who started to gather people with his music. Something totally new that nobody ever heard of before. this Hero was known has <span class="highlight">Kool Dj Herc.</span>`
-                    )}
-                  />
-                  <ArtistSeeMore
-                    onClick={() =>
-                      this.setState({
-                        currentDisplayedArtist: artists[2],
-                        modalOpened: true
-                      })
-                    }
-                  >
-                    <span>More</span>
-                  </ArtistSeeMore>
+                  <img src={ artists[2].artist_cover } />
+                  <ArtistDescription dangerouslySetInnerHTML={this.createMarkup(`But there was someone working on changing that someone perfectioning What Kool Herc & Afrika Bambata had started<br/><br/><span class="highlight">GRANDMASTER FLASH</span>`)} />
+                  <ArtistSeeMore onClick={ () => this.setState({ currentDisplayedArtist: artists[2], modalOpened: true }) }><span>More</span></ArtistSeeMore>
                 </ArtistCover>
               </ArtistSection>
             </SectionCover>
 
-            <SectionCover
-              backgroundImage={'/images/HHFT-FLASH.png'}
-              minHeight={'70vh'}
-              alignItem={false}
-            >
-              <SimpleText
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
-                }}
-              >
+            <SectionCover backgroundImage={"/images/HHFT-FLASH.png"} minHeight={'70vh'} alignItem={false}>
+              <SimpleText style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }} data-aos="fade-right">
                 <div>
                   <p>
                     Grandmaster Flash was frustrated with the radio blends in
@@ -324,10 +285,8 @@ class EraContent extends Component {
 
             <SectionCover backgroundColor={'#561222'} alignItem={false}>
               <AlbumContainer>
-                <AlbumContainerTitle>
-                  when the beats meet the rhymes
-                </AlbumContainerTitle>
-                <Album>
+                <AlbumContainerTitle data-aos="fade-right">when the beats meet the rhymes</AlbumContainerTitle>
+                <Album data-aos="fade-right">
                   <AlbumContent>
                     <p>
                       Grandmaster Flash rapped and made the shout outs on his
@@ -347,7 +306,7 @@ class EraContent extends Component {
                   </AlbumContent>
                   <AlbumCover src={'/images/furiousfive.png'} />
                 </Album>
-                <Album>
+                <Album data-aos="fade-right">
                   <AlbumContent>
                     <p>
                       One of the more impactfull song of the Furious Five is The

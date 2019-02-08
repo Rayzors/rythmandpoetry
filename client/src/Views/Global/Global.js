@@ -15,6 +15,8 @@ import Arrow from '../../Components/Arrow/Arrow';
 import * as PIXI from 'pixi.js';
 import * as filters from 'pixi-filters';
 import NotifContainer from '../../Components/Notif/NotifContainer';
+import AOS from 'aos'
+import '../../../node_modules/aos/dist/aos.css'
 
 class Global extends Component {
   canvasConfig() {
@@ -51,6 +53,12 @@ class Global extends Component {
   }
   componentDidMount() {
     this.canvasConfig();
+    AOS.init({
+      offset: window.innerHeight / 4,
+      duration: 1000
+    })
+    window.addEventListener('resize', () => AOS.refresh())
+
   }
   render() {
     const { match, context } = this.props;
