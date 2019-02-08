@@ -17,6 +17,10 @@ const SectionSectionCTA = styled.div`
     left: 0;
     transform: translateX(-50%);
   }
+
+  @media (max-width: 768px) {
+    left: 10%;
+  }
 `;
 
 export default SectionSectionCTA;

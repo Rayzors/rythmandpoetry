@@ -9,6 +9,7 @@ class RootProvider extends Component {
   constructor() {
     super();
     this.state = {
+      notif: null,
       selectedEra: null,
       menuIsActive: false,
       fullScreen: false,
@@ -46,11 +47,15 @@ class RootProvider extends Component {
     if (!stateUnlockedArtist.includes(artistId)) {
       // update state
       this.setState((prevState) => ({
-        unlockedArtist: [...prevState.unlockedArtist, artistId]
+        unlockedArtist: [...prevState.unlockedArtist, parseInt(artistId)]
       }));
       // update localStorage
       rapStorage.setItem('unlockedArtist', this.state.unlockedArtist);
-      this.setState({ notif: 'you just unlocked an artist'  })
+      this.setState({ notif: 'You just unlocked an artist!'  },
+        () => setTimeout(() => {
+          this.setState({ notif: null })
+        }, 2000)
+      )
       console.log('you just unlocked an artist ' + artistId);
     } else {
       console.log('already unlocked ' + artistId);
@@ -70,7 +75,7 @@ class RootProvider extends Component {
       if (this.state.fullScreen === true) {
         await document.exitFullscreen();
       } else {
-        await document.body.requestFullscreen();
+        await document.documentElement.requestFullscreen();
       }
     } catch (fullscreenError) {
       alert('il y a eu un problème lors du passage en plein écran.');

@@ -3,18 +3,7 @@ import { Spring } from 'react-spring';
 import styled from 'styled-components';
 import HeadphoneSVG from '../../Components/HeadphoneSVG/HeadphoneSVG';
 import Logo from '../../Components/Logo/Logo';
-
-const Wrapper = styled.section`
-  background: #062444 url(/images/loading_bg.png) center center no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
-  color: white;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-`;
+import Wrapper from '../../Components/StyledComponents/Wrapper';
 
 const Container = styled.div`
   max-width: 1440px;

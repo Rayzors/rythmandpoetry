@@ -18,7 +18,7 @@ export const ArtistSection = styled.section`
 `
 
 export const ArtistCover = styled.div`
-
+    margin-top: 10%;
     & img {
         margin: 55px auto;
         display: block;
@@ -42,4 +42,27 @@ export const ArtistDescription = styled.div`
     & .highlight {
         color: #B21131;
     }
+
+    @media only screen and (max-width: 768px) {
+        width: 100%;
+    }
+`
+
+export const ArtistSeeMore = styled.div`
+
+    display: flex;
+    justify-content: center;
+
+    & span {
+        margin-top: 50px;
+        padding: 15px 50px;
+    
+        background-color: #000;
+        color: #FFF;
+        border-radius: 50px;
+
+        cursor: pointer;
+    }
+
+
 `

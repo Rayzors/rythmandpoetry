@@ -47,7 +47,7 @@ class AudioPlayerContainer extends Component {
       this.fadeInAudio();
     });
     this.$audio.addEventListener('ended', () => {
-      console.warn('ended');
+      console.warn('ended',  Date.now());
       const { context } = this.props
       if(context.state.currentTracklist.length > 0) {
         context.nextSong();
@@ -67,6 +67,7 @@ class AudioPlayerContainer extends Component {
         () => ({ mute: this.props.context.state.mute }),
         () => {
           if (this.state.mute) {
+            console.log('là 1',  Date.now())
             this.fadeOutAudio();
           } else {
             this.fadeInAudio();
@@ -84,6 +85,7 @@ class AudioPlayerContainer extends Component {
     // looking if the context state has changed to change the current music
     if (this.props.context.state.currentMusic !== this.state.music_src) {
       this.fadeOutAudio();
+      console.log('là 2', Date.now())
       clearInterval(this.timer);
       this.setState(
         { music_src: this.props.context.state.currentMusic },

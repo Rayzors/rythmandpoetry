@@ -9,12 +9,7 @@ const FloatingText = styled.p`
   color: #ffffff;
   text-transform: uppercase;
   line-height: 1.5;
-  @media (min-width: ${tablet}px) {
-
-  }
-  @media (min-width: ${tablet}px) {
-
-  }
+  z-index: 10;
 `;
 
 export default FloatingText;
