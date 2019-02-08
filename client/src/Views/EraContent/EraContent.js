@@ -9,28 +9,13 @@ import SectionCoverBlock from '../../Components/StyledComponents/SectionCoverBlo
 import EpisodeLabel from '../../Components/StyledComponents/EpisodeLabel';
 import SectionSubtitle from '../../Components/StyledComponents/SectionSubtitle';
 import SectionScrollCTA from '../../Components/StyledComponents/SectionScrollCTA';
-import {
-  ArtistSection,
-  ArtistCover,
-  ArtistDescription,
-  ArtistSeeMore
-} from '../../Components/StyledComponents/ArtistSection';
-import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker';
-import Modal from '../../Views/HallOfFame/Modal';
-import {
-  SedgwickSection,
-  SedgwickContent,
-  SedgwickSubtitle
-} from '../../Components/StyledComponents/Sedgwick';
-import { SimpleText } from '../../Components/StyledComponents/SimpleText';
-import {
-  AlbumContainer,
-  AlbumContainerTitle,
-  Album,
-  AlbumContent,
-  AlbumCover
-} from '../../Components/StyledComponents/AlbumSections';
-import Loading from '../../Components/StyledComponents/Loading';
+import { ArtistSection, ArtistCover, ArtistDescription, ArtistSeeMore } from '../../Components/StyledComponents/ArtistSection';
+import ArtistUnlocker from '../../Components/ArtistUnlocker/ArtistUnlocker'
+import Modal from '../../Views/HallOfFame/Modal'
+import { SedgwickSection, SedgwickContent, SedgwickSubtitle } from '../../Components/StyledComponents/Sedgwick';
+import { SimpleText } from '../../Components/StyledComponents/SimpleText'
+import { AlbumContainer, AlbumContainerTitle, Album, AlbumContent, AlbumCover } from '../../Components/StyledComponents/AlbumSections';
+import { VideoContainer, VideoContentContainer, BronxTitle, Bronx, BronxContent, BronxCover } from '../../Components/StyledComponents/BronxBurning';
 
 class EraContent extends Component {
   state = {
@@ -132,6 +117,37 @@ class EraContent extends Component {
 
             <SectionCover>
               <p>lol</p>
+            </SectionCover>
+
+            <SectionCover >
+            <VideoContainer style={{ padding: '3em' }}>
+              <video muted autoPlay loop>
+                <source src="/images/bronxIsBurningVIDEO.mp4" /> 
+              </video>
+              <VideoContentContainer>
+                <BronxTitle>
+                  Bronx&nbsp;is<br/>
+                  <span>BURNING</span>
+                </BronxTitle>
+                <Bronx data-aos="fade-right" style={{ margin: '100px 50px auto 50px' }}>
+                  <BronxContent>
+                    <p>
+                    Long time ago in the bronx neighborhood, the crime and delinquency was making the rules. 
+                    This strange place was also known has «  planet rock » was the cradle of a divided community, where gangs, drugs and violence was dime a dozen. <br/><br/>
+
+                    In 1970, Robert Moses, an Urbanist begins the construction of the cross Bronx Highway, forcing the wealthiest population to move out due to the drop of the interest rate. there remained only poor people. 
+                    This situation resulted in an incrementation of criminality and some people voluntary stetted fire to building to earn the insurance money this was the beginning of a mess.<br/><br/>
+
+                    From this cold and sad atmosphere, the planet rock needed something to bring people together, something joyfull and warm.
+                    </p>
+                  </BronxContent>
+                  <BronxCover src={ '/images/video.png' } />
+                </Bronx>
+                <BronxTitle style={{ width: 'auto', marginTop: '100px' }}>
+                  <span>AND IS ON THIS CHAOS</span>
+                </BronxTitle>
+              </VideoContentContainer>
+            </VideoContainer>
             </SectionCover>
 
             <SectionCover style={{ backgroundColor: "#F8C918" }} alignItem={false}>

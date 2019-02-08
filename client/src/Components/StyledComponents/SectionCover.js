@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const SectionCover = styled.section`
   width: 100vw;
+  height: ${ props => props.height ? props.height : ''};
   min-height: ${props => props.minHeight ? props.minHeight : '100vh'};
   display: flex;
   flex-direction: row;
