@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Wrapper from '../../Components/StyledComponents/Wrapper';
+import Logo from '../Logo/Logo';
 
 const Loading = (props) => (
   <Fragment>
     <Wrapper bg={'#000'}>
-      <p color={'#fff'}>Chargement</p>
+      <Logo className="logo-loader" />
     </Wrapper>
   </Fragment>
 );
