@@ -16,6 +16,7 @@ import { SedgwickSection, SedgwickContent, SedgwickSubtitle } from '../../Compon
 import { SimpleText } from '../../Components/StyledComponents/SimpleText'
 import { AlbumContainer, AlbumContainerTitle, Album, AlbumContent, AlbumCover } from '../../Components/StyledComponents/AlbumSections';
 import { VideoContainer, VideoContentContainer, BronxTitle, Bronx, BronxContent, BronxCover } from '../../Components/StyledComponents/BronxBurning';
+import Loading from '../../Components/StyledComponents/Loading'
 
 class EraContent extends Component {
   state = {
