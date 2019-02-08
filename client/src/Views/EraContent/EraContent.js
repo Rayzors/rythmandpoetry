@@ -109,7 +109,6 @@ class EraContent extends Component {
                 <SectionCoverBlock>
                   <EpisodeLabel>{`Episode ${section_id}`}</EpisodeLabel>
                   <SectionTitle>{section_title}</SectionTitle>
-                  <hr />
                   <SectionSubtitle>{section_subtitle}</SectionSubtitle>
                 </SectionCoverBlock>
               </EraIntroduction>
