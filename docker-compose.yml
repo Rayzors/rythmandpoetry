@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: paartheepan/rapdb
+    container_name: rap_database
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PWD
+      MYSQL_DATABASE: $DB_NAME 
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    networks:
+      - db_network
+  api:
+    image: paartheepan/rythmandpoetry_api:latest
+    container_name: rap_api
+    environment:
+      HOST: db
+      DBUSER: root
+      DBPWD: $DB_ROOT_PWD
+      DBNAME: $DB_NAME
+      DBPORT: $DB_PORT
+    depends_on:
+      - db
+    ports:
+      - "${API_PORT:-3001}:80"
+    networks:
+      - db_network
+      - api_network
+    stdin_open: true
+    tty: true
+  front:
+    image: paartheepan/rapfront:latest
+    container_name: rap_front
+    working_dir: /app
+    depends_on:
+      - api
+    restart: always
+    ports:
+      - "${FRONT_PORT:-80}:80"
+    environment:
+      REACT_APP_API_URL: http://localhost:$API_PORT
+    networks:
+      - api_network
+networks:
+  db_network:
+  api_network:
+    driver: bridge

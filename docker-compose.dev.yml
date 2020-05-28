@@ -1,0 +1,55 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: rap_database
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PWD
+      MYSQL_DATABASE: $DB_NAME
+    volumes:
+      - ./db/sqldump/rap_2020-05-25.sql:/docker-entrypoint-initdb.d/setup.sql  
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    networks:
+      - db_network
+  api:
+    build:
+      context: ./api
+    container_name: rap_api
+    environment:
+      HOST: rap_database
+      DBUSER: root
+      DBPWD: $DB_ROOT_PWD
+      DBNAME: $DB_NAME
+      DBPORT: $DB_PORT
+    depends_on:
+      - db
+    volumes:
+      - ./api:/var/www/html/
+    ports:
+      - "${API_PORT:-3001}:80"
+    networks:
+      - db_network
+      - api_network
+    stdin_open: true
+    tty: true
+  front:
+    image: node:12.17
+    container_name: rap_front
+    working_dir: /app
+    command: bash -c "npm i && npm start"
+    depends_on:
+      - api
+    restart: always
+    ports:
+      - "${FRONT_PORT:-3000}:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:$API_PORT
+    volumes:
+      - ./client:/app
+    networks:
+      - api_network
+networks:
+  db_network:
+  api_network:
+    driver: bridge
