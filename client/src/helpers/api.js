@@ -1,5 +1,5 @@
 // import baseURL from '../env/jenesaispas's
-const baseURL = 'https://rapapi.kevinmanssat.fr';
+const baseURL = process.env.REACT_APP_API_URL || 'https://rapapi.kevinmanssat.fr';
 //const baseURL = 'http://54.190.49.146/api'
 
 class Api {
